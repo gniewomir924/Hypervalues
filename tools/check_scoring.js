@@ -5,11 +5,14 @@ const path = require('path');
 const vm = require('vm');
 
 const root = path.join(__dirname, '..');
-const ctx = { localStorage: { getItem() { return null; }, setItem() {} }, console };
+const ctx = { localStorage: { getItem() { return null; }, setItem() {} }, console, atob: text => Buffer.from(text, 'base64').toString('binary') };
 vm.createContext(ctx);
+const loadMs = {};
 ['data.js', 'scoring.js'].forEach(file => {
     // top-level const is not visible outside the script, so make it var
+    const startedLoad = Date.now();
     vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8').replace(/^const /gm, 'var '), ctx, { filename: file });
+    loadMs[file] = Date.now() - startedLoad;
 });
 
 const HV = ctx.HV;
@@ -58,6 +61,17 @@ const unusedElsewhere = Object.keys(categoryOf).filter(value => !used[value] && 
 if (unusedElsewhere.length) warnings.push(unusedElsewhere.length + ' values are held by no ideology and are not in the quiz: ' + unusedElsewhere.join(', '));
 const few = labels.filter(label => Object.keys(stances[label]).length <= 2);
 if (few.length) warnings.push(few.length + ' ideologies list 2 values or fewer: ' + few.join(', '));
+
+// 2b. The guesses for stances an ideology does not list (worked out in scoring.js from the definitions and the table)
+let badGuess = 0, guessed = 0;
+labels.forEach(label => HV.guessedValues(label, 1000).forEach(guess => {
+    guessed++;
+    if (stances[label][guess.value] !== undefined || !(guess.probability > 0 && guess.probability <= 1 + 1e-9)) badGuess++;
+}));
+check(guessed > 0 && badGuess === 0, 'the guesses cover only values an ideology does not list, with chances from 0 to 1 (' + guessed + ' guesses)');
+const noText = labels.filter(label => !ctx.descriptions[label]);
+check(noText.length === 0, 'every ideology has a definition, which the guesses read' + (noText.length ? ': ' + noText.join(', ') : ''));
+check(loadMs['scoring.js'] < 2000, 'scoring.js builds its model in ' + loadMs['scoring.js'] + ' ms (under 2000 ms)');
 
 // 3. No answers; probabilities add up to 1; the text of a probability
 const empty = HV.rankIdeologies({});
