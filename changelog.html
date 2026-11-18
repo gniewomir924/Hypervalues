@@ -13,6 +13,18 @@
         <h1>Changelog</h1>
 
         <div class="description-box">
+            <h3>3.12 - 18.11.2026</h3>
+            <ul>
+                <li>The ranking now guesses the stances that are missing from the table. For every value an ideology does not list, the page works out how likely that ideology is to support or oppose it, and an answer that is close to a likely guess costs that ideology less than an answer to a value it never mentions. The guess pools two kinds of evidence into one weighted average: the share of the 15 ideologies with the most similar names and definitions that support or oppose the value, and the values the ideology does list that go together with it, or against it, in the table. There is nothing to train: the guesses are rebuilt from data.js when the page loads (about 0.2 seconds), so adding an ideology or a value is enough. The small network that was tried for this is kept in archive/completion-network.</li>
+                <li>214 ideology definitions are rewritten. Each states what the ideology holds on its own terms, without comparing it with other ideologies, and now names the values it takes a position on. The definitions are what the guesses read, so a clearer definition gives better guesses.</li>
+                <li>89 value definitions are rewritten: longer, and without the names of other values. Neocorporatism (bargaining among unions, employers and the state over the whole economy) and Rhine capitalism (stakeholder governance and co-determination inside the firm) are now described as different things.</li>
+                <li>The quiz has 48 questions instead of 52: four questions that only split a dominant option from a small one are gone, and their values are one question higher. The text of the options of seven questions (the funding of public services, the tax rate, the level of political power, how far the capital controls, how to stay out of other countries' affairs, the attitude to technology and who owns businesses and land) now names what the options lead to.</li>
+                <li>The stances grew from 1571 to 1654: 84 were added to 50 ideologies, each one only where the definition says the ideology holds or opposes the value, and one was removed (Austro-Corporatism no longer holds Rhine Capitalism, which its definition does not describe). Ideologies with 4 stances or fewer went from 33 to 9. FairTax, Instrumentalism and Posthumanism are still held by no ideology and are still out of the quiz.</li>
+                <li>node tools/check_scoring.js now checks that every ideology has a definition and that the model builds quickly. The guesses are tested with simulated answers, not with real answers. Answers that fit no ideology still give the best one a share, and with many values the best ideology can look more certain than it is.</li>
+            </ul>
+        </div>
+
+        <div class="description-box">
             <h3>3.11 - 11.11.2026</h3>
             <ul>
                 <li>The closest ideologies are now ranked by a Bayesian model instead of the neural network. For each ideology it asks how likely someone who holds it would be to give your answers: each value you answered is compared with the ideology's stance, a value the ideology never mentions counts against it (less so when the ideologies close to it do mention that value), and an ideology that lists few values and matches all of them beats one that lists many. Because it is not known how far a person strays from an ideology, the model averages over several amounts instead of picking one.</li>

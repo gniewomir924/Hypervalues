@@ -5,7 +5,7 @@
       "text": "Who should mainly own and run businesses and land?",
       "options": [
         {
-          "text": "Private owners and companies, competing in markets",
+          "text": "Private owners and companies, competing in free markets",
           "next": "e_market"
         },
         {
@@ -13,7 +13,7 @@
           "next": "e_public"
         },
         {
-          "text": "Another arrangement: widely shared family property, trade bodies, or a traditional order",
+          "text": "Another arrangement: widely shared family property, trade bodies and corporations, or a traditional order of lords and officials",
           "next": "e_other"
         }
       ]
@@ -23,8 +23,8 @@
       "text": "What should be the state's main job in the economy?",
       "options": [
         {
-          "text": "Enforce property rights, contracts and fair competition, and little else",
-          "next": "e_rules"
+          "text": "Protect property and contracts only, with no regulation, subsidies or tariffs",
+          "next": "laissez_faire"
         },
         {
           "text": "Guarantee a basic minimum income, leaving markets free",
@@ -37,24 +37,6 @@
         {
           "text": "Steer the economy for stability, growth and national coordination",
           "next": "e_steer"
-        }
-      ]
-    },
-    {
-      "id": "e_rules",
-      "text": "How far should the state go in shaping markets?",
-      "options": [
-        {
-          "text": "Protect property and contracts only, with no regulation, subsidies or tariffs",
-          "next": "laissez_faire"
-        },
-        {
-          "text": "Keep competition open and money stable, with only welfare that leaves prices free",
-          "next": "ordnungspolitik"
-        },
-        {
-          "text": "Trade outside state control, through informal or untaxed markets",
-          "next": "countereconomics"
         }
       ]
     },
@@ -113,6 +95,10 @@
         {
           "text": "Negotiate national wage and price pacts between government, business and unions",
           "next": "neo_corporatism"
+        },
+        {
+          "text": "Keep competition open and money stable, with only welfare that leaves prices free",
+          "next": "ordnungspolitik"
         }
       ]
     },
@@ -121,8 +107,12 @@
       "text": "Who should control production?",
       "options": [
         {
-          "text": "The state, acting for society as a whole",
-          "next": "e_state"
+          "text": "The state, producing for human need under central planning and ending private profit",
+          "next": "state_socialism"
+        },
+        {
+          "text": "The state, running enterprises commercially in the market to earn revenue",
+          "next": "state_capitalism"
         },
         {
           "text": "Workers, through cooperatives, unions or guilds",
@@ -131,20 +121,6 @@
         {
           "text": "Voluntary, stateless groups of producers and communities",
           "next": "e_stateless"
-        }
-      ]
-    },
-    {
-      "id": "e_state",
-      "text": "What should state-owned enterprises do?",
-      "options": [
-        {
-          "text": "Run commercially in the market to earn revenue for the state",
-          "next": "state_capitalism"
-        },
-        {
-          "text": "Produce for human need under central planning, ending private profit",
-          "next": "state_socialism"
         }
       ]
     },
@@ -203,6 +179,10 @@
         {
           "text": "A hierarchy run from the top, by lords or by expert officials",
           "next": "e_order"
+        },
+        {
+          "text": "Informal, untaxed markets outside the state's control",
+          "next": "countereconomics"
         }
       ]
     },
@@ -367,15 +347,15 @@
       "text": "How should public services be funded?",
       "options": [
         {
-          "text": "Taxes on people's income or wealth",
+          "text": "Taxes on people's income or wealth, at a flat, progressive or confiscatory rate",
           "next": "r_income"
         },
         {
-          "text": "Taxes on something other than income, such as land, spending or imports",
+          "text": "Taxes on land, resource rents, imports or spending instead of income",
           "next": "r_other"
         },
         {
-          "text": "Without compulsory taxes",
+          "text": "No compulsory taxes: voluntary funding, or goods shared by community need",
           "next": "r_none"
         }
       ]
@@ -385,15 +365,15 @@
       "text": "How should the tax rate change as income rises?",
       "options": [
         {
-          "text": "It stays the same for everyone",
+          "text": "A single flat rate that stays the same for everyone",
           "next": "flat_taxation"
         },
         {
-          "text": "It rises steadily as income rises",
+          "text": "A progressive rate that rises steadily as income rises",
           "next": "Progressive_Taxation"
         },
         {
-          "text": "It becomes extremely high, near total, above a set level",
+          "text": "Confiscatory rates: extremely high, near total, above a set level",
           "next": "Confiscatory_Taxation"
         }
       ]
@@ -819,7 +799,11 @@
       "text": "Who should count as \"us\" in your political community?",
       "options": [
         {
-          "text": "Individuals and small groups: yourself, your local community, or your kin",
+          "text": "Your local community and its shared values",
+          "next": "communitarianism"
+        },
+        {
+          "text": "Yourself or your kin: the individual, or ancient tribal bonds",
           "next": "n_small"
         },
         {
@@ -838,15 +822,11 @@
     },
     {
       "id": "n_small",
-      "text": "Which group should come first?",
+      "text": "Which comes first, yourself or your kin?",
       "options": [
         {
           "text": "Only the individual: no state, nation or moral duty binds me",
           "next": "egoism"
-        },
-        {
-          "text": "The local community and its shared values",
-          "next": "communitarianism"
         },
         {
           "text": "Kinship, lineage and ancient tribal bonds, not the nation",
@@ -966,18 +946,18 @@
     },
     {
       "id": "f_out",
-      "text": "How should it stay out?",
+      "text": "How should it stay out of other countries' affairs?",
       "options": [
         {
-          "text": "Cut off political, military and most economic ties",
+          "text": "Isolationist: cut off political, military and most economic ties and rely on itself",
           "next": "Isolationism"
         },
         {
-          "text": "Trade and talk peacefully, avoiding alliances and wars that are not self-defense",
+          "text": "Non-interventionist: trade and talk peacefully, avoiding alliances and wars that are not self-defense",
           "next": "Non_Interventionism"
         },
         {
-          "text": "Take no side in conflicts, but keep a strong military to defend sovereignty",
+          "text": "Armed neutrality: take no side in conflicts, but keep a strong military to defend sovereignty",
           "next": "armed_neutrality"
         }
       ]
@@ -1052,19 +1032,19 @@
       "text": "What should society's attitude to technology be?",
       "options": [
         {
-          "text": "Limit it, to protect human scale, rural life and nature",
+          "text": "Limit or reject it, to protect human scale, rural life and wild nature",
           "next": "t_limit"
         },
         {
-          "text": "Use it pragmatically, balancing prosperity, practicality and the environment",
+          "text": "Use it pragmatically as a tool, balancing industry, services and the environment",
           "next": "t_tool"
         },
         {
-          "text": "Use advanced technology to enhance humanity and heal the Earth",
+          "text": "Use advanced technology, such as biotechnology and cybernetics, to enhance humanity and heal the Earth",
           "next": "t_advanced"
         },
         {
-          "text": "Let it accelerate as far and as fast as it can go",
+          "text": "Let it accelerate as far and as fast as it can go, through markets, computation and automation",
           "next": "t_accelerate"
         }
       ]
@@ -1198,8 +1178,12 @@
       "text": "How far should the state regulate people's private conduct?",
       "options": [
         {
-          "text": "Hardly at all: law should only prevent harm to others",
-          "next": "sc_free"
+          "text": "Hardly at all: law should only prevent harm to others and guard rights such as free speech, privacy and fair trials",
+          "next": "civil_libertarianism"
+        },
+        {
+          "text": "Not at all: consensual adult choices and private habits are never the state's business",
+          "next": "permissivism"
         },
         {
           "text": "To protect people's health, safety and security",
@@ -1212,20 +1196,6 @@
         {
           "text": "Completely, organizing private life around national goals",
           "next": "sc_total"
-        }
-      ]
-    },
-    {
-      "id": "sc_free",
-      "text": "What matters most for personal freedom?",
-      "options": [
-        {
-          "text": "Constitutional rights: free speech, privacy and fair trials, with limited police powers",
-          "next": "civil_libertarianism"
-        },
-        {
-          "text": "Consensual adult choices and private habits are never the state's business",
-          "next": "permissivism"
         }
       ]
     },
@@ -1302,15 +1272,19 @@
       "text": "At what level should political power mainly rest?",
       "options": [
         {
-          "text": "Local communities or sovereign member states, joined by voluntary association",
+          "text": "Local communities or sovereign member states, joined by voluntary association (municipal or confederal self-government)",
           "next": "to_local"
         },
         {
-          "text": "Shared between regions and a central government",
-          "next": "to_shared"
+          "text": "Regions with constitutionally guaranteed powers that the center cannot abolish (a federal system)",
+          "next": "federalism"
         },
         {
-          "text": "A single national government",
+          "text": "A unified state that grants self-rule to historical regions through devolved parliaments (regional autonomy)",
+          "next": "regionalism"
+        },
+        {
+          "text": "A single national government with central authority over the whole country",
           "next": "to_central"
         }
       ]
@@ -1330,29 +1304,15 @@
       ]
     },
     {
-      "id": "to_shared",
-      "text": "How should power be shared?",
-      "options": [
-        {
-          "text": "Regions with constitutionally guaranteed powers that the center cannot abolish",
-          "next": "federalism"
-        },
-        {
-          "text": "A unified state that grants self-rule to historical regions through devolved parliaments",
-          "next": "regionalism"
-        }
-      ]
-    },
-    {
       "id": "to_central",
       "text": "How much should the national capital control?",
       "options": [
         {
-          "text": "One set of national laws everywhere, with local councils handling everyday local matters",
+          "text": "A unitary state: one set of national laws everywhere, with local councils handling everyday local matters",
           "next": "centralism"
         },
         {
-          "text": "The capital directly runs every district, with uniform rules and no regional autonomy",
+          "text": "Total central control: the capital directly runs every district with uniform rules and no regional autonomy",
           "next": "hypercentralism"
         }
       ]
