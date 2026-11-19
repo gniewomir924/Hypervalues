@@ -143,13 +143,13 @@
 
                     const stance = document.createElement('p');
                     stance.className = 'result-agree';
-                    stance.textContent = item.listed ? HV.signed(item.stance) : '\u00a0';
+                    stance.textContent = HV.signed(item.stance);
                     tile.appendChild(stance);
 
                     let hint = `${HV.nameOf(cat, value)}: this ideology ${item.stance > 0 ? 'matches' : 'opposes'} it (${HV.signed(item.stance)})`;
                     if (!item.listed) {
                         tile.style.opacity = '0.75';
-                        hint = `${HV.nameOf(cat, value)}: its definition does not mention this value`;
+                        hint = `${HV.nameOf(cat, value)}: its definition does not mention this value (the model guesses ${HV.signed(item.stance)})`;
                     } else if (hasResults) {
                         const score = HV.valueScore(value, answers, item.stance);
                         img.style.boxShadow = `0 0 0 3px var(--bg-color), 0 0 0 6px ${HV.ringColor(score)}`;
