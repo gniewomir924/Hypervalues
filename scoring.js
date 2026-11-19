@@ -137,6 +137,34 @@ const HV = (function () {
     }
 
     // The values an ideology mentions, by category: { category: [{ value, stance }] }, strongest stance first
+    // How many of the next closest ideologies the results page and the downloaded pictures show
+    const CLOSEST_COUNT = 3;
+
+    // The display name of a value (its title, or its id with spaces if it has no title)
+    function nameOf(category, value) {
+        return (resultsMapping[category] && resultsMapping[category][value])
+            ? resultsMapping[category][value]
+            : value.replace(/_/g, ' ');
+    }
+
+    // Every value of each category for the ideology page. First the values the definition lists, from the one the
+    // ideology matches most (+1) to the one it opposes most (-1); then the values it does not list, from the one it
+    // most likely matches to the one it most likely opposes (the guesses of the model), so that no unlisted value
+    // stands between two listed ones.
+    function valueOrder(label) {
+        const stances = stancesOf[label] || {};
+        const net = {};
+        guessedValues(label, Infinity).forEach(guess => { net[guess.value] = guess.net; });
+        const byScore = (a, b) => b.stance - a.stance || (a.value < b.value ? -1 : 1);
+        const order = {};
+        Object.keys(resultsMapping).forEach(cat => {
+            const ids = Object.keys(resultsMapping[cat]);
+            const listed = ids.filter(v => stances[v] !== undefined).map(v => ({ value: v, stance: stances[v], listed: true })).sort(byScore);
+            const unlisted = ids.filter(v => stances[v] === undefined).map(v => ({ value: v, stance: net[v] || 0, listed: false })).sort(byScore);
+            order[cat] = listed.concat(unlisted);
+        });
+        return order;
+    }
     function stancesByCategory(label) {
         const byCategory = {};
         const stances = stancesOf[label] || {};
@@ -423,7 +451,7 @@ const HV = (function () {
         const result = [];
         for (let i = 0; i < model.V; i++) {
             const p = model.plus[j][i] + model.minus[j][i];
-            if (p > 0) result.push({ value: model.values[i], probability: p, direction: model.plus[j][i] >= model.minus[j][i] ? 1 : -1 });
+            if (p > 0) result.push({ value: model.values[i], probability: p, net: model.plus[j][i] - model.minus[j][i], direction: model.plus[j][i] >= model.minus[j][i] ? 1 : -1 });
         }
         return result.sort((x, y) => y.probability - x.probability).slice(0, count || 10);
     }
@@ -436,7 +464,7 @@ const HV = (function () {
     }
 
     return {
-        categoryOf, loadAnswers, saveAnswers, primaryOf, signed, percent, stancesByCategory, rankIdeologies, closestIdeologies,
+        categoryOf, loadAnswers, saveAnswers, primaryOf, signed, percent, stancesByCategory, valueOrder, nameOf, CLOSEST_COUNT, rankIdeologies, closestIdeologies,
         guessedValues, valueScore, ringColor
     };
 })();

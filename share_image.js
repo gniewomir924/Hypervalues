@@ -9,7 +9,6 @@ const HVImage = (function () {
     const FALLBACK_FAMILY = '"Quicksand", sans-serif';
     const REGULAR = 500;
     const BOLD = 700;
-    const CLOSEST_COUNT = 3;
 
     // sizes at scale 1: icon, space between icon and text, font of the names
     const ICON = 72, GAP_TEXT = 14, NAME_SIZE = 24;
@@ -100,9 +99,6 @@ const HVImage = (function () {
         return (0.299 * r + 0.587 * g + 0.114 * b) > 160 ? '#111111' : '#ffffff';
     }
 
-    const nameOf = (category, value) => (resultsMapping[category] && resultsMapping[category][value])
-        ? resultsMapping[category][value]
-        : value.replace(/_/g, ' ');
 
     function loadIcon(category, value) {
         return new Promise(resolve => {
@@ -123,7 +119,7 @@ const HVImage = (function () {
                 items: answers[category].slice().sort((a, b) => b.agree - a.agree).map(item => ({
                     value: item.value,
                     agree: item.agree,
-                    name: nameOf(category, item.value)
+                    name: HV.nameOf(category, item.value)
                 }))
             }));
     }
@@ -281,11 +277,6 @@ const HVImage = (function () {
 
         const closest = ranked.slice(1);
         if (closest.length) {
-            ctx.fillStyle = th.dim;
-            ctx.font = font(REGULAR, 28);
-            ctx.textAlign = 'left';
-            ctx.fillText('Next closest matches', x, y + 24);
-            y += 46;
             closest.forEach((match, index) => {
                 const pill = (labelColors[match.label] || '#7a7a7a').slice(0, 7);
                 const h = 66;
@@ -401,7 +392,7 @@ const HVImage = (function () {
             await document.fonts.load(`${BOLD} 30px ${probe}`);
             await document.fonts.load(`${REGULAR} 30px ${probe}`);
         } catch (e) { /* the page font is only nice to have */ }
-        const ranked = HV.closestIdeologies(answers, null, 1 + CLOSEST_COUNT);
+        const ranked = HV.closestIdeologies(answers, null, 1 + HV.CLOSEST_COUNT);
         const icons = await loadIcons(answers);
         const makeCanvas = (w, h) => {
             const canvas = document.createElement('canvas');

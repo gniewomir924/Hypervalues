@@ -66,11 +66,16 @@
             iconEl.onerror = () => { iconEl.style.display = 'none'; };
             descEl.innerText = descriptions[itemId] || "Description coming soon!";
 
-            if (iconSources[itemId] && iconSources[itemId] !== "") {
+            if (iconSources[itemId] === "ai") {
+                sourceBtn.style.display = 'none';
+                originalSign.innerText = 'AI-generated icon';
+                originalSign.style.display = 'block';
+            } else if (iconSources[itemId] && iconSources[itemId] !== "") {
                 sourceBtn.style.display = 'block';
                 originalSign.style.display = 'none';
             } else {
                 sourceBtn.style.display = 'none';
+                originalSign.innerText = 'Source not provided';
                 originalSign.style.display = 'block';
             }
         }
@@ -87,11 +92,9 @@
             const hasResults = urlParams.get('compare') === '1' && categories.some(cat => answers[cat]);
 
             const stances = HV.stancesByCategory(label);
+            const order = HV.valueOrder(label);
             if (!Object.keys(stances).length) return;
 
-            const nameOf = (cat, value) => (resultsMapping[cat] && resultsMapping[cat][value])
-                ? resultsMapping[cat][value]
-                : value.replace(/_/g, ' ');
 
             const list = document.createElement('div');
             list.id = 'values-container';
@@ -114,15 +117,8 @@
                 const flex = document.createElement('div');
                 flex.className = 'values-flex-container';
 
-                const items = stances[cat] || [];
-                if (!items.length) {                            // the definition says nothing in this category
-                    const tile = document.createElement('div');
-                    tile.className = 'result-item';
-                    const circle = document.createElement('div');
-                    circle.className = 'result-icon result-none';
-                    tile.appendChild(circle);
-                    flex.appendChild(tile);
-                }
+                // listed values first (matching to opposing), then the unlisted ones at 75% transparency
+                const items = order[cat] || [];
                 items.forEach(item => {
                     const value = item.value;
                     const tile = document.createElement('a');
@@ -140,18 +136,21 @@
 
                     const name = document.createElement('p');
                     name.className = 'result-text';
-                    setName(name, nameOf(cat, value));
+                    setName(name, HV.nameOf(cat, value));
 
                     tile.appendChild(img);
                     tile.appendChild(name);
 
                     const stance = document.createElement('p');
                     stance.className = 'result-agree';
-                    stance.textContent = HV.signed(item.stance);
+                    stance.textContent = item.listed ? HV.signed(item.stance) : '\u00a0';
                     tile.appendChild(stance);
 
-                    let hint = `${nameOf(cat, value)}: this ideology ${item.stance > 0 ? 'matches' : 'opposes'} it (${HV.signed(item.stance)})`;
-                    if (hasResults) {
+                    let hint = `${HV.nameOf(cat, value)}: this ideology ${item.stance > 0 ? 'matches' : 'opposes'} it (${HV.signed(item.stance)})`;
+                    if (!item.listed) {
+                        tile.style.opacity = '0.75';
+                        hint = `${HV.nameOf(cat, value)}: its definition does not mention this value`;
+                    } else if (hasResults) {
                         const score = HV.valueScore(value, answers, item.stance);
                         img.style.boxShadow = `0 0 0 3px var(--bg-color), 0 0 0 6px ${HV.ringColor(score)}`;
                         hint += `. ${ringText(answers[cat], value)}; fit ${HV.signed(score)}`;
