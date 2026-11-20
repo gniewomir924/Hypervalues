@@ -364,6 +364,76 @@ const HVImage = (function () {
 
     const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+    const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent || '') ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    // iPhones and iPads, the browsers inside apps (TikTok, Reddit, Instagram, ...) and browsers without the download
+    // attribute do not save a file that a script creates, and several files in a row are blocked. There the pictures are
+    // shown in a window: press and hold to save, or the share sheet.
+    function needsViewer() {
+        const ua = navigator.userAgent || '';
+        const inApp = /FBAN|FBAV|Instagram|Line\/|TikTok|musical_ly|BytedanceWebview|Snapchat|Reddit|; wv\)/i.test(ua);
+        return isIOS() || inApp || !('download' in document.createElement('a'));
+    }
+
+    // iOS refuses canvases bigger than about 16.7 million pixels (it gives a blank or empty picture)
+    const IOS_MAX_PIXELS = 16000000;
+    function factorLimit(kind, factor) {
+        if (!isIOS()) return factor;
+        const size = SIZES[kind];
+        while (factor > 1 && size.w * size.h * factor * factor > IOS_MAX_PIXELS) factor -= 1;
+        return factor;
+    }
+
+    function present(items) {
+        const old = document.getElementById('hv-image-viewer');
+        if (old) old.remove();
+        const urls = items.map(item => URL.createObjectURL(item.blob));
+        let files = [];
+        try { files = items.map(item => new File([item.blob], item.name, { type: 'image/png' })); } catch (e) { files = []; }
+
+        const box = document.createElement('div');
+        box.id = 'hv-image-viewer';
+        Object.assign(box.style, {
+            position: 'fixed', top: '0', right: '0', bottom: '0', left: '0', zIndex: '10000', overflowY: 'auto',
+            background: 'rgba(0, 0, 0, 0.88)', padding: '16px', boxSizing: 'border-box', color: '#fff',
+            textAlign: 'center', WebkitOverflowScrolling: 'touch', fontFamily: 'inherit'
+        });
+        const close = () => { box.remove(); urls.forEach(url => URL.revokeObjectURL(url)); };
+
+        const hint = document.createElement('p');
+        hint.textContent = 'Press and hold a picture, then choose Save Image or Add to Photos.';
+        hint.style.margin = '4px 0 12px';
+        box.appendChild(hint);
+
+        const bar = document.createElement('div');
+        bar.style.cssText = 'display: flex; gap: 10px; justify-content: center; margin-bottom: 8px;';
+        const button = (text, onclick) => {
+            const element = document.createElement('button');
+            element.type = 'button';
+            element.textContent = text;
+            element.onclick = onclick;
+            element.style.cssText = 'padding: 10px 18px; font: inherit; border-radius: 8px; border: 0; cursor: pointer;';
+            return element;
+        };
+        if (files.length && navigator.canShare && navigator.share && navigator.canShare({ files })) {
+            bar.appendChild(button('Save / Share', async () => {
+                try { await navigator.share({ files }); } catch (e) { /* closed by the person, or not allowed */ }
+            }));
+        }
+        bar.appendChild(button('Close', close));
+        box.appendChild(bar);
+
+        items.forEach((item, i) => {
+            const img = document.createElement('img');
+            img.src = urls[i];
+            img.alt = 'Your HyperValues result';
+            img.style.cssText = 'display: block; max-width: 100%; margin: 12px auto; border-radius: 10px; -webkit-touch-callout: default; -webkit-user-select: auto; user-select: auto;';
+            box.appendChild(img);
+        });
+        document.body.appendChild(box);
+    }
+
     // Creates the picture of one kind; icons that taint the canvas (opened from a file) are left out
     async function render(kind, answers, ranked, icons, makeCanvas, factor) {
         try {
@@ -402,8 +472,9 @@ const HVImage = (function () {
         };
         const kinds = Object.keys(SIZES);
         const used = {};
+        const items = [];
         for (let i = 0; i < kinds.length; i++) {
-            let k = wanted;
+            let k = factorLimit(kinds[i], wanted);
             let blob = null;
             while (!blob) {
                 try {
@@ -414,8 +485,15 @@ const HVImage = (function () {
                 }
             }
             used[kinds[i]] = k;
-            save(blob, `hypervalues-${kinds[i]}-${SIZES[kinds[i]].w * k}x${SIZES[kinds[i]].h * k}.png`);
-            if (i < kinds.length - 1) await wait(700);
+            items.push({ blob, name: `hypervalues-${kinds[i]}-${SIZES[kinds[i]].w * k}x${SIZES[kinds[i]].h * k}.png` });
+        }
+        if (needsViewer()) {
+            present(items);
+        } else {
+            for (let i = 0; i < items.length; i++) {
+                save(items[i].blob, items[i].name);
+                if (i < items.length - 1) await wait(700);
+            }
         }
         return used;
     }

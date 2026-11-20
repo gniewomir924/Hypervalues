@@ -150,7 +150,8 @@
                     if (!item.listed) {
                         tile.style.opacity = '0.75';
                         hint = `${HV.nameOf(cat, value)}: its definition does not mention this value (the model guesses ${HV.signed(item.stance)})`;
-                    } else if (hasResults) {
+                    }
+                    if (hasResults) {                     // the ring works the same for listed and unlisted values
                         const score = HV.valueScore(value, answers, item.stance);
                         img.style.boxShadow = `0 0 0 3px var(--bg-color), 0 0 0 6px ${HV.ringColor(score)}`;
                         hint += `. ${ringText(answers[cat], value)}; fit ${HV.signed(score)}`;
