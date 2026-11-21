@@ -13,6 +13,15 @@
         <h1>Changelog</h1>
 
         <div class="description-box">
+            <h3>3.14 - 21.11.2026</h3>
+            <ul>
+                <li>The definitions of all 266 ideologies are rewritten as prose. Every sentence that says an ideology supports or opposes the idea of a value gives its reason and ends with the name of that value in brackets, for example (Corporatism) or (against Representative Democracy); one pair of brackets can hold two names separated by ";".</li>
+                <li>The brackets and the names in them are left out of the text the model reads, so only the prose is used to find similar ideologies and to guess the stances an ideology does not list.</li>
+                <li>New checks for the definitions: tools/check_definitions.py measures richness, difference from other definitions, agreement with own values, independence from other ideology names, the match between brackets and stances, and whether each stance has a reason; tools/check_utility.js measures whether a definition helps the model when an ideology lists only 3 stances. All numbers come from text and simulation, not from real answers.</li>
+            </ul>
+        </div>
+
+        <div class="description-box">
             <h3>3.13.1 - 20.11.2026</h3>
             <ul>
                 <li>The heading "Next closest matches" is removed from the results page and from the downloaded pictures, and so is the note with the picture sizes under the Download image button.</li>

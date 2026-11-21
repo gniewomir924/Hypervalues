@@ -278,7 +278,8 @@ const HV = (function () {
     // plus[j][i] / minus[j][i]: the chance that ideology j supports / opposes value i, for the values it does not list
     function pooledGuesses(labels, V, stance) {
         const N = labels.length;
-        const text = labels.map(label => label.replace(/-/g, ' ') + ' . ' + ((typeof descriptions !== 'undefined' && descriptions[label]) || ''));
+        // the names in parentheses (and "against") that end a clause of a definition are not part of the text
+        const text = labels.map(label => label.replace(/-/g, ' ') + ' . ' + (((typeof descriptions !== 'undefined' && descriptions[label]) || '').replace(/\s*\([^)]*\)/g, '')));
         const sim = textSimilarity(text);
         const neighbours = labels.map((_, j) => {
             const order = [];
