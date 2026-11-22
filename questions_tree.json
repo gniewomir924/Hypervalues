@@ -622,10 +622,6 @@
           "next": "alternative_modernism"
         },
         {
-          "text": "No fixed morality at all: individual desire and self-creation as the only measure of action",
-          "next": "amoralism"
-        },
-        {
           "text": "Sweep the past away: glorify speed, machines, youth and constant renewal, and treat tradition, museums and inherited reverence as obstacles",
           "next": "futurism"
         }
@@ -681,9 +677,6 @@
     },
     {
       "id": "secular_humanism"
-    },
-    {
-      "id": "amoralism"
     },
     {
       "id": "futurism"
@@ -987,10 +980,6 @@
           "next": "communitarianism"
         },
         {
-          "text": "Only yourself: the individual, with no state, nation or moral duty binding you",
-          "next": "egoism"
-        },
-        {
           "text": "A nation, bound by shared citizenship, culture, faith or national spirit",
           "next": "n_nation"
         },
@@ -1065,9 +1054,6 @@
           "next": "pan_nationalism"
         }
       ]
-    },
-    {
-      "id": "egoism"
     },
     {
       "id": "communitarianism"
@@ -1621,127 +1607,117 @@
   "philosophy": [
     {
       "id": "p1",
-      "text": "When a big question keeps you awake at night, which kind is it most likely to be?",
+      "text": "Which kind of question matters most to you when you think about life and society?",
       "options": [
         {
-          "text": "How can anyone really be sure of what they know?",
+          "text": "Knowledge: how we can tell what is true, and what to trust",
           "next": "p_know"
         },
         {
-          "text": "What is the world ultimately made of, and where does the mind fit in?",
-          "next": "p_world"
+          "text": "Reality: what the world is fundamentally made of, and what drives the way it changes",
+          "next": "p_real"
         },
         {
-          "text": "How should a person live when nobody hands out instructions?",
-          "next": "p_life"
+          "text": "Conduct: how to decide what is right, whether as a person or as a society",
+          "next": "p_act"
         },
         {
-          "text": "What do people owe each other when a choice is hard?",
-          "next": "p_ethics"
+          "text": "Meaning: whether life has a purpose, and how to live without a given one",
+          "next": "p_meaning"
         }
       ]
     },
     {
       "id": "p_know",
-      "text": "Someone makes a bold claim about the world at a dinner. What makes you take it seriously?",
+      "text": "How do you decide whether a claim is true?",
       "options": [
         {
-          "text": "It follows step by step from starting points that no sensible person could doubt",
+          "text": "Work it out by logic and first principles: sound reasoning can reach truths that observation alone never could",
           "next": "rationalism"
         },
         {
-          "text": "Someone has actually seen it, measured it or tested it, and you could do the same",
+          "text": "Test it against evidence: observe, measure and trust what experience and experiment show",
           "next": "empiricism"
         },
         {
-          "text": "Only what science can establish counts: stick to observed facts and the laws found in them, leave metaphysics aside, and use them to run society",
-          "next": "positivism"
-        },
-        {
-          "text": "It keeps holding up whenever people rely on it, whatever the theory behind it",
+          "text": "See what happens when people act on it: an idea is true enough if it works and solves real problems",
           "next": "pragmatism"
         }
       ]
     },
     {
-      "id": "p_world",
-      "text": "Think of a vivid dream, a sudden idea or a feeling of love. What is it at bottom?",
+      "id": "p_real",
+      "text": "How would you describe the basic make-up of reality?",
       "options": [
         {
-          "text": "Something that arises from the body and brain, and from the matter and conditions around them",
-          "next": "p_matter"
+          "text": "It comes down to one thing: a single substance, principle or underlying whole explains everything",
+          "next": "p_one"
         },
         {
-          "text": "Something that belongs to a deeper layer of reality, where minds and meanings come before matter",
-          "next": "p_mind"
+          "text": "Two fundamentally different realms: mind and matter, or spirit and body, neither reducible to the other",
+          "next": "dualism"
+        },
+        {
+          "text": "Many irreducibly different things, truths and values, with no single master explanation",
+          "next": "pluralism"
         }
       ]
     },
     {
-      "id": "p_life",
-      "text": "Imagine a day when nothing around you gives your life a clear purpose. What do you do?",
+      "id": "p_one",
+      "text": "What is that one thing?",
       "options": [
         {
-          "text": "Decide for yourself what it will stand for, and own whatever follows from that choice",
-          "next": "existentialism"
-        },
-        {
-          "text": "Admit that no purpose was ever waiting to be found, and carry on without inventing one",
-          "next": "nihilism"
-        },
-        {
-          "text": "Keep your head steady and put your effort only into what is in your own hands",
-          "next": "stoicism"
-        }
-      ]
-    },
-    {
-      "id": "p_ethics",
-      "text": "A choice would help many people, but it means breaking a promise to one person. How do you weigh it?",
-      "options": [
-        {
-          "text": "Pick whatever leaves the most people better off and in the least pain",
-          "next": "utilitarianism"
-        },
-        {
-          "text": "Keep the promise, because some things are owed to a person whatever the outcome",
-          "next": "deontology"
-        },
-        {
-          "text": "Ask what is good for human beings given their nature: reason can read a natural law that holds for everyone, and promises fall under it",
-          "next": "thomism"
-        }
-      ]
-    },
-    {
-      "id": "p_matter",
-      "text": "How far does material life explain society?",
-      "options": [
-        {
-          "text": "Matter explains everything there is, mind included, and nothing in the world needs more than physical causes",
+          "text": "Matter and physical conditions: thoughts, beliefs and institutions grow out of how people live and what they produce",
           "next": "materialism"
         },
         {
-          "text": "The way people produce what they need, and the classes that grow from it, drives history and shapes law, culture and ideas",
-          "next": "historical_materialism"
+          "text": "Mind and ideas: consciousness, ideals or spirit shape reality, and the material world follows from them",
+          "next": "idealism"
+        },
+        {
+          "text": "One unified whole: mind and matter are two sides of a single connected reality, and separating the parts misleads",
+          "next": "monism"
         }
       ]
     },
     {
-      "id": "p_mind",
-      "text": "In what way does the mind come first?",
+      "id": "p_act",
+      "text": "What makes an action right?",
       "options": [
         {
-          "text": "Minds and ideas are the deeper layer of reality, in whatever form they take",
-          "next": "idealism"
+          "text": "Its results: the right act does the most good and the least suffering for everyone affected",
+          "next": "utilitarianism"
         },
         {
-          "text": "Reason unfolds itself through history as one whole, and each person is free only within the family, community and state",
-          "next": "absolute_idealism"
+          "text": "Its principle: some duties and rights bind us whatever the results, and may not be broken for a greater good",
+          "next": "deontology"
         },
         {
-          "text": "Reality is made by thinking and willing right now: the mind acts, and the world exists as it is thought and willed",
-          "next": "actual_idealism"
+          "text": "Its source: acting with self-command, wisdom and virtue, and calmly accepting what lies outside one's control",
+          "next": "stoicism"
+        },
+        {
+          "text": "Its benefit to you: each person should pursue their own interest first, owing nothing to a nation, state or higher duty",
+          "next": "egoism"
+        },
+        {
+          "text": "Nothing: there is no moral standard to meet, only desire, advantage and what one chooses to do",
+          "next": "amoralism"
+        }
+      ]
+    },
+    {
+      "id": "p_meaning",
+      "text": "How should we face a universe that gives no purpose ready-made?",
+      "options": [
+        {
+          "text": "Choose freely: each person must take responsibility for creating their own meaning through what they do",
+          "next": "existentialism"
+        },
+        {
+          "text": "Accept it: there is no inherent meaning or objective moral truth, and none needs to be invented",
+          "next": "nihilism"
         }
       ]
     },
@@ -1776,19 +1752,19 @@
       "id": "deontology"
     },
     {
-      "id": "historical_materialism"
+      "id": "dualism"
     },
     {
-      "id": "absolute_idealism"
+      "id": "monism"
     },
     {
-      "id": "actual_idealism"
+      "id": "pluralism"
     },
     {
-      "id": "positivism"
+      "id": "egoism"
     },
     {
-      "id": "thomism"
+      "id": "amoralism"
     }
   ]
 }
