@@ -1654,6 +1654,10 @@
           "next": "empiricism"
         },
         {
+          "text": "Only what science can establish counts: stick to observed facts and the laws found in them, leave metaphysics aside, and use them to run society",
+          "next": "positivism"
+        },
+        {
           "text": "It keeps holding up whenever people rely on it, whatever the theory behind it",
           "next": "pragmatism"
         }
@@ -1665,11 +1669,11 @@
       "options": [
         {
           "text": "Something that arises from the body and brain, and from the matter and conditions around them",
-          "next": "materialism"
+          "next": "p_matter"
         },
         {
           "text": "Something that belongs to a deeper layer of reality, where minds and meanings come before matter",
-          "next": "idealism"
+          "next": "p_mind"
         }
       ]
     },
@@ -1702,6 +1706,42 @@
         {
           "text": "Keep the promise, because some things are owed to a person whatever the outcome",
           "next": "deontology"
+        },
+        {
+          "text": "Ask what is good for human beings given their nature: reason can read a natural law that holds for everyone, and promises fall under it",
+          "next": "thomism"
+        }
+      ]
+    },
+    {
+      "id": "p_matter",
+      "text": "How far does material life explain society?",
+      "options": [
+        {
+          "text": "Matter explains everything there is, mind included, and nothing in the world needs more than physical causes",
+          "next": "materialism"
+        },
+        {
+          "text": "The way people produce what they need, and the classes that grow from it, drives history and shapes law, culture and ideas",
+          "next": "historical_materialism"
+        }
+      ]
+    },
+    {
+      "id": "p_mind",
+      "text": "In what way does the mind come first?",
+      "options": [
+        {
+          "text": "Minds and ideas are the deeper layer of reality, in whatever form they take",
+          "next": "idealism"
+        },
+        {
+          "text": "Reason unfolds itself through history as one whole, and each person is free only within the family, community and state",
+          "next": "absolute_idealism"
+        },
+        {
+          "text": "Reality is made by thinking and willing right now: the mind acts, and the world exists as it is thought and willed",
+          "next": "actual_idealism"
         }
       ]
     },
@@ -1734,6 +1774,21 @@
     },
     {
       "id": "deontology"
+    },
+    {
+      "id": "historical_materialism"
+    },
+    {
+      "id": "absolute_idealism"
+    },
+    {
+      "id": "actual_idealism"
+    },
+    {
+      "id": "positivism"
+    },
+    {
+      "id": "thomism"
     }
   ]
 }
