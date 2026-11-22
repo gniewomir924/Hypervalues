@@ -20,6 +20,7 @@
     </div>
 
     <script src="data.js"></script>
+    <script src="pack.js"></script>
 
     <script>
         const container = document.getElementById('values-container');
@@ -45,7 +46,7 @@
                 wrapper.style.color = 'inherit';
 
                 const img = document.createElement('img');
-                img.src = `icons/${category}/${id}.svg`;
+                img.src = HVPack.iconUrl(category, id);
                 img.className = 'result-icon'; 
                 img.alt = resultsMapping[category][id];
 

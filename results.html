@@ -13,7 +13,7 @@
     <div class="main-container">
         <div class="title-container">
             <h1>HyperValues</h1>
-            <span class="version-text">v3.14.1</span>
+            <span class="version-text">v3.14.2</span>
         </div>
 
         <div id="values-container" class="category-list"></div>
@@ -40,8 +40,10 @@
     </div>
 
     <script src="data.js"></script>
+    <script src="pack.js"></script>
     <script src="scoring.js"></script>
     <script src="share_image.js"></script>
+    <script src="custom_bar.js"></script>
     <script>
         let answers = HV.loadAnswers();
 
@@ -80,7 +82,7 @@
                         `${HV.nameOf(category, item.value)}: ${HV.signed(item.agree)}`);
 
                     const img = document.createElement('img');
-                    img.src = `icons/${category}/${item.value}.svg`;
+                    img.src = HVPack.iconUrl(category, item.value);
                     img.className = 'result-icon';
                     img.alt = '';
                     img.style.borderRadius = '50%';
@@ -101,7 +103,7 @@
                     flex.appendChild(tile);
                 });
 
-                const add = makeTile(`quiz.html?cat=${category}`);
+                const add = makeTile(`${HVPack.isCustom() ? 'pick' : 'quiz'}.html?cat=${category}`);
                 const circle = document.createElement('div');
                 circle.className = 'result-icon result-none add-icon';
                 const label = document.createElement('p');

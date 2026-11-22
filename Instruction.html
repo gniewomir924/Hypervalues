@@ -23,6 +23,7 @@
         // a new quiz starts with an empty list
         function startQuiz() {
             try {
+                localStorage.removeItem('hvMode');      // the normal quiz, not custom mode
                 localStorage.removeItem('quizAnswers');
                 localStorage.removeItem('quizResults');
             } catch (e) { /* storage is not available */ }

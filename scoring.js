@@ -63,15 +63,34 @@ const HV = (function () {
 
     // What the user answered: { category: [{ value, agree }] }. Answers saved by an older version
     // (one value per category) count as agreement 1.
+    // In custom mode (pack.js) the answers have keys of their own, so the normal quiz is not touched, a value
+    // that does not exist in the current data (a pack removed it) is dropped, and a value a pack moved to another
+    // category takes its answer along
+    const inCustomMode = typeof HVPack !== 'undefined' && HVPack.isCustom();
+    const ANSWERS_KEY = inCustomMode ? 'quizAnswersCustom' : 'quizAnswers';
+    const RESULTS_KEY = inCustomMode ? 'quizResultsCustom' : 'quizResults';
+
     function loadAnswers() {
         let answers = null;
-        try { answers = JSON.parse(localStorage.getItem('quizAnswers') || 'null'); } catch (e) { answers = null; }
+        try { answers = JSON.parse(localStorage.getItem(ANSWERS_KEY) || 'null'); } catch (e) { answers = null; }
         if (answers && typeof answers === 'object') {
+            if (inCustomMode) {                            // an answer goes with its value to the category it is in now
+                const placed = {};
+                Object.keys(answers).forEach(cat => {
+                    if (!Array.isArray(answers[cat])) return;
+                    answers[cat].forEach(item => {
+                        const home = item && categoryOf[item.value];
+                        if (home) (placed[home] = placed[home] || []).push(item);
+                    });
+                });
+                answers = placed;
+            }
             Object.keys(answers).forEach(cat => {          // a category without values counts as not touched
                 if (!Array.isArray(answers[cat]) || !answers[cat].length) delete answers[cat];
             });
             return answers;
         }
+        if (inCustomMode) return {};
         let old = {};
         try { old = JSON.parse(localStorage.getItem('quizResults') || '{}') || {}; } catch (e) { old = {}; }
         answers = {};
@@ -89,8 +108,8 @@ const HV = (function () {
             if (value) primary[category] = value;
         });
         try {
-            localStorage.setItem('quizAnswers', JSON.stringify(answers));
-            localStorage.setItem('quizResults', JSON.stringify(primary));
+            localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers));
+            localStorage.setItem(RESULTS_KEY, JSON.stringify(primary));
         } catch (e) { /* storage is not available: nothing to save */ }
     }
 

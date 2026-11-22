@@ -105,7 +105,7 @@ const HVImage = (function () {
             const img = new Image();
             img.onload = () => resolve(img);
             img.onerror = () => resolve(null);
-            img.src = `icons/${category}/${value}.svg`;
+            img.src = (typeof HVPack !== 'undefined') ? HVPack.iconUrl(category, value) : `icons/${category}/${value}.svg`;
         });
     }
 
@@ -239,7 +239,9 @@ const HVImage = (function () {
     // Title, the best match and the next closest ones, in a box of the given width starting at (x, y).
     function drawSummary(ctx, th, ranked, x, y, w, kind) {
         const compact = kind === 'computer';
-        const version = (document.querySelector('.version-text') || {}).textContent || '';
+        // a picture made in custom mode says so, so it is not taken for a result of the site's own data
+        const version = ((document.querySelector('.version-text') || {}).textContent || '') +
+            ((typeof HVPack !== 'undefined' && HVPack.isCustom()) ? ' \u00b7 Custom' : '');
         ctx.textAlign = 'left';
         ctx.textBaseline = 'alphabetic';
         ctx.fillStyle = th.text;

@@ -18,15 +18,19 @@ function showError(message) {
   buttonsDiv.appendChild(makeButton('Back', backToList));
 }
 
-fetch('questions_tree.json')
-  .then(res => {
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    return res.json();
-  })
+// In custom mode the tree comes with the changes of the pack (pack.js); a category that has no questions there
+// goes to the list of values to pick from
+HVPack.loadTree()
   .then(tree => {
+    const has = Object.prototype.hasOwnProperty;
+    const startsWithQuestion = list => Array.isArray(list) && list.length > 0 && list[0] && Array.isArray(list[0].options);
     // hasOwnProperty: keys such as "constructor" or "__proto__" must not count as categories
-    if (!category || !Object.prototype.hasOwnProperty.call(tree, category)) {
-      window.location.replace('results.html');
+    if (!category || !has.call(tree, category) || !startsWithQuestion(tree[category])) {
+      if (HVPack.isCustom() && category && has.call(resultsMapping, category)) {
+        window.location.replace(`pick.html?cat=${encodeURIComponent(category)}`);
+      } else {
+        window.location.replace('results.html');
+      }
       return;
     }
     tree[category].forEach(q => currentQuestions[q.id] = q);

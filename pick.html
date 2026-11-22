@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperValues</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <script src="theme.js"></script>
+    <script src="linebreak.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <h1 id="pick-title">Pick a value</h1>
+        <p id="pick-hint" class="pick-hint">In Custom Pages you choose values from the list.</p>
+        <div id="pick-container" class="category-list"></div>
+        <div class="button-container" id="pick-buttons">
+            <button onclick="backToList()">Back</button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="pack.js"></script>
+    <script src="scoring.js"></script>
+    <script src="pick.js"></script>
+</body>
+</html>
