@@ -980,6 +980,10 @@
           "next": "communitarianism"
         },
         {
+          "text": "The individual: each person's rights and freedom come before any group, so a community is whatever free individuals choose to join",
+          "next": "individualism"
+        },
+        {
           "text": "A nation, bound by shared citizenship, culture, faith or national spirit",
           "next": "n_nation"
         },
@@ -1090,6 +1094,9 @@
     },
     {
       "id": "multiculturalism"
+    },
+    {
+      "id": "individualism"
     }
   ],
   "foreign": [
@@ -1678,6 +1685,10 @@
         {
           "text": "One unified whole: mind and matter are two sides of a single connected reality, and separating the parts misleads",
           "next": "monism"
+        },
+        {
+          "text": "Nature: everything that exists is part of the natural world, which science can study, and nothing lies beyond it",
+          "next": "naturalism"
         }
       ]
     },
@@ -1759,6 +1770,9 @@
     },
     {
       "id": "pluralism"
+    },
+    {
+      "id": "naturalism"
     },
     {
       "id": "egoism"
