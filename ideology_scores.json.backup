@@ -144,7 +144,7 @@
     },
     "Nazi-Maoism": {
         "d": "A syncretic extremist doctrine that combines racial nationalism with Maoist agrarian socialism and guerrilla struggle: agrarian socialism, collective distribution, autocracy and ethical statism, racial nationalism, alter-globalist solidarity with anti-imperialist movements, totalism and regimentalism. It rejects laissez-faire, civil liberalism and representative democracy.",
-        "s": "agrarian_socialism:0.9|collective_distribution:0.8|reactionary_modernism:0.5|autocracy:0.8|ethical_statism:0.7|racial_nationalism:1|alter_globalism:0.7|instrumentalism:0.6|industrialism:0.5|totalism:0.7|regimentalism:0.6|centralism:0.6|laissez_faire:-1|civil_liberalism:-1|representative_democracy:-1|multiculturalism:-0.9"
+        "s": "agrarian_socialism:0.9|collective_distribution:0.8|reactionary_modernism:0.5|autocracy:0.8|ethical_statism:0.7|racial_nationalism:1|alter_globalism:0.7|instrumentalism:0.6|industrialism:0.5|totalism:0.7|regimentalism:0.6|centralism:0.6|laissez_faire:-1|civil_liberalism:-1|representative_democracy:-1|multiculturalism:-0.9|materialism:0.8"
     },
     "Savinkovism": {
         "d": "A national-populist doctrine of romantic national rebirth under a single strong leader: dirigisme and corporatism, progressive taxation, reactionary modernism, autocracy, romantic nationalism, imperialism and irredentism, industrialism, regimentalism and centralism. It rejects civil libertarianism, representative democracy and internationalism.",
@@ -448,7 +448,7 @@
     },
     "Eurocommunism": {
         "d": "West European communism that accepts representative democracy and civil liberalism: multiparty elections and civil liberties, no monopoly for a ruling party (it rejects partocracy), progressive taxation and welfare, internationalism and independence from any foreign center, with socialism pursued through democratic means.",
-        "s": "representative_democracy:0.8|civil_liberalism:0.5|Internationalism:0.4|Progressive_Taxation:0.5|partocracy:-0.7"
+        "s": "representative_democracy:0.8|civil_liberalism:0.5|Internationalism:0.4|Progressive_Taxation:0.5|partocracy:-0.7|materialism:0.8"
     },
     "Liberal Socialism": {
         "d": "Joins individual liberty with socialist goals: market socialism, civil liberalism, representative democracy and progressive taxation, pursued through democratic means, rejecting totalism and one-party rule (partocracy).",
@@ -709,7 +709,7 @@
     },
     "Bordigism": {
         "d": "The left communism of Amadeo Bordiga. A single vanguard communist party, the bearer of an unchanging program, leads the proletariat to a dictatorship that abolishes capitalism, markets and money (communization), with collective distribution of goods according to need. It is strictly internationalist and cosmopolitan, rejecting civic nationalism, national struggles and alliances with bourgeois parties, and it rejects representative democracy and electoral politics as well as laissez-faire. Inside the party it practices organic centralism in place of majority votes.",
-        "s": "communization:0.8|collective_distribution:0.7|partocracy:0.8|Internationalism:1|Cosmopolitanism:0.6|representative_democracy:-1|laissez_faire:-1|civic_nationalism:-1"
+        "s": "communization:0.8|collective_distribution:0.7|partocracy:0.8|Internationalism:1|Cosmopolitanism:0.6|representative_democracy:-1|laissez_faire:-1|civic_nationalism:-1|materialism:0.8"
     },
     "Italian Left Communism": {
         "d": "Revolutionary communism that demands an internationalist, party-led abolition of capitalism: communization of wage labor, money and markets, collective distribution, a revolutionary party (partocracy) that leads the class, and rejection of representative democracy, parliaments, national fronts and laissez-faire.",
@@ -725,23 +725,23 @@
     },
     "Maoism Third Worldism": {
         "d": "Maoism holding that revolution centers on the Third World: anti-imperialism and national liberation through people's war under a party (partocracy), agrarian socialism and collective distribution, an alter-globalist solidarity of exploited nations, and the view that workers in wealthy countries benefit from exploitation. It rejects imperialism and laissez-faire.",
-        "s": "agrarian_socialism:0.6|collective_distribution:0.7|partocracy:0.7|alter_globalism:0.5|Imperialism:-1|laissez_faire:-1"
+        "s": "agrarian_socialism:0.6|collective_distribution:0.7|partocracy:0.7|alter_globalism:0.5|Imperialism:-1|laissez_faire:-1|materialism:0.8"
     },
     "Marxism Leninism Maoism": {
         "d": "Universal Maoism: Marxist-Leninist doctrine plus the thought of Mao Zedong, with a vanguard party (partocracy), people's war and class struggle worldwide, agrarian socialism and collective distribution, and internationalism. It holds that Maoism is a third and higher stage of Marxism with universal validity, that protracted people's war is the strategy for all countries, and that revolution must be continued after the seizure of power. It rejects laissez-faire.",
-        "s": "agrarian_socialism:0.6|collective_distribution:0.7|partocracy:0.8|Internationalism:0.6|laissez_faire:-1"
+        "s": "agrarian_socialism:0.6|collective_distribution:0.7|partocracy:0.8|Internationalism:0.6|laissez_faire:-1|materialism:0.8"
     },
     "Luxemburgism": {
         "d": "Rosa Luxemburg's revolutionary socialism: mass strikes and workers' councils (councilism) with democracy inside socialism, internationalism and cosmopolitanism, collective distribution and a socialist state that answers to the working class. It rejects party monopoly (partocracy), top-down vanguardism, reformism and laissez-faire.",
-        "s": "councilism:0.8|state_socialism:0.4|collective_distribution:0.6|Internationalism:1|Cosmopolitanism:0.6|laissez_faire:-1|partocracy:-0.6|oligarchy:-0.7"
+        "s": "councilism:0.8|state_socialism:0.4|collective_distribution:0.6|Internationalism:1|Cosmopolitanism:0.6|laissez_faire:-1|partocracy:-0.6|oligarchy:-0.7|materialism:0.8"
     },
     "Trotskyism": {
         "d": "Marxism built on permanent revolution: internationalism and cosmopolitanism, collective distribution, a workers' state with state socialism, and a party (partocracy) that leads under workers' democracy while opposing bureaucratic rule. It rejects laissez-faire.",
-        "s": "state_socialism:0.5|collective_distribution:0.7|partocracy:0.5|Internationalism:1|Cosmopolitanism:0.5|laissez_faire:-1"
+        "s": "state_socialism:0.5|collective_distribution:0.7|partocracy:0.5|Internationalism:1|Cosmopolitanism:0.5|laissez_faire:-1|materialism:0.8"
     },
     "Marxism-Leninism": {
         "d": "Marx and Lenin's doctrine: state socialism with state ownership and a planned economy, collective distribution, a vanguard party (partocracy) with democratic centralism and the dictatorship of the proletariat, and internationalism. It rejects laissez-faire and representative democracy.",
-        "s": "state_socialism:1|collective_distribution:0.8|partocracy:0.9|Internationalism:0.6|laissez_faire:-1|representative_democracy:-0.7|dirigisme:0.5|centralism:0.5"
+        "s": "state_socialism:1|collective_distribution:0.8|partocracy:0.9|Internationalism:0.6|laissez_faire:-1|representative_democracy:-0.7|dirigisme:0.5|centralism:0.5|materialism:0.8"
     },
     "Stalinism": {
         "d": "Marxist-Leninist doctrine as developed under Stalin: state socialism with state-owned central planning, collective distribution, rapid industrialism and collectivization, and a centralized party-state (partocracy) under a dominant autocratic leader, with totalism and hypercentralism over society. It holds that socialism can be built in one country and that class struggle intensifies as socialism advances, justifying strong state power against enemies of the regime, and it rejects laissez-faire.",
@@ -757,15 +757,15 @@
     },
     "Hoxhaism": {
         "d": "Albanian anti-revisionist Marxist-Leninist doctrine: state socialism with state-owned, planned industrialism, collective distribution, a ruling communist party (partocracy) exercising the dictatorship of the proletariat, and isolationist self-reliance. It rejects laissez-faire and any reconciliation with revisionism.",
-        "s": "state_socialism:0.9|collective_distribution:0.8|partocracy:0.8|Isolationism:0.6|industrialism:0.5|laissez_faire:-1"
+        "s": "state_socialism:0.9|collective_distribution:0.8|partocracy:0.8|Isolationism:0.6|industrialism:0.5|laissez_faire:-1|materialism:0.8"
     },
     "Castroism": {
         "d": "Cuban revolutionary socialism: a one-party state, state ownership, anti-imperialism, internationalist support for revolutions abroad and social programs. It rests on a revolutionary leadership with strong personal authority, a state-owned planned economy, universal free education and health care as achievements of the revolution, and a nationalism of sovereignty against foreign domination; it also sends aid, doctors and fighters to allied revolutionary movements. It is outward-looking and interventionist, treating solidarity with revolutions abroad as a duty.",
-        "s": "state_socialism:0.8|collective_distribution:0.7|partocracy:0.7|autocracy:0.5|Interventionism:0.5|cultural_nationalism:0.5|laissez_faire:-1|dirigisme:0.4|Imperialism:-0.6|Internationalism:0.6"
+        "s": "state_socialism:0.8|collective_distribution:0.7|partocracy:0.7|autocracy:0.5|Interventionism:0.5|cultural_nationalism:0.5|laissez_faire:-1|dirigisme:0.4|Imperialism:-0.6|Internationalism:0.6|materialism:0.8"
     },
     "Guevarism": {
         "d": "Che Guevara's revolutionary doctrine: armed internationalism and interventionism that export revolution through guerrilla warfare, agrarian socialism with a rural base, collective distribution, the new socialist person, moral incentives and social-progressive aims. It rejects laissez-faire markets.",
-        "s": "agrarian_socialism:0.5|collective_distribution:0.7|Interventionism:0.7|social_progressivism:0.4|Internationalism:0.8|laissez_faire:-1"
+        "s": "agrarian_socialism:0.5|collective_distribution:0.7|Interventionism:0.7|social_progressivism:0.4|Internationalism:0.8|laissez_faire:-1|materialism:0.8"
     },
     "Cyber-Communism": {
         "d": "Communist planning through computing and artificial intelligence: state socialism with collective distribution of goods according to need, run by technocrats and automated systems, Promethean mastery of technology that produces abundance, internationalist and social-progressive, rejecting laissez-faire markets and money.",
@@ -773,11 +773,11 @@
     },
     "De Leonism": {
         "d": "Daniel De Leon's revolutionary industrial unionism: syndicalism in which workers organize by industry into one big union and replace the political state with an industrial union government, with collective distribution of production, industrialism, internationalism, and rejection of laissez-faire capitalism.",
-        "s": "syndicalism:0.8|collective_distribution:0.6|industrialism:0.5|Internationalism:0.5|laissez_faire:-1|syndicracy:0.7|productive_democracy:0.8"
+        "s": "syndicalism:0.8|collective_distribution:0.6|industrialism:0.5|Internationalism:0.5|laissez_faire:-1|syndicracy:0.7|productive_democracy:0.8|materialism:0.8"
     },
     "Marxism-Kemalism": {
         "d": "Kemalism fused with Marxism: a planned socialist economy of state socialism and industrialism, collective distribution, party leadership (partocracy), civic nationalism of a secular republic and rejection of theocracy.",
-        "s": "state_socialism:0.6|collective_distribution:0.5|civic_nationalism:0.5|partocracy:0.5|industrialism:0.5|theocracy:-0.9",
+        "s": "state_socialism:0.6|collective_distribution:0.5|civic_nationalism:0.5|partocracy:0.5|industrialism:0.5|theocracy:-0.9|materialism:0.8",
         "low": 1
     },
     "National Communism": {
@@ -920,7 +920,7 @@
     },
     "Objectivism": {
         "d": "Ayn Rand's philosophy: reality is objective, reason is the means of knowledge, and egoism, rational self-interest, is the moral ideal. Laissez-faire capitalism under a minimal rights-protecting state (minarchism) with civil liberalism and voluntaryism is the only just system. It rejects state socialism, communitarianism, collective distribution, theocracy and religious authoritarianism.",
-        "s": "egoism:1|laissez_faire:1|minarchism:0.8|civil_liberalism:0.6|Voluntaryism:0.4|state_socialism:-1|communitarianism:-1|collective_distribution:-1|religious_authoritarianism:-0.9|theocracy:-1|secular_humanism:0.7|ochlocracy:-0.7|state_enterprise_revenue:-0.7|parecon:-0.7|organic_statism:-0.7|state_corporatism:-0.7|protectionism:-0.5"
+        "s": "egoism:1|laissez_faire:1|minarchism:0.8|civil_liberalism:0.6|Voluntaryism:0.4|state_socialism:-1|communitarianism:-1|collective_distribution:-1|religious_authoritarianism:-0.9|theocracy:-1|secular_humanism:0.7|ochlocracy:-0.7|state_enterprise_revenue:-0.7|parecon:-0.7|organic_statism:-0.7|state_corporatism:-0.7|protectionism:-0.5|rationalism:0.85"
     },
     "Fusionism": {
         "d": "Combines free-market, limited-government economics with traditional social values and strong anticommunism. It holds that freedom and virtue support each other: government should be small, constitutional and federal and the economy free so that individuals can choose to live well, while moral and religious tradition is kept alive by civil society, family and church rather than by state coercion. It supports a firm, interventionist stance against communism abroad and rejects socialism and collectivism entirely.",
