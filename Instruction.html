@@ -40,7 +40,7 @@
             const originalStartQuiz = startQuiz;
             startQuiz = function () {
                 originalStartQuiz();
-                try { if (customMode) localStorage.setItem('hvResultMode', 'custom'); } catch (e) { /* no storage */ }
+                try { if (customMode) localStorage.setItem('hvResultMode', 'custom'); else localStorage.removeItem('hvResultMode'); } catch (e) { /* no storage */ }
             };
         }
     </script>

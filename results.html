@@ -45,7 +45,6 @@
     <script src="scoring.js"></script>
     <script src="share_image.js"></script>
     <script>
-        const isCustomResult = () => { try { return localStorage.getItem('hvResultMode') === 'custom'; } catch (e) { return false; } };
         let answers = HV.loadAnswers();
         const isCustomResult = () => localStorage.getItem('hvResultMode') === 'custom';
         document.getElementById('custom-badge').style.display = isCustomResult() ? 'inline-flex' : 'none';
