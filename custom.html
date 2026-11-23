@@ -7,124 +7,172 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="icon.svg">
     <script src="theme.js"></script>
+    <script src="linebreak.js"></script>
     <style>
-        .custom-intro { max-width: 820px; text-align: center; color: var(--text-dim); line-height: 1.6; margin: 12px 0 28px; }
-        #custom-rows { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 14px; }
-        .custom-row { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(180px, 1.5fr) minmax(170px, 1.2fr) auto; align-items: center; gap: 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 16px; }
-        .custom-row select { min-width: 0; width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary); font: inherit; }
-        .custom-score { display: flex; align-items: center; gap: 10px; }
-        .custom-score input { width: 100%; accent-color: var(--accent-primary); }
-        .custom-score output { min-width: 48px; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
-        .custom-remove { min-width: 0 !important; padding: 10px 14px; }
-        .custom-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
-        .custom-actions button { min-width: 180px; }
-        @media(max-width:700px) {
-            .custom-row { grid-template-columns: 1fr 1fr; }
-            .custom-score { grid-column: 1 / -1; }
-            .custom-remove { grid-column: 1 / -1; }
+        /* Uses the same value tiles and theme as the Values/results screens. */
+        #custom-values { width: 100%; }
+        #custom-values .result-item { cursor: pointer; text-decoration: none; color: inherit; }
+        #custom-values .result-item.selected .result-icon {
+            box-shadow: 0 0 0 3px var(--bg-color), 0 0 0 6px var(--accent-primary);
+            transform: scale(1.04);
         }
-        @media(max-width:420px) { .custom-row { grid-template-columns: 1fr; } .custom-score,.custom-remove { grid-column:auto; } }
+        #custom-values .result-item.selected .result-text { color: var(--text-primary); }
+        .custom-score {
+            width: 100%;
+            margin-top: 8px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+        .result-item.selected .custom-score { display: flex; }
+        .custom-score input { width: 100%; max-width: 120px; accent-color: var(--accent-primary); cursor: pointer; }
+        .custom-score output { color: var(--text-dim); font-size: 0.75rem; font-weight: 700; }
+        .custom-topline { width: 100%; max-width: 900px; text-align: center; color: var(--text-dim); line-height: 1.6; margin: 4px 0 24px; }
+        .custom-selection-count { color: var(--text-dim); font-size: 0.9rem; margin: 0 0 18px; text-align: center; }
+        .custom-bottom { margin-top: 28px; }
     </style>
 </head>
 <body>
     <div class="main-container">
         <div class="title-container"><h1>Custom Results</h1></div>
-        <p class="custom-intro">Choose values from any category and set how strongly you agree or disagree with each one. Your selections will be scored using the same ideology-ranking system as the normal quiz. Custom results are marked on the website and on downloaded images.</p>
-        <div id="custom-rows"></div>
-        <div class="custom-actions">
-            <button id="add-row" type="button">Add value</button>
-            <button id="show-results" type="button">Calculate results</button>
+        <p class="custom-topline">Select values directly from the visual list. Selected values start at +1; adjust their scores with the slider beneath each icon. No questions are asked.</p>
+        <p id="selection-count" class="custom-selection-count">0 values selected</p>
+        <div id="custom-values" class="category-list"></div>
+        <div class="button-container custom-bottom">
+            <button id="calculate-results" type="button">Calculate results</button>
             <button type="button" onclick="location.href='index.html'">Back to menu</button>
         </div>
     </div>
+
     <script src="data.js"></script>
     <script src="scoring.js"></script>
     <script>
-        const rows = document.getElementById('custom-rows');
+        const container = document.getElementById('custom-values');
+        const countLabel = document.getElementById('selection-count');
+        const selected = new Map();
         const saved = localStorage.getItem('hvResultMode') === 'custom' ? HV.loadAnswers() : {};
+
+        // Restore an existing custom result, if the user returns to this page.
+        Object.entries(saved || {}).forEach(([category, items]) => {
+            (items || []).forEach(item => selected.set(category + '/' + item.value, {
+                category, value: item.value, agree: Number(item.agree)
+            }));
+        });
+
         const formatScore = value => (value > 0 ? '+' : '') + Number(value).toFixed(2);
 
-        function addRow(category = categories[0], value = '', agree = 0.5) {
-            const row = document.createElement('div');
-            row.className = 'custom-row';
+        function updateCount() {
+            const count = selected.size;
+            countLabel.textContent = count + (count === 1 ? ' value selected' : ' values selected');
+        }
 
-            const categorySelect = document.createElement('select');
-            categorySelect.setAttribute('aria-label', 'Category');
-            categories.forEach(key => {
-                const option = document.createElement('option');
-                option.value = key;
-                option.textContent = categoryTitles[key] || key;
-                categorySelect.appendChild(option);
-            });
-            categorySelect.value = category;
+        function makeValueTile(category, id, title) {
+            const key = category + '/' + id;
+            const entry = selected.get(key);
+            const tile = document.createElement('div');
+            tile.className = 'result-item' + (entry ? ' selected' : '');
+            tile.setAttribute('role', 'button');
+            tile.setAttribute('tabindex', '0');
+            tile.setAttribute('aria-pressed', entry ? 'true' : 'false');
+            tile.title = title;
 
-            const valueSelect = document.createElement('select');
-            valueSelect.setAttribute('aria-label', 'Value');
+            const img = document.createElement('img');
+            img.src = 'icons/' + category + '/' + id + '.svg';
+            img.className = 'result-icon';
+            img.alt = title;
+            img.onerror = () => { img.style.visibility = 'hidden'; };
 
-            function fillValues(selected = '') {
-                valueSelect.innerHTML = '';
-                const mapping = resultsMapping[categorySelect.value] || {};
-                Object.entries(mapping).forEach(([id, name]) => {
-                    const option = document.createElement('option');
-                    option.value = id;
-                    option.textContent = name;
-                    valueSelect.appendChild(option);
-                });
-                if (selected && mapping[selected]) valueSelect.value = selected;
-            }
-            fillValues(value);
+            const name = document.createElement('p');
+            name.className = 'result-text';
+            setName(name, title);
 
-            const scoreWrap = document.createElement('div');
-            scoreWrap.className = 'custom-score';
+            const score = document.createElement('div');
+            score.className = 'custom-score';
+
             const slider = document.createElement('input');
             slider.type = 'range';
             slider.min = '-1';
             slider.max = '1';
             slider.step = '0.05';
-            slider.value = String(agree);
+            slider.value = entry ? String(entry.agree) : '1';
+            slider.setAttribute('aria-label', 'Score for ' + title);
+
             const output = document.createElement('output');
             output.textContent = formatScore(slider.value);
-            slider.addEventListener('input', () => output.textContent = formatScore(slider.value));
-            scoreWrap.append(slider, output);
+            slider.addEventListener('input', event => {
+                event.stopPropagation();
+                const current = selected.get(key);
+                if (!current) return;
+                current.agree = Number(slider.value);
+                output.textContent = formatScore(slider.value);
+            });
+            slider.addEventListener('click', event => event.stopPropagation());
+            score.append(slider, output);
 
-            const remove = document.createElement('button');
-            remove.type = 'button';
-            remove.className = 'custom-remove';
-            remove.textContent = 'Remove';
-            remove.addEventListener('click', () => row.remove());
+            function toggle() {
+                if (selected.has(key)) {
+                    selected.delete(key);
+                    tile.classList.remove('selected');
+                    tile.setAttribute('aria-pressed', 'false');
+                    score.style.display = 'none';
+                } else {
+                    selected.set(key, { category, value: id, agree: 1 });
+                    slider.value = '1';
+                    output.textContent = '+1.00';
+                    tile.classList.add('selected');
+                    tile.setAttribute('aria-pressed', 'true');
+                    score.style.display = 'flex';
+                }
+                updateCount();
+            }
 
-            categorySelect.addEventListener('change', () => fillValues());
-            row.append(categorySelect, valueSelect, scoreWrap, remove);
-            rows.appendChild(row);
+            tile.addEventListener('click', toggle);
+            tile.addEventListener('keydown', event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    toggle();
+                }
+            });
+
+            tile.append(img, name, score);
+            return tile;
         }
 
-        Object.entries(saved).forEach(([category, items]) => {
-            (items || []).forEach(item => addRow(category, item.value, item.agree));
+        categories.forEach(category => {
+            const section = document.createElement('section');
+            section.className = 'category-section';
+            section.id = 'cat-' + category;
+
+            const heading = document.createElement('h2');
+            heading.className = 'category-title';
+            heading.textContent = categoryTitles[category] || category;
+
+            const grid = document.createElement('div');
+            grid.className = 'values-flex-container';
+
+            Object.entries(resultsMapping[category] || {}).forEach(([id, title]) => {
+                grid.appendChild(makeValueTile(category, id, title));
+            });
+
+            section.append(heading, grid);
+            container.appendChild(section);
         });
-        if (!rows.children.length) addRow();
 
-        document.getElementById('add-row').addEventListener('click', () => addRow());
+        updateCount();
 
-        document.getElementById('show-results').addEventListener('click', () => {
-            const answers = {};
-            const seen = new Set();
-            for (const row of rows.children) {
-                const [categorySelect, valueSelect, scoreWrap] = row.children;
-                const value = valueSelect.value;
-                const agree = Number(scoreWrap.querySelector('input').value);
-                const key = categorySelect.value + '/' + value;
-                if (seen.has(key)) {
-                    alert('Each value can only be added once. Please remove duplicate selections.');
-                    return;
-                }
-                seen.add(key);
-                if (!answers[categorySelect.value]) answers[categorySelect.value] = [];
-                answers[categorySelect.value].push({ value, agree });
-            }
-            if (!Object.keys(answers).length) {
-                alert('Add at least one value before calculating your results.');
+        document.getElementById('calculate-results').addEventListener('click', () => {
+            if (!selected.size) {
+                alert('Select at least one value before calculating your results.');
                 return;
             }
+
+            const answers = {};
+            selected.forEach(item => {
+                if (!answers[item.category]) answers[item.category] = [];
+                answers[item.category].push({ value: item.value, agree: item.agree });
+            });
+
             HV.saveAnswers(answers);
             localStorage.setItem('hvResultMode', 'custom');
             location.href = 'results.html';
