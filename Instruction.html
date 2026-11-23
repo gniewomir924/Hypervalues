@@ -25,6 +25,7 @@
             try {
                 localStorage.removeItem('quizAnswers');
                 localStorage.removeItem('quizResults');
+                localStorage.removeItem('hvResultMode');
             } catch (e) { /* storage is not available */ }
             location.href = 'results.html';
         }
