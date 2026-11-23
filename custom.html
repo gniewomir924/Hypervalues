@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperValues - Custom Results</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <script src="theme.js"></script>
+    <style>
+        .custom-intro { max-width: 820px; text-align: center; color: var(--text-dim); line-height: 1.6; margin: 12px 0 28px; }
+        #custom-rows { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 14px; }
+        .custom-row { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(180px, 1.5fr) minmax(170px, 1.2fr) auto; align-items: center; gap: 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 16px; }
+        .custom-row select { min-width: 0; width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary); font: inherit; }
+        .custom-score { display: flex; align-items: center; gap: 10px; }
+        .custom-score input { width: 100%; accent-color: var(--accent-primary); }
+        .custom-score output { min-width: 48px; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+        .custom-remove { min-width: 0 !important; padding: 10px 14px; }
+        .custom-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px; }
+        .custom-actions button { min-width: 180px; }
+        @media(max-width:700px) {
+            .custom-row { grid-template-columns: 1fr 1fr; }
+            .custom-score { grid-column: 1 / -1; }
+            .custom-remove { grid-column: 1 / -1; }
+        }
+        @media(max-width:420px) { .custom-row { grid-template-columns: 1fr; } .custom-score,.custom-remove { grid-column:auto; } }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="title-container"><h1>Custom Results</h1></div>
+        <p class="custom-intro">Choose values from any category and set how strongly you agree or disagree with each one. Your selections will be scored using the same ideology-ranking system as the normal quiz. Custom results are marked on the website and on downloaded images.</p>
+        <div id="custom-rows"></div>
+        <div class="custom-actions">
+            <button id="add-row" type="button">Add value</button>
+            <button id="show-results" type="button">Calculate results</button>
+            <button type="button" onclick="location.href='index.html'">Back to menu</button>
+        </div>
+    </div>
+    <script src="data.js"></script>
+    <script src="scoring.js"></script>
+    <script>
+        const rows = document.getElementById('custom-rows');
+        const saved = localStorage.getItem('hvResultMode') === 'custom' ? HV.loadAnswers() : {};
+        const formatScore = value => (value > 0 ? '+' : '') + Number(value).toFixed(2);
+
+        function addRow(category = categories[0], value = '', agree = 0.5) {
+            const row = document.createElement('div');
+            row.className = 'custom-row';
+
+            const categorySelect = document.createElement('select');
+            categorySelect.setAttribute('aria-label', 'Category');
+            categories.forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = categoryTitles[key] || key;
+                categorySelect.appendChild(option);
+            });
+            categorySelect.value = category;
+
+            const valueSelect = document.createElement('select');
+            valueSelect.setAttribute('aria-label', 'Value');
+
+            function fillValues(selected = '') {
+                valueSelect.innerHTML = '';
+                const mapping = resultsMapping[categorySelect.value] || {};
+                Object.entries(mapping).forEach(([id, name]) => {
+                    const option = document.createElement('option');
+                    option.value = id;
+                    option.textContent = name;
+                    valueSelect.appendChild(option);
+                });
+                if (selected && mapping[selected]) valueSelect.value = selected;
+            }
+            fillValues(value);
+
+            const scoreWrap = document.createElement('div');
+            scoreWrap.className = 'custom-score';
+            const slider = document.createElement('input');
+            slider.type = 'range';
+            slider.min = '-1';
+            slider.max = '1';
+            slider.step = '0.05';
+            slider.value = String(agree);
+            const output = document.createElement('output');
+            output.textContent = formatScore(slider.value);
+            slider.addEventListener('input', () => output.textContent = formatScore(slider.value));
+            scoreWrap.append(slider, output);
+
+            const remove = document.createElement('button');
+            remove.type = 'button';
+            remove.className = 'custom-remove';
+            remove.textContent = 'Remove';
+            remove.addEventListener('click', () => row.remove());
+
+            categorySelect.addEventListener('change', () => fillValues());
+            row.append(categorySelect, valueSelect, scoreWrap, remove);
+            rows.appendChild(row);
+        }
+
+        Object.entries(saved).forEach(([category, items]) => {
+            (items || []).forEach(item => addRow(category, item.value, item.agree));
+        });
+        if (!rows.children.length) addRow();
+
+        document.getElementById('add-row').addEventListener('click', () => addRow());
+
+        document.getElementById('show-results').addEventListener('click', () => {
+            const answers = {};
+            const seen = new Set();
+            for (const row of rows.children) {
+                const [categorySelect, valueSelect, scoreWrap] = row.children;
+                const value = valueSelect.value;
+                const agree = Number(scoreWrap.querySelector('input').value);
+                const key = categorySelect.value + '/' + value;
+                if (seen.has(key)) {
+                    alert('Each value can only be added once. Please remove duplicate selections.');
+                    return;
+                }
+                seen.add(key);
+                if (!answers[categorySelect.value]) answers[categorySelect.value] = [];
+                answers[categorySelect.value].push({ value, agree });
+            }
+            if (!Object.keys(answers).length) {
+                alert('Add at least one value before calculating your results.');
+                return;
+            }
+            HV.saveAnswers(answers);
+            localStorage.setItem('hvResultMode', 'custom');
+            location.href = 'results.html';
+        });
+    </script>
+</body>
+</html>
