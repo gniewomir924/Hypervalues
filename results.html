@@ -13,6 +13,7 @@
     <div class="main-container">
         <div class="title-container">
             <h1>HyperValues</h1>
+            <span id="customBadge" style="display:none;">CUSTOM</span>
             <span class="version-text">v3.14.1</span>
             <span id="custom-badge" style="display:none; margin-left:8px; padding:5px 10px; border-radius:999px; background:var(--accent-soft); color:var(--text-primary); font-size:0.75rem; font-weight:700; letter-spacing:1px;">CUSTOM</span>
         </div>
@@ -44,6 +45,7 @@
     <script src="scoring.js"></script>
     <script src="share_image.js"></script>
     <script>
+        const isCustomResult = () => { try { return localStorage.getItem('hvResultMode') === 'custom'; } catch (e) { return false; } };
         let answers = HV.loadAnswers();
         const isCustomResult = () => localStorage.getItem('hvResultMode') === 'custom';
         document.getElementById('custom-badge').style.display = isCustomResult() ? 'inline-flex' : 'none';
@@ -104,7 +106,7 @@
                     flex.appendChild(tile);
                 });
 
-                const add = makeTile(`quiz.html?cat=${category}`);
+                const add = makeTile(`${isCustomResult() ? 'pick' : 'quiz'}.html?cat=${category}`);
                 const circle = document.createElement('div');
                 circle.className = 'result-icon result-none add-icon';
                 const label = document.createElement('p');
@@ -237,5 +239,10 @@
             }
         });
     </script>
+   <script>
+    if (localStorage.getItem("hvResultMode") === "custom") {
+        document.getElementById("customBadge").style.display = "inline-block";
+    }
+</script>
 </body>
 </html>
