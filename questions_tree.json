@@ -1628,140 +1628,140 @@
 "philosophy": [
   {
     "id": "p1",
-    "text": "Which kind of question matters most to you when you think about life and society?",
+    "text": "What best describes your understanding of knowledge, reality, morality and human existence?",
     "options": [
       {
-        "text": "Knowledge: how we can tell what is true, and what to trust",
+        "text": "Understanding the world through reason, observation and the foundations of knowledge",
         "next": "p_know"
       },
       {
-       "text": "Positivism: genuine knowledge should be grounded in observable facts, scientific investigation and verifiable evidence",
-       "next": "positivism"
-      },
-      {
-       "text": "Thomism: reason and faith are compatible; philosophical reasoning and natural theology can help establish truths about reality",
-       "next": "thomism"
-      },
-      {
-        "text": "Reality: what the world is fundamentally made of, and what drives the way it changes",
+        "text": "Understanding the fundamental nature and structure of reality",
         "next": "p_real"
       },
       {
-        "text": "Conduct: how to decide what is right, whether as a person or as a society",
+        "text": "Understanding how people should act and what makes actions morally right or wrong",
         "next": "p_act"
       },
       {
-        "text": "Meaning: whether life has a purpose, and how to live without a given one",
+        "text": "Understanding human existence, purpose and the meaning of life",
         "next": "p_meaning"
       }
     ]
   },
   {
     "id": "p_know",
-    "text": "How do you decide whether a claim is true?",
+    "text": "What is the most reliable foundation for acquiring and evaluating knowledge?",
     "options": [
       {
-        "text": "Work it out by logic and first principles: sound reasoning can reach truths that observation alone never could",
+        "text": "Logical reasoning and deduction can establish fundamental truths independently of sensory experience",
         "next": "rationalism"
       },
       {
-        "text": "Test it against evidence: observe, measure and trust what experience and experiment show",
+        "text": "Knowledge originates primarily from observation, experience and sensory evidence",
         "next": "empiricism"
       },
       {
-        "text": "See what happens when people act on it: an idea is true enough if it works and solves real problems",
+        "text": "Ideas should be evaluated through their practical consequences and their ability to resolve problems",
         "next": "pragmatism"
+      },
+      {
+        "text": "Reliable knowledge should be grounded in observable phenomena and systematic scientific investigation",
+        "next": "positivism"
+      },
+      {
+        "text": "Human reason can investigate reality, while philosophical truths and theological principles can form a coherent understanding of existence",
+        "next": "thomism"
       }
     ]
   },
   {
     "id": "p_real",
-    "text": "How would you describe the basic make-up of reality?",
+    "text": "How do you understand the fundamental structure of reality?",
     "options": [
       {
-        "text": "It comes down to one thing: a single substance, principle or underlying whole explains everything",
+        "text": "Everything that exists ultimately belongs to one fundamental underlying reality",
         "next": "p_one"
       },
       {
-        "text": "Two fundamentally different realms: mind and matter, or spirit and body, neither reducible to the other",
+        "text": "Reality consists of two fundamentally distinct kinds of existence, such as mind and matter",
         "next": "dualism"
       },
       {
-        "text": "Many irreducibly different things, truths and values, with no single master explanation",
+        "text": "Reality consists of multiple fundamental substances, principles or irreducible forms of existence",
         "next": "pluralism"
       }
     ]
   },
- {
-  "id": "p_one",
-  "text": "What is the fundamental nature of reality?",
-  "options": [
-    {
-      "text": "Materialism: matter and physical conditions are fundamental, and consciousness arises from the material world",
-      "next": "materialism"
-    },
-    {
-      "text": "Historical Materialism: historical development is shaped by material conditions, modes of production, economic relations and class relations",
-      "next": "historical_materialism"
-    },
-    {
-      "text": "Idealism: mind and ideas are fundamental, and consciousness or thought shapes reality",
-      "next": "idealism"
-    },
-    {
-      "text": "Actual Idealism: reality is fundamentally the activity of thought; the thinking subject and its act of thinking are central to existence",
-      "next": "actual_idealism"
-    },
-    {
-      "text": "Absolute Idealism: reality is an all-encompassing rational whole in which mind, thought and reality are ultimately unified",
-      "next": "absolute_idealism"
-    },
-    {
-      "text": "Monism: reality ultimately consists of one unified underlying substance or principle",
-      "next": "monism"
-    },
-    {
-      "text": "Naturalism: everything that exists belongs to the natural world",
-      "next": "naturalism"
-    }
-  ]
-},
   {
-    "id": "p_act",
-    "text": "What makes an action right?",
+    "id": "p_one",
+    "text": "What do you consider to be the ultimate foundation of existence?",
     "options": [
       {
-        "text": "Its results: the right act does the most good and the least suffering for everyone affected",
+        "text": "Physical matter and material processes constitute the fundamental basis of everything that exists",
+        "next": "materialism"
+      },
+      {
+        "text": "Material conditions, economic relations and productive forces fundamentally shape historical development",
+        "next": "historical_materialism"
+      },
+      {
+        "text": "Reality is fundamentally grounded in ideas, consciousness or mind rather than physical matter alone",
+        "next": "idealism"
+      },
+      {
+        "text": "Reality is constituted through the active process of thought, rather than existing as a completely independent world outside it",
+        "next": "actual_idealism"
+      },
+      {
+        "text": "All existence forms an interconnected rational whole in which thought, being and reality are ultimately unified",
+        "next": "absolute_idealism"
+      },
+      {
+        "text": "Despite the apparent diversity of the world, everything ultimately derives from a single underlying substance or principle",
+        "next": "monism"
+      },
+      {
+        "text": "Everything that exists belongs to the natural world and should be understood through natural processes rather than supernatural explanations",
+        "next": "naturalism"
+      }
+    ]
+  },
+  {
+    "id": "p_act",
+    "text": "What should fundamentally determine whether an action is morally right?",
+    "options": [
+      {
+        "text": "The consequences of an action, particularly how much overall well-being or suffering it produces",
         "next": "utilitarianism"
       },
       {
-        "text": "Its principle: some duties and rights bind us whatever the results, and may not be broken for a greater good",
+        "text": "Moral duties, principles and obligations that should be respected regardless of their consequences",
         "next": "deontology"
       },
       {
-        "text": "Its source: acting with self-command, wisdom and virtue, and calmly accepting what lies outside one's control",
+        "text": "The development of good character, practical wisdom, moderation and self-discipline",
         "next": "stoicism"
       },
       {
-        "text": "Its benefit to you: each person should pursue their own interest first, owing nothing to a nation, state or higher duty",
+        "text": "The individual's own interests and personal welfare should be the primary basis for moral decisions",
         "next": "egoism"
       },
       {
-        "text": "Nothing: there is no moral standard to meet, only desire, advantage and what one chooses to do",
+        "text": "There are no objectively binding moral principles or universal moral obligations",
         "next": "amoralism"
       }
     ]
   },
   {
     "id": "p_meaning",
-    "text": "How should we face a universe that gives no purpose ready-made?",
+    "text": "How do you understand the meaning and purpose of human existence?",
     "options": [
       {
-        "text": "Choose freely: each person must take responsibility for creating their own meaning through what they do",
+        "text": "Individuals create meaning through their choices, freedom, responsibility and personal commitments",
         "next": "existentialism"
       },
       {
-        "text": "Accept it: there is no inherent meaning or objective moral truth, and none needs to be invented",
+        "text": "Existence has no inherent meaning, predetermined purpose or objectively established value",
         "next": "nihilism"
       }
     ]
@@ -1773,10 +1773,25 @@
     "id": "empiricism"
   },
   {
+    "id": "pragmatism"
+  },
+  {
+    "id": "positivism"
+  },
+  {
+    "id": "thomism"
+  },
+  {
+    "id": "dualism"
+  },
+  {
+    "id": "pluralism"
+  },
+  {
     "id": "materialism"
   },
   {
-  "id": "historical_materialism"
+    "id": "historical_materialism"
   },
   {
     "id": "idealism"
@@ -1788,16 +1803,10 @@
     "id": "absolute_idealism"
   },
   {
-    "id": "pragmatism"
+    "id": "monism"
   },
   {
-    "id": "existentialism"
-  },
-  {
-    "id": "nihilism"
-  },
-  {
-    "id": "stoicism"
+    "id": "naturalism"
   },
   {
     "id": "utilitarianism"
@@ -1806,16 +1815,7 @@
     "id": "deontology"
   },
   {
-    "id": "dualism"
-  },
-  {
-    "id": "monism"
-  },
-  {
-    "id": "pluralism"
-  },
-  {
-    "id": "naturalism"
+    "id": "stoicism"
   },
   {
     "id": "egoism"
@@ -1824,10 +1824,10 @@
     "id": "amoralism"
   },
   {
-  "id": "positivism"
+    "id": "existentialism"
   },
-{
-  "id": "thomism"
-}
+  {
+    "id": "nihilism"
+  }
 ]
 }
