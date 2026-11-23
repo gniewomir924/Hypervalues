@@ -25,6 +25,21 @@ function load(custom, pack, keepOwnData) {
 }
 const run = (ctx, code) => vm.runInContext(code, ctx);
 
+// The same, but with a storage you give it, so that two loads share what the first one saved (as two pages of a browser do)
+function loadWithStore(store) {
+    const ctx = {
+        console,
+        atob: text => Buffer.from(text, 'base64').toString('binary'),
+        localStorage: { getItem: k => (k in store ? store[k] : null), setItem: (k, v) => { store[k] = String(v); }, removeItem: k => { delete store[k]; } }
+    };
+    vm.createContext(ctx);
+    ['data.js', 'pack.js', 'scoring.js'].forEach(file => {
+        const code = fs.readFileSync(path.join(root, file), 'utf8').replace(/^const (HV|HVPack|resultsMapping|categories|categoryTitles|descriptions|ideologyScores|labelColors|ideologyGroups|labelMapping|iconSources) =/gm, 'var $1 =');
+        vm.runInContext(code, ctx, { filename: file });
+    });
+    return ctx;
+}
+
 let failed = 0;
 function check(name, ok, detail) {
     console.log((ok ? 'ok    ' : 'FAIL  ') + name + (detail ? ': ' + detail : ''));
@@ -127,7 +142,8 @@ check('a value a pack added has a data-URI icon with no raw markup', (u => u.sta
         values: { remove: ['no_such_value'], edit: { no_such_value: { name: 'x' } }, add: { economics: { laissez_faire: { name: 'again' } }, no_category: { x: { name: 'x' } } } },
         ideologies: { add: { 'Italian Fascism': {} }, edit: { 'No Such Ideology': { color: '#112233' }, 'National Syndicalism': { stances: { no_such_value: 1 } } }, remove: ['No Such Ideology'] } };
     const r = load(true, pack);
-    check('changes that do not fit are skipped and listed', r.HVPack.report.skipped.length === 8, String(r.HVPack.report.skipped.length));
+    check('changes that do not fit are skipped and listed (what names a removed thing is not)', r.HVPack.report.skipped.length === 5, String(r.HVPack.report.skipped.length));
+    check('a stance on a value that does not exist and is not removed is reported', load(true, { format: 'hypervalues-pack', version: 1, ideologies: { edit: { 'National Syndicalism': { stances: { no_such_value: 1 } } } } }).HVPack.report.skipped.length === 1);
     check('an existing value is not replaced by an added one', run(r, "resultsMapping.economics.laissez_faire") === 'Laissez-Faire');
 }
 
@@ -303,6 +319,21 @@ check('a value a pack added has a data-URI icon with no raw markup', (u => u.sta
     rootChange.HVPack.applyTree(t3);
     const ids3 = new Set(t3.economics.map(n => n.id));
     check('tree: remove a question and choose the first one', !ids3.has('e_market') && t3.economics[0].id === 'e_floor' && t3.economics.filter(n => n.options).every(n => n.options.every(o => ids3.has(o.next))));
+    // the questions of a removed category can be kept in another one (that is what the editor writes)
+    {
+        const techQuestions = Object.fromEntries(tree0().technology.filter(n => n.options).map(n => [n.id, { text: n.text, options: n.options.map(o => ({ text: o.text, next: o.next })) }]));
+        const techValues = Object.keys(run(plain, 'resultsMapping.technology'));
+        const moved = Object.fromEntries(techValues.map(id => [id, { category: 'economics' }]));
+        const kept = load(true, { ...base, values: { edit: moved }, categories: { remove: ['technology'] }, tree: { economics: { questions: techQuestions } } });
+        const t = tree0();
+        kept.HVPack.applyTree(t);
+        const before = tree0().economics.filter(n => n.options);
+        const now = t.economics.filter(n => n.options);
+        check('tree: the questions of a removed category are kept in another one and the other category is untouched', kept.HVPack.report.skipped.length === 0 && !('technology' in t) &&
+            now.length === before.length + Object.keys(techQuestions).length && before.every(q => JSON.stringify(now.find(x => x.id === q.id)) === JSON.stringify(q)) && t.economics[0].id === before[0].id);
+        const leafIds = new Set(t.economics.filter(n => !n.options).map(n => n.id));
+        check('tree: the values the kept questions lead to are leaves of that category', techValues.every(v => leafIds.has(v)));
+    }
     // a question with the id of a value is skipped
     const clash = load(true, { ...base, tree: { economics: { questions: { laissez_faire: { text: 'x', options: [{ text: 'y', next: 'state_socialism' }] } } } } });
     const t4 = tree0();
@@ -355,6 +386,102 @@ check('a value a pack added has a data-URI icon with no raw markup', (u => u.sta
     check('no limit: a path of 1,000,000 characters', !!longPath.svg && longPath.svg.includes('<path d="M0 0L1 1'));
     const huge = '<svg viewBox="0 0 1 1"><!--' + 'x'.repeat(5000000) + '--><circle r="1"/></svg>';
     check('no limit: a 5 MB SVG file', !!clean(huge).svg);
+}
+
+// 6f. Deleting only removes the deleted thing: what still names it stays in the pack, is ignored without a warning, and comes back with it
+{
+    const base = { format: 'hypervalues-pack', version: 1 };
+    const plain = load(false, null);
+    const quiet = (name, ctx) => check('removal: ' + name, ctx.HVPack.report.errors.length === 0 && ctx.HVPack.report.skipped.length === 0, JSON.stringify(ctx.HVPack.report));
+    const full = {
+        ...base,
+        categories: { add: { space: 'Space' } },
+        values: { add: { economics: { mutual_credit: { name: 'Mutual Credit', definition: 'Credit between people.' } }, space: { rockets: { name: 'Rockets' } } },
+                  edit: { mutual_credit: { name: 'Mutual Credit (edited)' }, laissez_faire: { name: 'Laissez-Faire (edited)' } } },
+        ideologies: { add: { Mutualist: { stances: { mutual_credit: 1, rockets: 0.5, laissez_faire: -1 } } },
+                      edit: { 'Italian Fascism': { stances: { mutual_credit: -1, laissez_faire: 0.5 }, color: '#112233' } } },
+        tree: { economics: { questions: { e_credit: { text: 'Credit?', options: [{ text: 'Mutual', next: 'mutual_credit' }, { text: 'Banks', next: 'laissez_faire' }] } } } }
+    };
+    const without = (key, extra) => JSON.parse(JSON.stringify({ ...full, ...extra }));
+    quiet('the full pack, nothing removed', load(true, full));
+    const names = ctx => run(ctx, "Array.from(new Set(Object.keys(labelMapping).map(k => labelMapping[k])))");
+
+    // a value the pack adds is removed: it is not there, nothing else is changed or reported, removing the removal brings it back
+    const noCredit = without('', { values: { ...full.values, remove: ['mutual_credit'] } });
+    const a = load(true, noCredit);
+    quiet('a value the pack adds is removed, while its edit and a stance on it stay in the pack', a);
+    check('removal: that value is gone from the data and from the stances', run(a, "!('mutual_credit' in HV.categoryOf) && !('mutual_credit' in resultsMapping.economics) && !/mutual_credit/.test(ideologyScores['Mutualist'] + ideologyScores['Italian Fascism'])"));
+    check('removal: the pack still holds the value, its edit and the stances (nothing was deleted)', noCredit.values.add.economics.mutual_credit && noCredit.values.edit.mutual_credit && noCredit.ideologies.add.Mutualist.stances.mutual_credit === 1);
+    const back = load(true, { ...noCredit, values: { ...noCredit.values, remove: [] } });
+    check('removal: taking the removal away brings the value, its name and its stances back', run(back, "resultsMapping.economics.mutual_credit") === 'Mutual Credit (edited)' && /mutual_credit:1/.test(run(back, "ideologyScores['Mutualist']")) && /mutual_credit:-1/.test(run(back, "ideologyScores['Italian Fascism']")));
+
+    // an official value is removed: edits and stances that name it stay and are ignored
+    const noLaissez = load(true, without('', { values: { ...full.values, remove: ['laissez_faire'] } }));
+    quiet('an official value is removed while edits and stances name it', noLaissez);
+    check('removal: the ideologies that named it still rank, without that stance', noLaissez.HV.rankIdeologies({ economics: [{ value: 'state_socialism', agree: 1 }] }).length === 267 || noLaissez.HV.rankIdeologies({}).length === 267);
+
+    // an ideology the pack adds is removed
+    const noMutualist = load(true, without('', { ideologies: { ...full.ideologies, remove: ['Mutualist'] } }));
+    quiet('an ideology the pack adds is removed', noMutualist);
+    check('removal: it is not in the model, the others are', !names(noMutualist).includes('Mutualist') && names(noMutualist).includes('Italian Fascism') && !run(noMutualist, "Object.keys(ideologyGroups).some(g => ideologyGroups[g].includes('Mutualist'))"));
+    // an official ideology is removed while the pack edits and renames it
+    const noItalian = load(true, without('', { ideologies: { ...full.ideologies, edit: { 'Italian Fascism': { rename: 'Roman Corporatism', color: '#112233' } }, remove: ['Italian Fascism'] } }));
+    quiet('an official ideology is removed while the pack edits and renames it', noItalian);
+    check('removal: replacing an official ideology (remove and add the same label) still works', (c => names(c).includes('Italian Fascism') && /laissez_faire:-1/.test(run(c, "ideologyScores['Italian Fascism']")))(load(true, { ...base, ideologies: { remove: ['Italian Fascism'], add: { 'Italian Fascism': { stances: { laissez_faire: -1 } } } } })));
+
+    // a category the pack adds is removed (its values and questions stay in the pack)
+    const noSpace = load(true, without('', { categories: { ...full.categories, remove: ['space'] } }));
+    quiet('a category the pack adds is removed', noSpace);
+    check('removal: the category and its value are gone, the rest of the data is not changed', run(noSpace, "!categories.includes('space') && !('rockets' in HV.categoryOf) && !/rockets/.test(ideologyScores['Mutualist'])") && noSpace.HV.rankIdeologies({}).length === 267);
+
+    // questions: a question the pack adds is removed (kept in the pack), an official one too
+    const t = JSON.parse(fs.readFileSync(path.join(root, 'questions_tree.json'), 'utf8'));
+    const withQ = load(true, full), tQ = JSON.parse(JSON.stringify(t));
+    withQ.HVPack.applyTree(tQ);
+    check('removal: the question the pack adds is in the tree', tQ.economics.some(n => n.id === 'e_credit'));
+    const noQ = load(true, without('', { tree: { economics: { questions: full.tree.economics.questions, remove: ['e_credit', 'e_market'], root: 'e_credit' } } })), tNo = JSON.parse(JSON.stringify(t));
+    noQ.HVPack.applyTree(tNo);
+    check('removal: a question the pack adds can be removed, and so can an official one; a root that was removed is ignored', !tNo.economics.some(n => n.id === 'e_credit' || n.id === 'e_market') && tNo.economics[0].id === t.economics[0].id && noQ.HVPack.report.skipped.length === 0);
+    const merged = plain.HVPack.mergeQuestions(t.economics, { questions: full.tree.economics.questions, remove: ['e_credit'] });
+    check('removal: mergeQuestions removes after adding', !merged.some(q => q.id === 'e_credit') && merged.length === t.economics.filter(n => n.options).length);
+}
+
+// 6g. Answers to a value that a pack removed are kept and come back with the value
+{
+    const base = { format: 'hypervalues-pack', version: 1 };
+    const store = { hvMode: 'custom', hvPack: JSON.stringify({ ...base, values: { remove: ['laissez_faire'] } }) };
+    const first = loadWithStore(store);
+    first.HV.saveAnswers({ economics: [{ value: 'laissez_faire', agree: 1 }, { value: 'state_socialism', agree: 0.5 }] });
+    const seen = first.HV.loadAnswers();
+    check('answers: the answer to a removed value is not shown or used', seen.economics.length === 1 && seen.economics[0].value === 'state_socialism');
+    check('answers: it is kept apart, not thrown away', JSON.parse(store.quizAnswersCustomHidden).some(i => i.value === 'laissez_faire') && !/laissez_faire/.test(store.quizAnswersCustom));
+    const again = loadWithStore(store);
+    check('answers: loading again changes nothing', again.HV.loadAnswers().economics.length === 1 && /laissez_faire/.test(store.quizAnswersCustomHidden));
+    store.hvPack = JSON.stringify({ ...base });       // the removal is taken away
+    const restored = loadWithStore(store);
+    const back = restored.HV.loadAnswers();
+    check('answers: the value is back and so is its answer', back.economics.length === 2 && back.economics.some(i => i.value === 'laissez_faire' && i.agree === 1) && !('quizAnswersCustomHidden' in store) && /laissez_faire/.test(store.quizAnswersCustom));
+    // the value is answered again while hidden answers exist: the newer answer wins and the old one is dropped
+    store.hvPack = JSON.stringify({ ...base, values: { remove: ['laissez_faire'] } });
+    loadWithStore(store).HV.loadAnswers();
+    store.hvPack = JSON.stringify({ ...base });
+    const b = loadWithStore(store);
+    b.HV.saveAnswers({ economics: [{ value: 'laissez_faire', agree: -1 }] });
+    const c = loadWithStore(store).HV.loadAnswers();
+    check('answers: an answer given again beats the kept one', c.economics.filter(i => i.value === 'laissez_faire').length === 1 && c.economics[0].agree === -1 && !('quizAnswersCustomHidden' in store));
+    // Clear all also clears what was kept
+    store.hvPack = JSON.stringify({ ...base, values: { remove: ['state_socialism'] } });
+    const d = loadWithStore(store);
+    d.HV.saveAnswers({ economics: [{ value: 'state_socialism', agree: 1 }, { value: 'laissez_faire', agree: 1 }] });
+    d.HV.loadAnswers();
+    check('answers: something is kept before Clear all', 'quizAnswersCustomHidden' in store);
+    d.HV.clearAnswers();
+    check('answers: Clear all clears the visible and the kept answers', !('quizAnswersCustomHidden' in store) && store.quizAnswersCustom === '{}');
+    // normal mode never writes the kept list
+    const normal = { quizAnswers: JSON.stringify({ economics: [{ value: 'laissez_faire', agree: 1 }] }) };
+    const n = loadWithStore(normal);
+    n.HV.loadAnswers();
+    check('answers: normal mode does not touch the kept list', !('quizAnswersCustomHidden' in normal) && !('quizAnswersCustom' in normal));
 }
 
 // 7. The site's own check data is untouched in normal mode (same ranking as before)
