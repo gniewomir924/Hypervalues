@@ -1159,6 +1159,10 @@
         {
           "text": "Nationalist aims: annex and reunify territories, or secure trade surpluses, exports and critical supplies",
           "next": "f_aims"
+        },
+        {
+          "text": "Hold a rival power in check: alliances, bases, aid and deterrence that stop its spread, without seeking its conquest or open war",
+          "next": "containment"
         }
       ]
     },
@@ -1229,6 +1233,9 @@
     },
     {
       "id": "mercantilism"
+    },
+    {
+      "id": "containment"
     }
   ],
   "technology": [
