@@ -31,7 +31,10 @@
 // A stance goes from -1 (opposes) to +1 (matches); null (or 0) takes a stance away. A change that does not fit the
 // current data (a value that does not exist, a label that is taken) is skipped and reported, not applied.
 // A change to an ideology names it by its label in the site's data (before the pack's rename).
-// Removing a category removes the values still in it. A value can move to another category ("category"); its answers
+// Removing only removes: values.remove, ideologies.remove, categories.remove and tree remove list what is removed (also
+// what the pack itself adds), and nothing else in the pack is changed. A stance, an edit or an answer that names a removed
+// thing stays in the pack and is ignored without a warning, and taking the id off the list brings everything back.
+// Removing a category removes the values still in it (while it is removed). A value can move to another category ("category"); its answers
 // move with it.
 // The question tree: "questions" adds a question or replaces the one with that id (the whole question, text and
 // options); "remove" takes questions away; "root" is the question a category starts with. An option goes to another
@@ -94,8 +97,8 @@ const HVPack = (function () {
     const TRANSFORM = /^(?:\s*(?:translate|scale|rotate|skewX|skewY|matrix)\s*\([-0-9eE+.,\s]*\)\s*,?)*$/;
     const oneOf = (...words) => value => words.includes(value);
     // numbers only (a value too big to be a number is refused), with no limit on their size
-    // stdDeviation (the strength of a blur) is deliberately not here: a pack cannot set it, so the attribute is dropped
-    // from every feGaussianBlur and the blur stays at its default of no effect
+    // Blur, shadow and glow are deliberately not possible: feGaussianBlur, feOffset, feFlood, feMerge and feMergeNode are not
+    // allowed elements (so stdDeviation, dx, dy and flood-* are not allowed attributes), and a filter that had one is dropped whole
     const SVG_ATTRS = {
         d: value => PATHDATA.test(value), points: value => NUMS.test(value),
         viewBox: value => NUMS.test(value) && value.split(/[\s,]+/).filter(Boolean).length === 4,
@@ -462,6 +465,12 @@ const HVPack = (function () {
     function apply(pack) {
         const skipped = [];
         const skip = message => { skipped.push(message); };
+        // Deleting something in the editor only adds its id to a list of removals; nothing else in the pack is changed or
+        // deleted, so everything that still names it (a stance, an edit, an answer that leads to it) stays in the pack
+        // and is ignored here without a warning, and restoring it brings all of it back.
+        const removedValues = new Set(pack.values.remove);
+        const removedLabels = new Set(pack.ideologies.remove);
+        const goneValues = new Set();
         const categoryOfValue = id => Object.keys(resultsMapping).find(cat => has(resultsMapping[cat], id)) || null;
         const labelSet = () => new Set(Object.keys(labelMapping).map(key => labelMapping[key]));
         const cleanGroups = () => Object.keys(ideologyGroups).forEach(g => { if (!ideologyGroups[g].length) delete ideologyGroups[g]; });
@@ -490,7 +499,7 @@ const HVPack = (function () {
         function setStances(label, changes, where) {
             const scores = parseScores(ideologyScores[label]);
             Object.keys(changes).forEach(id => {
-                if (!categoryOfValue(id)) return skip(where + ': the value "' + id + '" does not exist.');
+                if (!categoryOfValue(id)) { if (!goneValues.has(id) && !removedValues.has(id)) skip(where + ': the value "' + id + '" does not exist.'); return; }
                 const s = changes[id];
                 if (s === null || s === 0) scores.delete(id); else scores.set(id, s);
             });
@@ -503,6 +512,7 @@ const HVPack = (function () {
             delete descriptions[id];
             delete iconSources[id];
             delete movedFrom[id];
+            goneValues.add(id);
             customValues.delete(id);
             customIcons.delete(id);
             Object.keys(ideologyScores).forEach(label => {
@@ -530,14 +540,17 @@ const HVPack = (function () {
         });
 
         // values: remove, add, edit (name, definition, icon, category)
+        const addedValues = new Set();
+        Object.keys(pack.values.add).forEach(cat => Object.keys(pack.values.add[cat]).forEach(id => addedValues.add(id)));
         pack.values.remove.forEach(id => {
             const cat = categoryOfValue(id);
-            if (!cat) return skip('Value "' + id + '" does not exist (remove).');
-            dropValue(id, cat);
+            if (cat) return dropValue(id, cat);
+            if (!addedValues.has(id)) skip('Value "' + id + '" does not exist (remove).');     // a value the pack adds is just not added below
         });
         Object.keys(pack.values.add).forEach(cat => {
             if (!has(resultsMapping, cat)) return skip('Category "' + cat + '" does not exist (values added to it).');
             Object.keys(pack.values.add[cat]).forEach(id => {
+                if (removedValues.has(id) && !categoryOfValue(id)) return;
                 if (categoryOfValue(id)) return skip('Value "' + id + '" already exists.');
                 const item = pack.values.add[cat][id];
                 resultsMapping[cat][id] = item.name;
@@ -548,7 +561,7 @@ const HVPack = (function () {
         });
         Object.keys(pack.values.edit).forEach(id => {
             const cat = categoryOfValue(id);
-            if (!cat) return skip('Value "' + id + '" does not exist (edit).');
+            if (!cat) { if (!removedValues.has(id) && !goneValues.has(id)) skip('Value "' + id + '" does not exist (edit).'); return; }
             const item = pack.values.edit[id];
             if (item.name !== undefined) resultsMapping[cat][id] = item.name;
             if (item.definition !== undefined) descriptions[id] = item.definition;
@@ -575,8 +588,9 @@ const HVPack = (function () {
         // before any rename of the pack, so a renamed ideology is found again through the table of renames and
         // its old name is free for a new ideology
         const renamed = {};
+        const inBase = labelSet();
         pack.ideologies.remove.forEach(label => {
-            if (!labelSet().has(label)) return skip('Ideology "' + label + '" does not exist (remove).');
+            if (!inBase.has(label)) { if (!has(pack.ideologies.add, label)) skip('Ideology "' + label + '" does not exist (remove).'); return; }
             Object.keys(labelMapping).forEach(key => { if (labelMapping[key] === label) delete labelMapping[key]; });
             delete labelColors[label];
             delete descriptions[label];
@@ -586,7 +600,7 @@ const HVPack = (function () {
         Object.keys(pack.ideologies.edit).forEach(label => {
             const name = pack.ideologies.edit[label].rename;
             if (name === undefined || name === label) return;
-            if (!labelSet().has(label)) return skip('Ideology "' + label + '" does not exist (rename).');
+            if (!labelSet().has(label)) { if (!removedLabels.has(label)) skip('Ideology "' + label + '" does not exist (rename).'); return; }
             if (labelSet().has(name)) return skip('Ideology "' + label + '" cannot be renamed: "' + name + '" already exists.');
             Object.keys(labelMapping).forEach(key => { if (labelMapping[key] === label) labelMapping[key] = name; });
             moveKey(labelColors, label, name);
@@ -596,6 +610,7 @@ const HVPack = (function () {
             renamed[label] = name;
         });
         Object.keys(pack.ideologies.add).forEach(label => {
+            if (removedLabels.has(label) && !inBase.has(label)) return;       // added by the pack and removed again
             if (labelSet().has(label)) return skip('Ideology "' + label + '" already exists.');
             const item = pack.ideologies.add[label];
             labelMapping[customKey(label)] = label;
@@ -609,7 +624,7 @@ const HVPack = (function () {
         });
         Object.keys(pack.ideologies.edit).forEach(original => {
             const label = has(renamed, original) ? renamed[original] : original;
-            if (!labelSet().has(label)) return skip('Ideology "' + original + '" does not exist (edit).');
+            if (!labelSet().has(label)) { if (!removedLabels.has(original)) skip('Ideology "' + original + '" does not exist (edit).'); return; }
             const item = pack.ideologies.edit[original];
             if (item.color !== undefined) labelColors[label] = item.color;
             if (item.definition !== undefined) descriptions[label] = item.definition;
@@ -632,13 +647,13 @@ const HVPack = (function () {
     function mergeQuestions(baseNodes, part) {
         part = part || {};
         let list = (baseNodes || []).filter(node => node && node.options).map(node => ({ id: node.id, text: node.text || '', options: node.options.map(o => Object.assign({}, o)) }));
-        const removed = new Set(part.remove || []);
-        list = list.filter(q => !removed.has(q.id));
         Object.keys(part.questions || {}).forEach(id => {
             const item = { id, text: part.questions[id].text, options: part.questions[id].options.map(o => Object.assign({}, o)) };
             const at = list.findIndex(q => q.id === id);
             if (at >= 0) list[at] = item; else list.push(item);
         });
+        const removed = new Set(part.remove || []);          // removed last: a question the pack adds can be removed too
+        list = list.filter(q => !removed.has(q.id));
         if (part.root) {
             const at = list.findIndex(q => q.id === part.root);
             if (at > 0) list.unshift(list.splice(at, 1)[0]);
@@ -750,7 +765,7 @@ const HVPack = (function () {
         return parts.length ? parts.join(', ') : 'no changes';
     }
 
-    // The picture of a value: the PNG a pack gave it, or its file in icons/ (in the category it came from), or for a
+    // The picture of a value: the SVG a pack gave it, or its file in icons/ (in the category it came from), or for a
     // value a pack added without a picture a gray circle with its first letter
     function iconUrl(category, id) {
         if (customIcons.has(id)) return svgUri(customIcons.get(id));

@@ -216,7 +216,7 @@
         byId('clear-button').onclick = () => {
             if (!confirm('Clear all your values?')) return;
             answers = {};
-            HV.saveAnswers(answers);
+            HV.clearAnswers();
             render();
         };
 

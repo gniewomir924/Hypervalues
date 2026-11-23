@@ -20,6 +20,7 @@
     let baseTreeFailed = false;
     let treeCategory = null;
     let questionForm = false;     // the form for a new question is open
+    let removingCategory = null;  // the category whose removal form is open
 
     const tabsHolder = document.getElementById('editor-tabs');
     const status = document.getElementById('editor-status');
@@ -125,7 +126,7 @@
         }));
         Object.keys(draft.values.add).forEach(cat => Object.keys(draft.values.add[cat]).forEach(id => {
             const item = draft.values.add[cat][id];
-            list.push({ id, baseCat: null, cat, custom: true, removed: false, name: item.name, definition: item.definition, icon: item.icon || null, changed: false });
+            list.push({ id, baseCat: null, cat, custom: true, removed: draft.values.remove.includes(id), name: item.name, definition: item.definition, icon: item.icon || null, changed: false });
         }));
         return list;
     }
@@ -213,12 +214,11 @@
     }
 
     // ---------------------------------------------------------------------------------------------
+    // Deleting only adds the id of what is deleted to a list of removals in the pack. Nothing else in the pack is
+    // changed or deleted: what is deleted keeps its edits, its stances and the answers that lead to it, and so does
+    // everything that names it, so Restore brings all of it back and nothing else is affected.
     // Changes to the pack (each takes the copy of the pack that change() hands over)
     // ---------------------------------------------------------------------------------------------
-    function dropStanceReferences(pack, id) {
-        Object.keys(pack.ideologies.add).forEach(label => { if (pack.ideologies.add[label].stances) delete pack.ideologies.add[label].stances[id]; });
-        Object.keys(pack.ideologies.edit).forEach(label => { if (pack.ideologies.edit[label].stances) delete pack.ideologies.edit[label].stances[id]; });
-    }
     function saveValueFields(pack, value, name, definition, icon, category) {
         if (value.custom) {
             const entry = { name, definition };
@@ -371,25 +371,17 @@
             const row = el('div', 'editor-item' + (value.removed ? ' editor-removed' : ''));
             row.appendChild(valueThumb(value));
             row.appendChild(el('span', 'editor-item-name', value.name));
-            if (value.custom) row.appendChild(el('span', 'editor-badge', 'new'));
-            else if (value.removed) row.appendChild(el('span', 'editor-badge', 'removed'));
+            if (value.removed) row.appendChild(el('span', 'editor-badge', 'removed'));
+            else if (value.custom) row.appendChild(el('span', 'editor-badge', 'new'));
             else if (value.changed) row.appendChild(el('span', 'editor-badge', 'changed'));
             const actions = el('span', 'editor-actions');
             if (value.removed) {
                 actions.appendChild(button('Restore', () => change(pack => { pack.values.remove = pack.values.remove.filter(id => id !== value.id); })));
             } else {
                 actions.appendChild(button('Edit', () => { form = { type: 'edit', id: value.id }; render(); }));
-                actions.appendChild(button(value.custom ? 'Delete' : 'Remove', () => {
-                    if (!confirm((value.custom ? 'Delete' : 'Remove') + ' \u201c' + value.name + '\u201d? Stances of ideologies on it are dropped from the pack.')) return;
-                    change(pack => {
-                        if (value.custom) {
-                            delete pack.values.add[value.cat][value.id];
-                        } else {
-                            pack.values.remove.push(value.id);
-                            delete pack.values.edit[value.id];
-                        }
-                        dropStanceReferences(pack, value.id);
-                    });
+                actions.appendChild(button('Remove', () => {
+                    if (!confirm('Remove \u201c' + value.name + '\u201d? Nothing else in your pack is changed, and you can restore it.')) return;
+                    change(pack => { if (!pack.values.remove.includes(value.id)) pack.values.remove.push(value.id); });
                 }));
             }
             row.appendChild(actions);
@@ -576,16 +568,9 @@
         });
 
         const danger = el('div', 'editor-row');
-        danger.appendChild(button(custom ? 'Delete ideology' : 'Remove ideology', () => {
-            if (!confirm((custom ? 'Delete' : 'Remove') + ' \u201c' + shownName(label) + '\u201d?')) return;
-            const ok = change(pack => {
-                if (custom) {
-                    delete pack.ideologies.add[label];
-                } else {
-                    pack.ideologies.remove.push(label);
-                    delete pack.ideologies.edit[label];
-                }
-            }, false);
+        danger.appendChild(button('Remove ideology', () => {
+            if (!confirm('Remove \u201c' + shownName(label) + '\u201d? Nothing else in your pack is changed, and you can restore it.')) return;
+            const ok = change(pack => { if (!pack.ideologies.remove.includes(label)) pack.ideologies.remove.push(label); }, false);
             if (ok) { openIdeology = null; render(); }
         }));
         body.appendChild(danger);
@@ -614,9 +599,7 @@
     }
     function deleteQuestion(pack, cat, id) {
         const part = treePart(pack, cat);
-        delete part.questions[id];
-        if (baseQuestion(cat, id) && !part.remove.includes(id)) part.remove.push(id);
-        if (part.root === id) delete part.root;
+        if (!part.remove.includes(id)) part.remove.push(id);
     }
     function setRoot(pack, cat, id) {
         const part = treePart(pack, cat);
@@ -679,18 +662,9 @@
         else if (own(part.questions, q.id)) head.appendChild(el('span', 'editor-badge', 'changed'));
         const actions = el('span', 'editor-actions');
         if (!isFirst) actions.appendChild(button('Make first', () => change(pack => setRoot(pack, cat, q.id)), 'editor-button editor-small'));
-        actions.appendChild(button(base ? 'Remove' : 'Delete', () => {
-            if (!confirm((base ? 'Remove' : 'Delete') + ' this question? Answers that lead to it are taken away.')) return;
-            change(pack => {
-                if (!base) {           // a question of the pack cannot be restored, so the answers that led to it go too
-                    effQuestions(cat).forEach(other => {
-                        if (other.id === q.id) return;
-                        const options = other.options.filter(o => o.next !== q.id);
-                        if (options.length && options.length !== other.options.length) storeQuestion(pack, cat, { id: other.id, text: other.text, options });
-                    });
-                }
-                deleteQuestion(pack, cat, q.id);
-            });
+        actions.appendChild(button('Remove', () => {
+            if (!confirm('Remove this question? The answers that lead to it are not asked while it is removed. Nothing else in your pack is changed, and you can restore it.')) return;
+            change(pack => deleteQuestion(pack, cat, q.id));
         }, 'editor-button editor-small'));
         head.appendChild(actions);
         card.appendChild(head);
@@ -816,12 +790,12 @@
         questions.forEach((q, index) => body.appendChild(questionCard(treeCategory, q, index === 0)));
 
         const part = draft.tree[treeCategory];
-        const removed = part ? part.remove.filter(id => baseQuestion(treeCategory, id)) : [];
+        const removed = part ? part.remove.filter(id => baseQuestion(treeCategory, id) || own(part.questions, id)) : [];
         if (removed.length) {
             body.appendChild(el('h3', 'editor-cat', 'Removed questions'));
             removed.forEach(id => {
                 const row = el('div', 'editor-item editor-removed');
-                row.appendChild(el('span', 'editor-item-name', baseQuestion(treeCategory, id).text));
+                row.appendChild(el('span', 'editor-item-name', baseQuestion(treeCategory, id) ? baseQuestion(treeCategory, id).text : part.questions[id].text));
                 const actions = el('span', 'editor-actions');
                 actions.appendChild(button('Restore', () => change(pack => { const p = treePart(pack, treeCategory); p.remove = p.remove.filter(x => x !== id); })));
                 row.appendChild(actions);
@@ -833,6 +807,68 @@
     // ---------------------------------------------------------------------------------------------
     // Categories and pack tabs
     // ---------------------------------------------------------------------------------------------
+    // Removing a category takes with it the values still in it (the values you moved to another category stay as they
+    // are) and its questions. The questions can be kept: they are copied into another category, where they stay as
+    // they are, and nothing in that category changes unless you ask for an answer that leads to them.
+    function checkbox(text, checked) {
+        const wrap = el('label', 'editor-check');
+        const input = el('input');
+        input.type = 'checkbox';
+        input.checked = checked;
+        wrap.appendChild(input);
+        wrap.appendChild(el('span', '', text));
+        return { wrap, input };
+    }
+    function categoryRemoveForm(cat, custom) {
+        const box = el('div', 'editor-form');
+        const inside = allValues().filter(v => v.cat === cat && !v.removed);
+        const questions = baseTree ? effQuestions(cat) : [];
+        const targets = effCategories().filter(c => c !== cat);
+        const received = {};      // how many of its values went to each other category
+        allValues().forEach(v => { if (v.baseCat === cat && v.cat !== cat && !v.removed && targets.includes(v.cat)) received[v.cat] = (received[v.cat] || 0) + 1; });
+        const preferred = Object.keys(received).sort((a, b) => received[b] - received[a])[0] || targets[0];
+        box.appendChild(el('p', 'editor-note', 'Remove \u201c' + catTitle(cat) + '\u201d. ' +
+            (inside.length ? inside.length + ' values still in it go with it while it is removed (the values you moved to another category stay where they are). ' : 'No value is left in it. ') +
+            'Nothing else in your pack is changed, and you can restore it: the values, their stances and the answers that lead to them come back.'));
+        let keep = null, target = null, link = null, linkText = null;
+        if (!baseTree && !baseTreeFailed) {
+            box.appendChild(el('p', 'editor-note', 'Loading the questions\u2026 close this form and open it again in a moment to be able to keep its questions.'));
+        } else if (questions.length && targets.length) {
+            keep = checkbox('Keep its ' + questions.length + ' questions in the category', true);
+            target = el('select', 'editor-input');
+            target.setAttribute('aria-label', 'The category that keeps the questions');
+            targets.forEach(c => { const option = el('option', '', catTitle(c)); option.value = c; if (c === preferred) option.selected = true; target.appendChild(option); });
+            link = checkbox('Add an answer to the first question of that category that leads to them (this changes that category\u2019s quiz; without it the questions are kept but not asked until you link them in the Questions tab)', false);
+            linkText = textInput('More questions', 0, 'Text of the answer that leads to the kept questions');
+            const line = el('div', 'editor-row');
+            line.appendChild(keep.wrap);
+            line.appendChild(target);
+            box.appendChild(line);
+            box.appendChild(link.wrap);
+            box.appendChild(field('Text of that answer', linkText));
+        } else if (questions.length) {
+            box.appendChild(el('p', 'editor-note', 'Its ' + questions.length + ' questions go with it: there is no other category to keep them in.'));
+        }
+        const row = el('div', 'editor-row');
+        row.appendChild(button('Remove category', () => {
+            const ok = change(pack => {
+                if (keep && keep.input.checked) {
+                    const to = target.value;
+                    const first = effQuestions(to)[0];       // that category's own first question, as it is now
+                    questions.forEach(q => storeQuestion(pack, to, q));
+                    if (link.input.checked && first) {
+                        storeQuestion(pack, to, { id: first.id, text: first.text, options: first.options.concat({ text: linkText.value.trim() || 'More questions', next: questions[0].id }) });
+                    }
+                }
+                if (!pack.categories.remove.includes(cat)) pack.categories.remove.push(cat);
+            }, false);
+            if (ok) { removingCategory = null; render(); }
+        }));
+        row.appendChild(button('Cancel', () => { removingCategory = null; render(); }));
+        box.appendChild(row);
+        return box;
+    }
+
     function renderCategories() {
         allCategories().forEach(cat => {
             const removed = isCatRemoved(cat);
@@ -860,27 +896,10 @@
             row.appendChild(input);
             if (custom) row.appendChild(el('span', 'editor-badge', 'new'));
             const actions = el('span', 'editor-actions');
-            actions.appendChild(button(custom ? 'Delete' : 'Remove', () => {
-                const inside = allValues().filter(v => v.cat === cat && !v.removed);
-                if (!confirm((custom ? 'Delete' : 'Remove') + ' \u201c' + catTitle(cat) + '\u201d' + (inside.length ? ' and its ' + inside.length + ' values?' : '?') +
-                    (custom ? '' : ' You can restore it later, but ideology stances on its values are dropped from the pack.'))) return;
-                change(pack => {
-                    inside.forEach(v => {
-                        if (v.custom) {
-                            dropStanceReferences(pack, v.id);
-                            delete pack.values.add[cat][v.id];
-                        } else if (custom) {
-                            if (pack.values.edit[v.id]) delete pack.values.edit[v.id].category;   // it goes back where it came from
-                        } else {
-                            dropStanceReferences(pack, v.id);                                      // the site drops it with the category
-                        }
-                    });
-                    delete pack.categories.rename[cat];
-                    if (custom) { delete pack.categories.add[cat]; delete pack.values.add[cat]; } else pack.categories.remove.push(cat);
-                });
-            }));
+            actions.appendChild(button('Remove', () => { removingCategory = cat; render(); }));
             row.appendChild(actions);
             body.appendChild(row);
+            if (removingCategory === cat) body.appendChild(categoryRemoveForm(cat, custom));
         });
         const add = el('div', 'editor-row');
         const title = textInput('', 80, 'Title of a new category');
@@ -921,7 +940,7 @@
     function render() {
         tabsHolder.textContent = '';
         [['values', 'Values'], ['ideologies', 'Ideologies'], ['categories', 'Categories'], ['tree', 'Questions'], ['pack', 'Pack']].forEach(([key, text]) => {
-            const node = button(text, () => { tab = key; form = null; ideologyForm = false; questionForm = false; openIdeology = null; say('', false); render(); }, 'editor-tab' + (tab === key ? ' editor-tab-on' : ''));
+            const node = button(text, () => { tab = key; form = null; ideologyForm = false; questionForm = false; removingCategory = null; openIdeology = null; say('', false); render(); }, 'editor-tab' + (tab === key ? ' editor-tab-on' : ''));
             node.setAttribute('role', 'tab');
             node.setAttribute('aria-selected', tab === key ? 'true' : 'false');
             tabsHolder.appendChild(node);

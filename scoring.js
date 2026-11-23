@@ -69,6 +69,15 @@ const HV = (function () {
     const inCustomMode = typeof HVPack !== 'undefined' && HVPack.isCustom();
     const ANSWERS_KEY = inCustomMode ? 'quizAnswersCustom' : 'quizAnswers';
     const RESULTS_KEY = inCustomMode ? 'quizResultsCustom' : 'quizResults';
+    // In custom mode an answer to a value that is not there now (a pack removed it) is not thrown away: it is kept here and
+    // comes back when the value does
+    const HIDDEN_KEY = 'quizAnswersCustomHidden';
+    function readHidden() {
+        try {
+            const list = JSON.parse(localStorage.getItem(HIDDEN_KEY) || '[]');
+            return Array.isArray(list) ? list.filter(item => item && typeof item.value === 'string') : [];
+        } catch (e) { return []; }
+    }
 
     function loadAnswers() {
         let answers = null;
@@ -76,13 +85,34 @@ const HV = (function () {
         if (answers && typeof answers === 'object') {
             if (inCustomMode) {                            // an answer goes with its value to the category it is in now
                 const placed = {};
+                const answered = new Set();
+                const hidden = [];
                 Object.keys(answers).forEach(cat => {
                     if (!Array.isArray(answers[cat])) return;
                     answers[cat].forEach(item => {
-                        const home = item && categoryOf[item.value];
-                        if (home) (placed[home] = placed[home] || []).push(item);
+                        if (!item) return;
+                        const home = categoryOf[item.value];
+                        if (home) { (placed[home] = placed[home] || []).push(item); answered.add(item.value); }
+                        else if (typeof item.value === 'string') hidden.push(item);
                     });
                 });
+                readHidden().forEach(item => {             // an answer kept for a value that is back
+                    const home = categoryOf[item.value];
+                    if (home) {
+                        if (!answered.has(item.value)) { (placed[home] = placed[home] || []).push(item); answered.add(item.value); }
+                    } else if (!hidden.some(other => other.value === item.value)) {
+                        hidden.push(item);
+                    }
+                });
+                try {
+                    const stored = localStorage.getItem(HIDDEN_KEY);
+                    const text = JSON.stringify(hidden);
+                    if (hidden.length ? stored !== text : stored !== null) {
+                        if (hidden.length) localStorage.setItem(HIDDEN_KEY, text); else localStorage.removeItem(HIDDEN_KEY);
+                    }
+                    const now = JSON.stringify(placed);
+                    if (localStorage.getItem(ANSWERS_KEY) !== now) localStorage.setItem(ANSWERS_KEY, now);
+                } catch (e) { /* storage is not available */ }
                 answers = placed;
             }
             Object.keys(answers).forEach(cat => {          // a category without values counts as not touched
@@ -98,6 +128,12 @@ const HV = (function () {
             if (old[cat]) answers[cat] = [{ value: old[cat], agree: 1 }];
         });
         return answers;
+    }
+
+    // Clear all: your answers, also the ones kept for values that are removed in custom mode
+    function clearAnswers() {
+        saveAnswers({});
+        if (inCustomMode) { try { localStorage.removeItem(HIDDEN_KEY); } catch (e) { /* nothing to clear */ } }
     }
 
     // Saves your answers, and the value you agree with most in each category, in the browser
@@ -490,7 +526,7 @@ const HV = (function () {
     }
 
     return {
-        categoryOf, loadAnswers, saveAnswers, primaryOf, signed, percent, stancesByCategory, valueOrder, nameOf, CLOSEST_COUNT, rankIdeologies, closestIdeologies,
+        categoryOf, loadAnswers, saveAnswers, primaryOf, signed, percent, stancesByCategory, valueOrder, nameOf, CLOSEST_COUNT, rankIdeologies, closestIdeologies, clearAnswers,
         guessedValues, valueScore, ringColor
     };
 })();
