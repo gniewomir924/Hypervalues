@@ -1419,8 +1419,8 @@
           "next": "permissivism"
         },
         {
-  "text": "Individuals and communities should freely establish their own social relationships and norms, without compulsory conformity or imposed social rules",
-  "next": "social_autonomy"
+          "text": "Individuals and communities should freely establish their own social relationships and norms, without compulsory conformity or imposed social rules",
+          "next": "social_autonomy"
         },
         {
           "text": "To protect people's health, safety and security",
@@ -1493,8 +1493,8 @@
       "id": "permissivism"
     },
     {
-  "id": "social_autonomy"
-},
+      "id": "social_autonomy"
+    },
     {
       "id": "civic_paternalism"
     },
@@ -1625,209 +1625,238 @@
       "id": "panarchy"
     }
   ],
-"philosophy": [
-  {
-    "id": "p1",
-    "text": "What best describes your understanding of knowledge, reality, morality and human existence?",
-    "options": [
-      {
-        "text": "Understanding the world through reason, observation and the foundations of knowledge",
-        "next": "p_know"
-      },
-      {
-        "text": "Understanding the fundamental nature and structure of reality",
-        "next": "p_real"
-      },
-      {
-        "text": "Understanding how people should act and what makes actions morally right or wrong",
-        "next": "p_act"
-      },
-      {
-        "text": "Understanding human existence, purpose and the meaning of life",
-        "next": "p_meaning"
-      }
-    ]
-  },
-  {
-    "id": "p_know",
-    "text": "What is the most reliable foundation for acquiring and evaluating knowledge?",
-    "options": [
-      {
-        "text": "Logical reasoning and deduction can establish fundamental truths independently of sensory experience",
-        "next": "rationalism"
-      },
-      {
-        "text": "Knowledge originates primarily from observation, experience and sensory evidence",
-        "next": "empiricism"
-      },
-      {
-        "text": "Ideas should be evaluated through their practical consequences and their ability to resolve problems",
-        "next": "pragmatism"
-      },
-      {
-        "text": "Reliable knowledge should be grounded in observable phenomena and systematic scientific investigation",
-        "next": "positivism"
-      },
-      {
-        "text": "Human reason can investigate reality, while philosophical truths and theological principles can form a coherent understanding of existence",
-        "next": "thomism"
-      }
-    ]
-  },
-  {
-    "id": "p_real",
-    "text": "How do you understand the fundamental structure of reality?",
-    "options": [
-      {
-        "text": "Everything that exists ultimately belongs to one fundamental underlying reality",
-        "next": "p_one"
-      },
-      {
-        "text": "Reality consists of two fundamentally distinct kinds of existence, such as mind and matter",
-        "next": "dualism"
-      },
-      {
-        "text": "Reality consists of multiple fundamental substances, principles or irreducible forms of existence",
-        "next": "pluralism"
-      }
-    ]
-  },
-  {
-    "id": "p_one",
-    "text": "What do you consider to be the ultimate foundation of existence?",
-    "options": [
-      {
-        "text": "Physical matter and material processes constitute the fundamental basis of everything that exists",
-        "next": "materialism"
-      },
-      {
-        "text": "Material conditions, economic relations and productive forces fundamentally shape historical development",
-        "next": "historical_materialism"
-      },
-      {
-        "text": "Reality is fundamentally grounded in ideas, consciousness or mind rather than physical matter alone",
-        "next": "idealism"
-      },
-      {
-        "text": "Reality is constituted through the active process of thought, rather than existing as a completely independent world outside it",
-        "next": "actual_idealism"
-      },
-      {
-        "text": "All existence forms an interconnected rational whole in which thought, being and reality are ultimately unified",
-        "next": "absolute_idealism"
-      },
-      {
-        "text": "Despite the apparent diversity of the world, everything ultimately derives from a single underlying substance or principle",
-        "next": "monism"
-      },
-      {
-        "text": "Everything that exists belongs to the natural world and should be understood through natural processes rather than supernatural explanations",
-        "next": "naturalism"
-      }
-    ]
-  },
-  {
-    "id": "p_act",
-    "text": "What should fundamentally determine whether an action is morally right?",
-    "options": [
-      {
-        "text": "The consequences of an action, particularly how much overall well-being or suffering it produces",
-        "next": "utilitarianism"
-      },
-      {
-        "text": "Moral duties, principles and obligations that should be respected regardless of their consequences",
-        "next": "deontology"
-      },
-      {
-        "text": "The development of good character, practical wisdom, moderation and self-discipline",
-        "next": "stoicism"
-      },
-      {
-        "text": "The individual's own interests and personal welfare should be the primary basis for moral decisions",
-        "next": "egoism"
-      },
-      {
-        "text": "There are no objectively binding moral principles or universal moral obligations",
-        "next": "amoralism"
-      }
-    ]
-  },
-  {
-    "id": "p_meaning",
-    "text": "How do you understand the meaning and purpose of human existence?",
-    "options": [
-      {
-        "text": "Individuals create meaning through their choices, freedom, responsibility and personal commitments",
-        "next": "existentialism"
-      },
-      {
-        "text": "Existence has no inherent meaning, predetermined purpose or objectively established value",
-        "next": "nihilism"
-      }
-    ]
-  },
-  {
-    "id": "rationalism"
-  },
-  {
-    "id": "empiricism"
-  },
-  {
-    "id": "pragmatism"
-  },
-  {
-    "id": "positivism"
-  },
-  {
-    "id": "thomism"
-  },
-  {
-    "id": "dualism"
-  },
-  {
-    "id": "pluralism"
-  },
-  {
-    "id": "materialism"
-  },
-  {
-    "id": "historical_materialism"
-  },
-  {
-    "id": "idealism"
-  },
-  {
-    "id": "actual_idealism"
-  },
-  {
-    "id": "absolute_idealism"
-  },
-  {
-    "id": "monism"
-  },
-  {
-    "id": "naturalism"
-  },
-  {
-    "id": "utilitarianism"
-  },
-  {
-    "id": "deontology"
-  },
-  {
-    "id": "stoicism"
-  },
-  {
-    "id": "egoism"
-  },
-  {
-    "id": "amoralism"
-  },
-  {
-    "id": "existentialism"
-  },
-  {
-    "id": "nihilism"
-  }
-]
+  "social_change": [
+    {
+      "id": "sch1",
+      "text": "How should fundamental social and political change be pursued?",
+      "options": [
+        {
+          "text": "Through gradual reforms within existing institutions, using legislation and policy changes",
+          "next": "reformism"
+        },
+        {
+          "text": "Through a fundamental transformation of the existing social and political order rather than gradual reform",
+          "next": "revolutionism"
+        }
+      ]
+    },
+    {
+      "id": "reformism"
+    },
+    {
+      "id": "revolutionism"
+    }
+  ],
+  "philosophy": [
+    {
+      "id": "p1",
+      "text": "What best describes your understanding of knowledge, reality, morality and human existence?",
+      "options": [
+        {
+          "text": "Understanding the world through reason, observation and the foundations of knowledge",
+          "next": "p_know"
+        },
+        {
+          "text": "Understanding the fundamental nature and structure of reality",
+          "next": "p_real"
+        },
+        {
+          "text": "Understanding how people should act and what makes actions morally right or wrong",
+          "next": "p_act"
+        },
+        {
+          "text": "Understanding human existence, purpose and the meaning of life",
+          "next": "p_meaning"
+        },
+        {
+          "text": "How should evolutionary competition and natural selection be applied to human society?",
+          "next": "social_darwinism"
+        }
+      ]
+    },
+    {
+      "id": "p_know",
+      "text": "What is the most reliable foundation for acquiring and evaluating knowledge?",
+      "options": [
+        {
+          "text": "Logical reasoning and deduction can establish fundamental truths independently of sensory experience",
+          "next": "rationalism"
+        },
+        {
+          "text": "Knowledge originates primarily from observation, experience and sensory evidence",
+          "next": "empiricism"
+        },
+        {
+          "text": "Ideas should be evaluated through their practical consequences and their ability to resolve problems",
+          "next": "pragmatism"
+        },
+        {
+          "text": "Reliable knowledge should be grounded in observable phenomena and systematic scientific investigation",
+          "next": "positivism"
+        },
+        {
+          "text": "Human reason can investigate reality, while philosophical truths and theological principles can form a coherent understanding of existence",
+          "next": "thomism"
+        }
+      ]
+    },
+    {
+      "id": "p_real",
+      "text": "How do you understand the fundamental structure of reality?",
+      "options": [
+        {
+          "text": "Everything that exists ultimately belongs to one fundamental underlying reality",
+          "next": "p_one"
+        },
+        {
+          "text": "Reality consists of two fundamentally distinct kinds of existence, such as mind and matter",
+          "next": "dualism"
+        },
+        {
+          "text": "Reality consists of multiple fundamental substances, principles or irreducible forms of existence",
+          "next": "pluralism"
+        }
+      ]
+    },
+    {
+      "id": "p_one",
+      "text": "What do you consider to be the ultimate foundation of existence?",
+      "options": [
+        {
+          "text": "Physical matter and material processes constitute the fundamental basis of everything that exists",
+          "next": "materialism"
+        },
+        {
+          "text": "Material conditions, economic relations and productive forces fundamentally shape historical development",
+          "next": "historical_materialism"
+        },
+        {
+          "text": "Reality is fundamentally grounded in ideas, consciousness or mind rather than physical matter alone",
+          "next": "idealism"
+        },
+        {
+          "text": "Reality is constituted through the active process of thought, rather than existing as a completely independent world outside it",
+          "next": "actual_idealism"
+        },
+        {
+          "text": "All existence forms an interconnected rational whole in which thought, being and reality are ultimately unified",
+          "next": "absolute_idealism"
+        },
+        {
+          "text": "Despite the apparent diversity of the world, everything ultimately derives from a single underlying substance or principle",
+          "next": "monism"
+        },
+        {
+          "text": "Everything that exists belongs to the natural world and should be understood through natural processes rather than supernatural explanations",
+          "next": "naturalism"
+        }
+      ]
+    },
+    {
+      "id": "p_act",
+      "text": "What should fundamentally determine whether an action is morally right?",
+      "options": [
+        {
+          "text": "The consequences of an action, particularly how much overall well-being or suffering it produces",
+          "next": "utilitarianism"
+        },
+        {
+          "text": "Moral duties, principles and obligations that should be respected regardless of their consequences",
+          "next": "deontology"
+        },
+        {
+          "text": "The development of good character, practical wisdom, moderation and self-discipline",
+          "next": "stoicism"
+        },
+        {
+          "text": "The individual's own interests and personal welfare should be the primary basis for moral decisions",
+          "next": "egoism"
+        },
+        {
+          "text": "There are no objectively binding moral principles or universal moral obligations",
+          "next": "amoralism"
+        }
+      ]
+    },
+    {
+      "id": "p_meaning",
+      "text": "How do you understand the meaning and purpose of human existence?",
+      "options": [
+        {
+          "text": "Individuals create meaning through their choices, freedom, responsibility and personal commitments",
+          "next": "existentialism"
+        },
+        {
+          "text": "Existence has no inherent meaning, predetermined purpose or objectively established value",
+          "next": "nihilism"
+        }
+      ]
+    },
+    {
+      "id": "rationalism"
+    },
+    {
+      "id": "empiricism"
+    },
+    {
+      "id": "pragmatism"
+    },
+    {
+      "id": "positivism"
+    },
+    {
+      "id": "thomism"
+    },
+    {
+      "id": "dualism"
+    },
+    {
+      "id": "pluralism"
+    },
+    {
+      "id": "materialism"
+    },
+    {
+      "id": "historical_materialism"
+    },
+    {
+      "id": "idealism"
+    },
+    {
+      "id": "actual_idealism"
+    },
+    {
+      "id": "absolute_idealism"
+    },
+    {
+      "id": "monism"
+    },
+    {
+      "id": "naturalism"
+    },
+    {
+      "id": "utilitarianism"
+    },
+    {
+      "id": "deontology"
+    },
+    {
+      "id": "stoicism"
+    },
+    {
+      "id": "egoism"
+    },
+    {
+      "id": "amoralism"
+    },
+    {
+      "id": "existentialism"
+    },
+    {
+      "id": "nihilism"
+    },
+    {
+      "id": "social_darwinism"
+    }
+  ]
 }
