@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperValues - Custom Pages editor</title>
+    <title>HyperValues</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="icon.svg">
     <script src="theme.js"></script>
+    <script src="linebreak.js"></script>
 </head>
 <body>
-    <div class="main-container editor">
-        <h1>Custom Pages editor</h1>
-        <p class="pick-hint">Changes are saved in this browser as you make them, as a pack: only what you add, change or remove.</p>
-        <div id="editor-tabs" class="editor-tabs" role="tablist"></div>
-        <p id="editor-status" class="editor-status" role="status" aria-live="polite"></p>
-        <div id="editor-body"></div>
-        <div class="button-container">
-            <button onclick="location.href='results.html'">Done</button>
+    <div class="main-container">
+        <div class="title-container">
+            <h1>HyperValues</h1>
+            <span class="version-text">v3.14.3</span>
         </div>
+        <div id="editor-tabs" class="hv-tabs" role="tablist"></div>
+        <div id="editor-body"></div>
     </div>
 
     <script>var HV_NO_PACK = true;</script>
     <script src="data.js"></script>
     <script src="pack.js"></script>
+    <script src="scoring.js"></script>
+    <script src="slider.js"></script>
+    <script src="custom_ui.js"></script>
     <script src="editor.js"></script>
 </body>
 </html>

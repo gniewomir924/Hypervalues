@@ -20,9 +20,6 @@ if (!HVPack.isCustom()) {
     flex.className = 'values-flex-container';
 
     const ids = Object.keys(resultsMapping[category]);
-    if (!ids.length) {
-        document.getElementById('pick-hint').textContent = 'This category has no values yet.';
-    }
     ids.forEach(id => {
         const done = list.find(item => item.value === id);
         const tile = document.createElement('a');
@@ -32,8 +29,7 @@ if (!HVPack.isCustom()) {
         tile.href = done ? `description.html?id=${id}&cat=${category}&edit=1` : '#';
         if (done) {
             tile.style.opacity = '0.5';
-            tile.title = 'Already in your values';
-        } else {
+            } else {
             tile.onclick = event => {
                 event.preventDefault();
                 const entries = answers[category] || (answers[category] = []);
@@ -66,7 +62,7 @@ if (!HVPack.isCustom()) {
         const list = tree[category];
         if (!Array.isArray(list) || !list.length || !Array.isArray(list[0].options)) return;
         const questions = document.createElement('button');
-        questions.textContent = 'Answer questions instead';
+        questions.textContent = 'Questions';
         questions.onclick = () => { window.location.href = `quiz.html?cat=${encodeURIComponent(category)}`; };
         const buttons = document.getElementById('pick-buttons');
         buttons.insertBefore(questions, buttons.firstChild);

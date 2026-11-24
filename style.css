@@ -933,100 +933,174 @@ a:hover {
     text-align: center;
 }
 
-/* Custom mode: the bar on the results page and the list for picking a value */
-.custom-bar {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin: 0 0 18px;
-    padding: 12px 16px;
-    border: 1px solid var(--accent-soft);
-    border-radius: 16px;
-    color: var(--text-primary);
+/* ---------- Custom Pages: made of the site's own look (buttons, tiles, cards, bubbles, slider) ---------- */
+.hv-round {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    min-width: 0;
+    padding: 0;
+    border-radius: 50%;
+    line-height: 1;
+}
+.hv-round svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+.hv-round.hv-small { width: 34px; height: 34px; }
+.hv-round.hv-small svg { width: 17px; height: 17px; }
+.hv-round.hv-on, .hv-round.hv-armed { background-color: var(--text-primary); color: var(--bg-color); }
+.hv-tools { display: flex; justify-content: center; gap: 12px; margin: 0 0 22px; }
+.hv-error { margin: 0 0 14px; color: #d6453d; font-weight: 700; text-align: center; }
+
+.hv-toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    z-index: 9998;
+    max-width: min(90vw, 520px);
+    padding: 12px 22px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--soft-shadow);
+    font-weight: 700;
     text-align: center;
 }
-.custom-bar-status { color: var(--text-dim); font-size: 0.95rem; overflow-wrap: anywhere; }
-.custom-bar-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-.custom-bar-button {
-    padding: 6px 14px;
-    border: 1px solid var(--accent-soft);
-    border-radius: 999px;
-    background: transparent;
-    color: var(--text-primary);
-    font: inherit;
-    font-size: 0.9rem;
-    cursor: pointer;
-}
-.custom-bar-button:hover { background: var(--accent-soft); }
-.pick-hint { color: var(--text-dim); text-align: center; margin: 0 0 12px; }
+.hv-toast.hv-bad { color: #d6453d; }
 
-/* The editor of Custom Pages */
-.editor { max-width: 900px; }
-.editor-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 0 12px; }
-.editor-tab, .editor-button {
-    padding: 8px 16px;
-    border: 1px solid var(--accent-soft);
-    border-radius: 999px;
-    background: transparent;
+.hv-tabs { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; margin: -20px 0 22px; padding: 14px 0 10px; background-color: var(--bg-color); }
+.hv-tabs button { padding: 10px 20px; }
+.hv-tabs button.hv-on, .hv-pill.hv-on { background-color: var(--text-primary); color: var(--bg-color); }
+
+.hv-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 20px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
     color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.hv-input:focus { outline: none; border-color: var(--text-dim); }
+.hv-bad { border-color: #d6453d !important; }
+.hv-search { max-width: 480px; margin: 0 0 22px; text-align: center; border-radius: 50px; }
+
+/* a text that is edited where it stands, with the look of the text it replaces */
+.hv-edit-text {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px dashed transparent;
+    border-radius: 0;
+    color: inherit;
     font: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+    text-transform: inherit;
+    line-height: inherit;
+    resize: none;
+    overflow: hidden;
+}
+.hv-edit-text:hover { border-bottom-color: var(--accent-soft); }
+.hv-edit-text:focus { outline: none; border-bottom-color: var(--text-dim); }
+.hv-title { text-align: center; text-transform: uppercase; }
+.category-title .hv-edit-text { font-size: inherit; font-weight: inherit; }
+.category-title { display: flex; align-items: center; gap: 10px; }
+.category-title .hv-round { margin-left: auto; }
+.description-box .hv-edit-text { min-height: 1.7em; }
+.description-box .hv-edit-text:hover, .description-box .hv-edit-text:focus { border-bottom-color: transparent; }
+
+.hv-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 8px 0 18px; width: 100%; }
+.hv-pill {
+    padding: 8px 18px;
+    border: 2px solid var(--text-dim);
+    border-radius: 50px;
+    background-color: transparent;
+    color: var(--text-primary);
     font-size: 0.95rem;
-    cursor: pointer;
-}
-.editor-tab-on { background: var(--accent-soft); }
-.editor-button:hover, .editor-tab:hover { background: var(--accent-soft); }
-.editor-small { padding: 3px 10px; font-size: 0.8rem; }
-.editor-status { min-height: 1.4em; margin: 0 0 8px; text-align: center; color: var(--text-dim); }
-.editor-status-bad { color: #d6453d; }
-.editor-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin: 10px 0; }
-.editor-input {
-    padding: 8px 12px;
-    border: 1px solid var(--accent-soft);
-    border-radius: 12px;
-    background: transparent;
-    color: var(--text-primary);
-    font: inherit;
-    min-width: 0;
+    box-sizing: border-box;
     max-width: 100%;
+    overflow-wrap: anywhere;
 }
-.editor-textarea { width: 100%; box-sizing: border-box; resize: vertical; }
-.editor-color { width: 56px; height: 36px; padding: 0; border: 1px solid var(--accent-soft); border-radius: 8px; background: transparent; }
-.editor-form { display: flex; flex-direction: column; gap: 10px; margin: 12px 0; padding: 14px; border: 1px solid var(--accent-soft); border-radius: 16px; text-align: left; }
-.editor-field { display: flex; flex-direction: column; gap: 4px; }
-.editor-field-label { color: var(--text-dim); font-size: 0.85rem; }
-.editor-item { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 4px; border-bottom: 1px solid var(--border-color); text-align: left; }
-.editor-item-name { flex: 1 1 200px; overflow-wrap: anywhere; }
-.editor-actions { display: flex; gap: 6px; }
-.editor-removed { opacity: 0.45; text-decoration: line-through; }
-.editor-badge { padding: 1px 8px; border: 1px solid var(--accent-soft); border-radius: 999px; color: var(--text-dim); font-size: 0.75rem; }
-.editor-note { color: var(--text-dim); font-size: 0.9rem; text-align: left; }
-.editor-cat { margin: 18px 0 6px; text-align: left; }
-.editor-title { margin: 14px 0 8px; padding-left: 12px; text-align: left; }
-.editor-bubbles { display: flex; flex-wrap: wrap; gap: 8px; }
-.editor-bubble { padding: 6px 14px; border: 0; border-radius: 999px; color: #fff; font: inherit; font-size: 0.9rem; cursor: pointer; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45); }
-.editor-stance { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(120px, 2fr) 54px auto; align-items: center; gap: 10px; padding: 4px 2px; opacity: 0.7; text-align: left; }
-.editor-has-stance { opacity: 1; }
-.editor-stance-name { overflow-wrap: anywhere; font-size: 0.92rem; }
-.editor-range { width: 100%; }
-.editor-readout { text-align: right; font-variant-numeric: tabular-nums; }
-@media (max-width: 560px) {
-    .editor-stance { grid-template-columns: 1fr 54px auto; }
-    .editor-stance-name { grid-column: 1 / -1; }
+.hv-dashed { border: 2px dashed rgba(127, 127, 127, 0.55) !important; background-color: transparent !important; color: var(--text-dim) !important; box-shadow: none !important; }
+.hv-add-bubble::before, .hv-plus::before { content: "+"; font-size: 1.5rem; line-height: 1; }
+.hv-removed { opacity: 0.4; }
+.hv-sel .result-icon { outline: 3px solid var(--text-primary); outline-offset: 5px; }
+.hv-sel .result-text { color: var(--text-primary); }
+.hv-hidden-file { display: none; }
+
+.hv-icon-edit { position: relative; display: inline-flex; align-items: flex-end; gap: 10px; margin-bottom: 15px; }
+.hv-icon-edit .desc-icon { margin: 0; cursor: pointer; border-radius: 50%; }
+.hv-icon-edit .hv-icon-buttons { display: flex; flex-direction: column; gap: 8px; }
+.hv-colorwrap { position: relative; display: inline-flex; }
+.hv-colorwrap input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+
+.hv-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    box-shadow: var(--soft-shadow);
 }
-.editor-icon { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; }
-.editor-letter { display: inline-flex; align-items: center; justify-content: center; background: #8b949e; color: #fff; font-weight: 700; font-size: 0.85rem; }
-.editor-icon-preview { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
-.editor-file { max-width: 100%; font: inherit; font-size: 0.85rem; color: var(--text-primary); }
-.editor-question { margin: 12px 0; padding: 12px; border: 1px solid var(--accent-soft); border-radius: 16px; text-align: left; }
-.editor-question-head { justify-content: flex-start; margin: 0 0 8px; }
-.editor-question-head .editor-actions { margin-left: auto; }
-.editor-option { display: grid; grid-template-columns: minmax(120px, 2fr) auto minmax(120px, 2fr) auto; align-items: center; gap: 8px; margin: 6px 0; }
-.editor-arrow { color: var(--text-dim); }
-.editor-target { width: 100%; }
-@media (max-width: 560px) {
-    .editor-option { grid-template-columns: 1fr auto; }
-    .editor-option .editor-arrow { display: none; }
-    .editor-option .editor-target { grid-column: 1 / -1; }
+.hv-sheet .result-text { width: auto; font-size: 0.95rem; }
+.hv-sheet .hv-round { position: absolute; top: 8px; right: 12px; }
+.hv-sheet .slider-block { margin: 0; }
+body.hv-has-sheet .main-container { padding-bottom: 230px; }
+
+.hv-modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; background-color: rgba(0, 0, 0, 0.55); }
+.hv-modal-body { position: relative; width: 100%; max-width: 900px; max-height: 88vh; overflow-y: auto; padding: 26px 22px 20px; box-sizing: border-box; background-color: var(--bg-color); border: 1px solid var(--card-border); border-radius: var(--radius-lg); }
+.hv-modal-body > .hv-round { position: sticky; top: 0; float: right; z-index: 2; }
+.hv-modal-list { display: flex; flex-direction: column; gap: 8px; margin: 0 0 22px; }
+.hv-modal-list button { text-align: left; font-weight: 500; }
+
+#buttons.hv-edit { max-width: 560px; }
+.hv-option { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.hv-option .hv-input { text-align: center; font-size: 1.05rem; font-weight: 700; padding: 16px 24px; }
+.hv-option-row { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.hv-option-row .hv-pill { flex: 0 1 auto; text-align: center; }
+.hv-corner { display: flex; justify-content: flex-end; gap: 8px; width: 100%; max-width: 800px; margin: 0 0 8px; }
+#question .hv-edit-text { font-size: inherit; font-weight: inherit; line-height: inherit; text-align: center; }
+.hv-qvalue { width: 28px; height: 28px; border-radius: 50%; vertical-align: middle; }
+
+.hv-form-row { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; max-width: 560px; margin: 8px 0 18px; }
+.hv-toggle { display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+@media (max-width: 800px) {
+    .hv-tabs { margin-top: -10px; }
+    .hv-tabs button { padding: 8px 14px; font-size: 0.95rem; }
+    #question .hv-edit-text { font-size: 1.15rem; }
+    .hv-modal-body { padding: 18px 14px; }
 }
-.editor-check { display: flex; align-items: flex-start; gap: 8px; text-align: left; }
-.editor-check input { margin-top: 4px; }
+@media (min-width: 980px) {
+    .hv-wide { max-width: 1200px; }
+}
+
+#editor-body { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.hv-pill svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+button.hv-on { background-color: var(--text-primary); color: var(--bg-color); }
