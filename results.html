@@ -41,8 +41,11 @@
     </div>
 
     <script src="data.js"></script>
+    <script src="pack.js"></script>
     <script src="scoring.js"></script>
     <script src="share_image.js"></script>
+    <script src="custom_ui.js"></script>
+    <script src="custom_bar.js"></script>
     <script>
         let answers = HV.loadAnswers();
         const isCustomResult = () => localStorage.getItem('hvResultMode') === 'custom';
@@ -83,7 +86,7 @@
                         `${HV.nameOf(category, item.value)}: ${HV.signed(item.agree)}`);
 
                     const img = document.createElement('img');
-                    img.src = `icons/${category}/${item.value}.svg`;
+                    img.src = HVPack.iconUrl(category, item.value);
                     img.className = 'result-icon';
                     img.alt = '';
                     img.style.borderRadius = '50%';
@@ -217,7 +220,7 @@
         byId('clear-button').onclick = () => {
             if (!confirm('Clear all your values?')) return;
             answers = {};
-            HV.saveAnswers(answers);
+            HV.clearAnswers();
             render();
         };
 

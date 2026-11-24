@@ -29,6 +29,7 @@
     </div>
 
     <script src="data.js"></script>
+    <script src="pack.js"></script>
     <script src="scoring.js"></script>
     <script src="slider.js"></script>
     <script>
@@ -62,11 +63,19 @@
                                 : itemId.replace(/_/g, ' ');
 
             titleEl.innerText = prettyName.toUpperCase();
-            iconEl.src = `icons/${category}/${itemId}.svg`;
+            iconEl.src = HVPack.iconUrl(category, itemId);
             iconEl.onerror = () => { iconEl.style.display = 'none'; };
             descEl.innerText = descriptions[itemId] || "Description coming soon!";
 
-            if (iconSources[itemId] === "ai") {
+            if (HVPack.isCustomValue(itemId)) {
+                sourceBtn.style.display = 'none';
+                originalSign.innerText = 'Custom value';
+                originalSign.style.display = 'block';
+            } else if (HVPack.hasCustomIcon(itemId)) {
+                sourceBtn.style.display = 'none';
+                originalSign.innerText = 'Custom icon';
+                originalSign.style.display = 'block';
+            } else if (iconSources[itemId] === "ai") {
                 sourceBtn.style.display = 'none';
                 originalSign.innerText = 'AI-generated icon';
                 originalSign.style.display = 'block';
@@ -128,7 +137,7 @@
                     tile.style.color = 'inherit';
 
                     const img = document.createElement('img');
-                    img.src = `icons/${cat}/${value}.svg`;
+                    img.src = HVPack.iconUrl(cat, value);
                     img.className = 'result-icon';
                     img.alt = '';
                     img.style.borderRadius = '50%';
