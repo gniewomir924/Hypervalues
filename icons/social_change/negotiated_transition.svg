@@ -1,12 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
-<title>Negotiated Transition</title>
-<desc>Two hands meeting in a handshake, representing an agreed transfer or reorganization of political authority.</desc>
-<circle cx="500" cy="500" r="472" fill="#E0E8D2" stroke="#20291D" stroke-width="30"/>
-<g stroke="#20291D" stroke-width="32" stroke-linejoin="round" stroke-linecap="round">
-  <path d="M190 390L315 300L445 350L525 435L465 505L380 455L305 520L190 455Z" fill="#54734B"/>
-  <path d="M810 390L685 300L555 350L475 435L535 505L620 455L695 520L810 455Z" fill="#54734B"/>
-  <path d="M380 455L450 395L510 435L565 405L640 470L565 545L505 495L455 550L395 495Z" fill="#F4EBDD"/>
-  <path d="M440 535L500 590L560 535" fill="none" stroke-width="30"/>
-  <path d="M500 590L500 675" fill="none" stroke-width="30"/>
-</g>
+<circle cx="500" cy="500" r="472" fill="#b92222"/>
+<!-- bold handshake silhouette -->
+<path fill="#000" d="M150 365 290 230l175 72 75 58-90 92-82-48-96 91-122-130zm700 0L710 230l-175 72-75 58 90 92 82-48 96 91 122-130z"/>
+<path fill="#000" d="M370 450l68-67q26-26 54 0l32 31 34-31q27-25 53 1l77 77q27 27 0 54l-38 38q-25 25-51 0l-20-20-28 29q-25 25-51 0l-22-22-24 24q-25 25-51 0l-54-54q-30-30 0-60z"/>
+<path fill="#000" d="M150 650l95-95 114 114-95 95zm550 19 114-114 95 95-114 114z"/>
+<path fill="#b92222" d="M425 470l70 70 70-70-40-40-30 28-30-28z"/>
 </svg>
