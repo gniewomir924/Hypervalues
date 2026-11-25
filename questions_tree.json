@@ -1566,14 +1566,6 @@
       "text": "Which smaller or looser arrangement fits best?",
       "options": [
         {
-          "text": "Self-government for a community or region within the wider state, without full independence",
-          "next": "autonomism"
-        },
-        {
-          "text": "Transfer of powers from the central government to elected regional or local institutions",
-          "next": "devolutionism"
-        },
-        {
           "text": "Self-governing towns and communes, linked horizontally by recallable delegates",
           "next": "municipalism"
         },
@@ -1631,12 +1623,6 @@
     },
     {
       "id": "panarchy"
-    },
-    {
-      "id": "autonomism"
-    },
-    {
-      "id": "devolutionism"
     }
   ],
   "social_change": [
@@ -1714,7 +1700,7 @@
     },
     {
       "id": "sch_sovereignty",
-      "text": "What political outcome or process is primarily sought?",
+      "text": "What political or territorial change is primarily sought?",
       "options": [
         {
           "text": "The separation of a territory from an existing state to establish independent political sovereignty",
@@ -1727,6 +1713,14 @@
         {
           "text": "A negotiated agreement between opposing political actors to transfer or reorganize political authority",
           "next": "negotiated_transition"
+        },
+        {
+          "text": "Meaningful self-government for a community or region within a wider state, without seeking full independence",
+          "next": "autonomism"
+        },
+        {
+          "text": "Transferring legislative, administrative or fiscal powers from the central government to regional or local institutions",
+          "next": "devolutionism"
         }
       ]
     },
@@ -1824,6 +1818,12 @@
     },
     {
       "id": "democratization"
+    },
+    {
+      "id": "autonomism"
+    },
+    {
+      "id": "devolutionism"
     }
   ],
   "philosophy": [
