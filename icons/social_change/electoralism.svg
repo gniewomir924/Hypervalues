@@ -1,11 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Electoralism</title>
 <circle cx="500" cy="500" r="472" fill="#168BDB" stroke="#071F3D" stroke-width="24"/>
-<g fill="#071F3D">
-<path d="M330 390h340v330H330z"/>
-<path d="M390 310h220v80H390z"/>
-<path d="M430 270h140v40H430z"/>
-<path d="M390 455h220v34H390zM390 520h105v30H390z"/>
-<path d="M390 600l65 65 155-165 35 34-190 202-100-100z"/>
+<g fill="none" stroke="#071F3D" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Ballot box -->
+  <path d="M245 610h510v245H245z"/>
+  <path d="M245 610l45-115h420l45 115"/>
+  <path d="M360 495h280"/>
+  <!-- Hand placing a ballot into the box -->
+  <path d="M390 495V360l105-95q28-25 68-25h80q48 0 76-34l45-48"/>
+  <path d="M390 360l-75 65q-25 22-52 8l-35-19q-16-9-5-25l105-145q37-50 91-50h115q48 0 78-32l36-39"/>
+  <path d="M425 300l95-38"/>
+  <!-- Ballot paper -->
+  <path d="M650 120l95-30 65 210-95 30z"/>
 </g>
 </svg>
