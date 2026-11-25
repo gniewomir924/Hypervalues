@@ -1,13 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
-<title>Electoralism</title>
-<desc>A ballot being placed into a ballot box, representing electoral participation.</desc>
-<circle cx="500" cy="500" r="472" fill="#D6E4E8" stroke="#111820" stroke-width="30"/>
-<g stroke="#111820" stroke-width="30" stroke-linejoin="round" stroke-linecap="round">
-  <path d="M290 490H710L675 760H325Z" fill="#24536B"/>
-  <path d="M345 555H655L635 700H365Z" fill="#F4EBDD"/>
-  <path d="M390 625H610" fill="none"/>
-  <path d="M365 270L650 315L610 525L325 480Z" fill="#F4EBDD"/>
-  <path d="M420 365L490 425L595 325" fill="none" stroke="#C65B45" stroke-width="38"/>
-  <path d="M420 485L590 512" fill="none" stroke-width="20"/>
-</g>
+<circle cx="500" cy="500" r="472" fill="#b92222"/>
+<!-- ballot paper and ballot box -->
+<path fill="#000" d="M350 190h300q34 0 34 34v315H316V224q0-34 34-34zm47 78v190h206V268H397zm42 47 39 39 78-87 31 28-108 121-69-69z"/>
+<path fill="#000" d="M190 565h620l-42 235H232z"/>
+<path fill="#b92222" d="M330 565h340l-18 48H348z"/>
+<path fill="#000" d="M260 800h480v45H260z"/>
 </svg>
