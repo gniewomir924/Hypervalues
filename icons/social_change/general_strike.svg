@@ -1,15 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
-<title>General Strike</title>
-<desc>Workers standing together behind a broad banner, representing coordinated labour action.</desc>
-<circle cx="500" cy="500" r="472" fill="#F0D8C5" stroke="#2B201C" stroke-width="30"/>
-<g stroke="#2B201C" stroke-width="30" stroke-linejoin="round" stroke-linecap="round">
-  <circle cx="350" cy="345" r="62" fill="#C45C36"/>
-  <circle cx="500" cy="295" r="75" fill="#C45C36"/>
-  <circle cx="650" cy="345" r="62" fill="#C45C36"/>
-  <path d="M245 600V555Q245 445 350 445Q455 445 455 555V610Z" fill="#C45C36"/>
-  <path d="M385 585V490Q385 390 500 390Q615 390 615 490V610Z" fill="#C45C36"/>
-  <path d="M545 600V555Q545 445 650 445Q755 445 755 555V610Z" fill="#C45C36"/>
-  <path d="M215 610H785V755H215Z" fill="#F4EBDD"/>
-  <path d="M335 680H665" fill="none" stroke-width="26"/>
-</g>
+<circle cx="500" cy="500" r="472" fill="#b92222"/>
+<!-- united workers and raised fists -->
+<path fill="#000" d="M160 790V590c0-92 62-158 146-158s146 66 146 158v200zm242 0V540c0-111 41-177 98-177s98 66 98 177v250zm246 0V590c0-92 62-158 146-158s146 66 146 158v200z"/>
+<path fill="#000" d="M252 415V270q0-38 36-38t36 38v78l27-58q17-35 49-18t15 51l-65 125zm218-48V210q0-42 38-42t38 42v123l25-77q13-39 49-26t23 52l-45 153zm218 48V270q0-38 36-38t36 38v78l27-58q17-35 49-18t15 51l-65 125z"/>
 </svg>
