@@ -2368,7 +2368,7 @@ const iconSources = {
     "naturalism": "ai",
     "social_darwinism": "https://www.reddit.com/r/rightistvexillology/comments/khppao/flag_of_social_darwinism/",
     "reformism": "https://wiki.polcompball.co.uk/Reformism",
-    "electoralism": "ai",
+    "electoralism": "https://www.flaticon.com/free-icon/elections_1456042",
     "secessionism": "ai",
     "restorationism": "ai",
     "civil_resistance": "ai",
