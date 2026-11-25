@@ -1,12 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Electoralism</title>
-<circle cx="500" cy="500" r="472" fill="#168BDB" stroke="#092D55" stroke-width="24"/>
-<g fill="#092D55">
-<path d="M275 300h450v430H275z"/>
-<path d="M225 300l275-125 275 125v55H225z"/>
-<path d="M325 405h350v255H325z" fill="#168BDB"/>
-<path d="M375 460h250v28H375zM375 520h150v28H375z"/>
-<path d="M425 585l55 55 115-130 30 28-145 165-85-85z"/>
-<path d="M225 730h550v55H225z"/>
+<circle cx="500" cy="500" r="472" fill="#168BDB" stroke="#071F3D" stroke-width="24"/>
+<g fill="#071F3D">
+<path d="M330 390h340v330H330z"/>
+<path d="M390 310h220v80H390z"/>
+<path d="M430 270h140v40H430z"/>
+<path d="M390 455h220v34H390zM390 520h105v30H390z"/>
+<path d="M390 600l65 65 155-165 35 34-190 202-100-100z"/>
 </g>
 </svg>
