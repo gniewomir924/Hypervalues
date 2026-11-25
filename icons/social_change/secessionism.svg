@@ -1,15 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Secessionism</title>
-<circle cx="500" cy="500" r="472" fill="#9BE329" stroke="#080808" stroke-width="24"/>
-<!-- heraldic twin regions -->
-<path d="M190 258l105-55 78 38 84-33 57 77-26 87 36 65-43 72 25 83-53 67-5 105-102 56-94-38-33-98 38-75-47-83 27-87-49-77z" fill="#104B32" stroke="#082D20" stroke-width="16" stroke-linejoin="round"/>
-<path d="M810 258l-105-55-78 38-84-33-57 77 26 87-36 65 43 72-25 83 53 67 5 105 102 56 94-38 33-98-38-75 47-83-27-87 49-77z" fill="#104B32" stroke="#082D20" stroke-width="16" stroke-linejoin="round"/>
-<g fill="none" stroke="#9BE329" stroke-width="19" stroke-linecap="round" stroke-linejoin="round">
-<path d="M250 290l76 38 40 77-30 70 48 58-25 74M210 530l87 15 42 65-20 65M325 240l-10 70 56 43"/>
-<path d="M750 290l-76 38-40 77 30 70-48 58 25 74M790 530l-87 15-42 65 20 65M675 240l10 70-56 43"/>
+<circle cx="500" cy="500" r="472" fill="#A8D94A" stroke="#245333" stroke-width="24"/>
+<g fill="#245333">
+<path d="M260 245l210 55 35 145-65 115 45 170-185 45-95-170 40-145-45-120z"/>
+<path d="M740 245l-210 55-35 145 65 115-45 170 185 45 95-170-40-145 45-120z"/>
+<path d="M490 170h35v660h-35z"/>
+<path d="M445 205l45-70 45 70zM445 795l45 70 45-70z"/>
 </g>
-<!-- bright dividing river and outward arrows -->
-<path d="M480 150l-36 108 48 76-45 92 55 79-47 89 51 86-35 139h62l-25-145 43-91-51-84 48-91-50-80 43-89-38-89z" fill="#F6F4D2" stroke="#104B32" stroke-width="15" stroke-linejoin="round"/>
-<path d="M390 480l-92-65m92 65-102 18m322-18 92-65m-92 65 102 18" fill="none" stroke="#F6F4D2" stroke-width="24" stroke-linecap="round"/>
-<path d="M295 390l3 25 25-4m379-21-3 25-25-4" fill="none" stroke="#F6F4D2" stroke-width="20" stroke-linecap="round"/>
 </svg>
