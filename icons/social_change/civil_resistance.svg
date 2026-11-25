@@ -1,22 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Civil Resistance</title>
-<circle cx="500" cy="500" r="472" fill="#F0B6C1" stroke="#000" stroke-width="18"/>
-<!-- three peaceful demonstrators -->
-<g fill="#111">
-<circle cx="500" cy="355" r="76"/>
-<circle cx="305" cy="415" r="62"/>
-<circle cx="695" cy="415" r="62"/>
-<path d="M370 755l35-210q18-91 95-91t95 91l35 210z"/>
-<path d="M220 755l26-174q14-76 59-76t59 76l26 174zM610 755l26-174q14-76 59-76t59 76l26 174z"/>
-<!-- raised arms -->
-<path d="M414 520l-110-150q-22-30 7-51 28-20 49 10l102 128zM586 520l110-150q22-30-7-51-28-20-49 10L538 457z"/>
-</g>
-<!-- placard -->
-<path d="M370 185h260v170H370z" fill="#111"/>
-<path d="M395 210h210v120H395z" fill="#F0B6C1"/>
-<path d="M420 255h160m-135 35h110" stroke="#111" stroke-width="15" stroke-linecap="round"/>
-<!-- jacket and clothing details -->
-<g fill="none" stroke="#F0B6C1" stroke-width="13" stroke-linecap="round">
-<path d="M470 510l30 42 30-42M500 555v165M275 610l30 28 30-28M665 610l30 28 30-28"/>
-</g>
+<circle cx="500" cy="500" r="472" fill="#FF684D" stroke="#080808" stroke-width="24"/>
+<!-- raised placard -->
+<path d="M300 150h400v235H300z" fill="#F9F1D7" stroke="#7B1F24" stroke-width="22"/>
+<path d="M350 215h300M390 280h220" stroke="#7B1F24" stroke-width="24" stroke-linecap="round"/>
+<path d="M450 385v92m100-92v92" stroke="#7B1F24" stroke-width="26" stroke-linecap="round"/>
+<!-- central marcher -->
+<circle cx="500" cy="485" r="67" fill="#7B1F24"/>
+<path d="M390 770l35-190q16-73 75-73t75 73l35 190z" fill="#7B1F24"/>
+<!-- raised arms and clenched hands -->
+<path d="M425 580L300 430l-50-90q-20-35 14-53 30-15 48 17l68 105 92 68zM575 580l125-150 50-90q20-35-14-53-30-15-48 17l-68 105-92 68z" fill="#7B1F24"/>
+<path d="M238 292l-30-48 20-48 45 5 30 48-20 40zM762 292l30-48-20-48-45 5-30 48 20 40z" fill="#7B1F24"/>
+<!-- two supporting figures -->
+<circle cx="270" cy="560" r="48" fill="#F9F1D7" stroke="#7B1F24" stroke-width="16"/>
+<circle cx="730" cy="560" r="48" fill="#F9F1D7" stroke="#7B1F24" stroke-width="16"/>
+<path d="M190 780l18-135q12-55 62-55t62 55l18 135zM650 780l18-135q12-55 62-55t62 55l18 135z" fill="#F9F1D7" stroke="#7B1F24" stroke-width="16"/>
+<path d="M470 590l30 42 30-42M500 632v100" fill="none" stroke="#FF684D" stroke-width="15" stroke-linecap="round"/>
 </svg>
