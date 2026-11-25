@@ -1685,10 +1685,6 @@
         {
           "text": "A relatively small faction attempts a sudden unconstitutional takeover; the term does not specify whether it is military- or civilian-led",
           "next": "putsch"
-        },
-        {
-          "text": "A sudden unconstitutional takeover by a state-linked faction, without a more specific subtype",
-          "next": "coupism"
         }
       ]
     },
@@ -1703,11 +1699,7 @@
     },
     {
       "id": "guerrilla_warfare"
-    },
-    {
-      "id": "coupism"
-    },
-    {
+    },    {
       "id": "insurrectionism"
     },
     {
