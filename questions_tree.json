@@ -1639,6 +1639,30 @@
           "next": "evolutionism"
         },
         {
+          "text": "Through competitive elections and the peaceful transfer of political leadership",
+          "next": "electoralism"
+        },
+        {
+          "text": "Through organized nonviolent protest, civil disobedience, boycotts and noncooperation",
+          "next": "civil_resistance"
+        },
+        {
+          "text": "Through a coordinated, widespread withdrawal of labour across sectors to demand political or systemic change",
+          "next": "general_strike"
+        },
+        {
+          "text": "By separating a territory from an existing state to establish independent political sovereignty",
+          "next": "secessionism"
+        },
+        {
+          "text": "By restoring a previously abolished political order, institution or constitutional arrangement",
+          "next": "restorationism"
+        },
+        {
+          "text": "Through a negotiated agreement transferring or restructuring political authority between opposing political actors",
+          "next": "negotiated_transition"
+        },
+        {
           "text": "Through a fundamental transformation of the existing social and political order rather than gradual reform",
           "next": "sch_break"
         }
@@ -1699,7 +1723,8 @@
     },
     {
       "id": "guerrilla_warfare"
-    },    {
+    },
+    {
       "id": "insurrectionism"
     },
     {
@@ -1713,6 +1738,24 @@
     },
     {
       "id": "terrorism"
+    },
+    {
+      "id": "electoralism"
+    },
+    {
+      "id": "secessionism"
+    },
+    {
+      "id": "restorationism"
+    },
+    {
+      "id": "civil_resistance"
+    },
+    {
+      "id": "general_strike"
+    },
+    {
+      "id": "negotiated_transition"
     }
   ],
   "philosophy": [
