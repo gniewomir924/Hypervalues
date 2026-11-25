@@ -1,13 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Negotiated Transition</title>
-<circle cx="500" cy="500" r="472" fill="#54C6B3" stroke="#28545A" stroke-width="24"/>
-<g fill="#28545A">
-<path d="M190 300h250v270H190zM560 300h250v270H560z"/>
-<path d="M245 365h140v25H245zM245 425h140v25H245zM615 365h140v25H615zM615 425h140v25H615z"/>
-<path d="M145 650l195-130 115 55 45 65-60 55-100-45-120 90z"/>
-<path d="M855 650L660 520l-115 55-45 65 60 55 100-45 120 90z"/>
-<path d="M390 605l75-55q35-25 70 0l75 55-45 55-55-35-55 35z"/>
-<path d="M260 800h480v45H260z"/>
-<path d="M690 745l55 78 55-78z"/>
+<circle cx="500" cy="500" r="472" fill="#55D5C2" stroke="#123E4A" stroke-width="24"/>
+<g fill="#123E4A">
+<path d="M250 330h235q45 0 45 45v135q0 45-45 45H360l-80 70v-70h-30q-45 0-45-45V375q0-45 45-45z"/>
+<path d="M515 430h235q45 0 45 45v135q0 45-45 45h-30v70l-80-70H515q-45 0-45-45V475q0-45 45-45z"/>
+<path d="M300 420h170v28H300zM300 480h120v28H300zM560 520h170v28H560zM610 580h120v28H610z"/>
 </g>
 </svg>
