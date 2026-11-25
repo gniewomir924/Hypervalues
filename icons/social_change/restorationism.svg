@@ -1,24 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Restorationism</title>
-<circle cx="500" cy="500" r="472" fill="#E8D18C" stroke="#000" stroke-width="18"/>
-<!-- laurel branches -->
-<g fill="#111">
-<path d="M180 745q-85-160-30-330 24-75 78-128-40 92-38 175 2 145 75 250z"/>
-<path d="M820 745q85-160 30-330-24-75-78-128 40 92 38 175-2 145-75 250z"/>
-<path d="M175 590q-65-12-83-65 59-3 83 65zm-3-108q-65-27-69-84 59 12 69 84zm20-101q-54-40-41-95 53 25 41 95zm633 209q65-12 83-65-59-3-83 65zm3-108q65-27 69-84-59 12-69 84zm-20-101q54-40 41-95-53 25-41 95z"/>
+<circle cx="500" cy="500" r="472" fill="#FFD12F" stroke="#080808" stroke-width="24"/>
+<!-- ornate crown above a restored classical hall -->
+<path d="M260 300l-45-125 145 88 140-135 140 135 145-88-45 125z" fill="#7B251F" stroke="#260F0D" stroke-width="18" stroke-linejoin="round"/>
+<path d="M260 300h480v55H260z" fill="#7B251F"/>
+<g fill="#F9F0D0" stroke="#7B251F" stroke-width="14">
+<circle cx="215" cy="175" r="30"/><circle cx="500" cy="128" r="30"/><circle cx="785" cy="175" r="30"/>
 </g>
-<!-- restored classical temple -->
-<path d="M245 380l255-145 255 145v42H245z" fill="#111"/>
-<path d="M310 370l190-108 190 108z" fill="#E8D18C"/>
-<path d="M285 438h430v38H285zM260 745h480v48H260zM225 800h550v42H225z" fill="#111"/>
-<g fill="#111">
-<path d="M310 490h68v230h-68zM432 490h68v230h-68zM554 490h68v230h-68zM676 490h38v230h-38z"/>
+<path d="M190 405l310-160 310 160v55H190z" fill="#7B251F"/>
+<path d="M265 398l235-120 235 120z" fill="#F9F0D0"/>
+<path d="M220 465h560v42H220zM190 760h620v48H190zM155 820h690v44H155z" fill="#7B251F"/>
+<g fill="#7B251F">
+<path d="M270 520h78v222h-78zM405 520h78v222h-78zM540 520h78v222h-78zM675 520h55v222h-55z"/>
 </g>
-<g fill="#E8D18C">
-<path d="M300 490h88v25h-88zm122 0h88v25h-88zm122 0h88v25h-88zm122 0h58v25h-58z"/>
-<path d="M300 695h88v25h-88zm122 0h88v25h-88zm122 0h88v25h-88zm122 0h58v25h-58z"/>
+<g fill="#F9F0D0">
+<path d="M255 520h108v26H255zm135 0h108v26H390zm135 0h108v26H525zm135 0h85v26h-85z"/>
+<path d="M255 714h108v28H255zm135 0h108v28H390zm135 0h108v28H525zm135 0h85v28h-85z"/>
 </g>
-<!-- central restoration medallion -->
-<circle cx="500" cy="570" r="34" fill="#E8D18C" stroke="#111" stroke-width="12"/>
-<path d="M500 548v44m-22-22h44" stroke="#111" stroke-width="10" stroke-linecap="round"/>
+<path d="M500 560l65 66-65 66-65-66z" fill="#FFD12F" stroke="#7B251F" stroke-width="16"/>
+<path d="M500 590v72m-34-36h68" stroke="#7B251F" stroke-width="15" stroke-linecap="round"/>
+<path d="M140 620q-40-95 15-185m705 185q40-95-15-185" fill="none" stroke="#7B251F" stroke-width="18" stroke-linecap="round"/>
 </svg>
