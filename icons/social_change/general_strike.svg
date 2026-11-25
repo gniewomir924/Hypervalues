@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+<title>General Strike</title><desc>Three workers standing together behind a shared banner, representing coordinated labour action.</desc>
+<circle cx="500" cy="500" r="478" fill="#E9E0C9" stroke="#303B35" stroke-width="28"/>
+<g fill="none" stroke="#303B35" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="350" cy="335" r="52"/><circle cx="500" cy="295" r="58"/><circle cx="650" cy="335" r="52"/>
+<path d="M260 600v-75c0-70 45-112 90-112s90 42 90 112v75M410 570v-95c0-85 45-135 90-135s90 50 90 135v95M560 600v-75c0-70 45-112 90-112s90 42 90 112v75"/>
+<path d="M260 610h480v125H260zM360 672h280"/>
+</g></svg>
