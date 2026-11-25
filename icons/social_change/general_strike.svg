@@ -1,21 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>General Strike</title>
-<circle cx="500" cy="500" r="472" fill="#B9F34A" stroke="#080808" stroke-width="24"/>
-<!-- large industrial works -->
-<path d="M155 785V465l175 105V425l180 120V420l180 125V490h155v295z" fill="#173D83" stroke="#0A204B" stroke-width="18" stroke-linejoin="round"/>
-<path d="M220 715V555l76 45v115zM385 715V535l76 47v133zM550 715V550l76 48v117zM700 715V550h95v165z" fill="#FFD84A" stroke="#0A204B" stroke-width="14"/>
-<path d="M190 800h650v48H190z" fill="#173D83"/>
-<!-- tall chimneys -->
-<path d="M220 465V230h105v270zM420 505V190h105v330z" fill="#173D83" stroke="#0A204B" stroke-width="16"/>
-<path d="M245 230h55v-38h-55zM445 190h55v-38h-55z" fill="#FFD84A"/>
-<g fill="none" stroke="#173D83" stroke-width="25" stroke-linecap="round">
-<path d="M275 165q-55-55 0-105 45-40 5-83M475 125q-55-55 0-105 45-40 5-83"/>
+<circle cx="500" cy="500" r="472" fill="#B9E45A" stroke="#244B77" stroke-width="24"/>
+<g fill="#244B77">
+<path d="M190 770V465l185 110V425l185 120V450l250 135v185z"/>
+<path d="M250 650h75v90h-75zM420 650h75v90h-75zM590 650h75v90h-75zM730 650h45v90h-45z"/>
+<path d="M250 465V260h95v260zM445 515V205h95v310z"/>
+<path d="M210 285h175v45H210zM405 230h175v45H405z"/>
+<path d="M160 790h690v55H160z"/>
 </g>
-<!-- prominent stopped gear -->
-<path d="M720 175l34 49 60-5 12 60 53 28-26 55 26 55-53 28-12 60-60-5-34 49-49-34-49 34-34-49-60 5-12-60-53-28 26-55-26-55 53-28 12-60 60 5 34-49 49 34z" fill="#FFD84A" stroke="#173D83" stroke-width="20" stroke-linejoin="round"/>
-<circle cx="720" cy="390" r="91" fill="#B9F34A" stroke="#173D83" stroke-width="22"/>
-<circle cx="720" cy="390" r="32" fill="#173D83"/>
-<!-- strike banner -->
-<path d="M155 365h390l-35 92H155z" fill="#FFD84A" stroke="#173D83" stroke-width="18"/>
-<path d="M210 410h260" stroke="#173D83" stroke-width="18" stroke-linecap="round"/>
 </svg>
