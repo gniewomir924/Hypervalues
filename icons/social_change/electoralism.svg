@@ -1,6 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
-<circle cx="500" cy="500" r="472" fill="#A8C8E8"/>
-<path fill="#000" d="M370 190h260q35 0 35 35v345H335V225q0-35 35-35zm35 70v240h190V260H405z"/>
-<path fill="#000" d="M450 345l45 45 95-112 38 34-131 153-84-84z"/>
-<path fill="#000" d="M190 590q0-25 25-25h570q25 0 25 25l-45 195H235zM260 785h480v55H260z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+<title>Electoralism</title>
+<circle cx="500" cy="500" r="472" fill="#A8C8E8" stroke="#000" stroke-width="18"/>
+<!-- ballot paper -->
+<path d="M350 165h300l55 58v425H295V220z" fill="#111"/>
+<path d="M350 195h275v420H325V220z" fill="#A8C8E8"/>
+<path d="M625 195v70h65" fill="none" stroke="#111" stroke-width="17" stroke-linejoin="round"/>
+<path d="M380 300h210M380 355h145" fill="none" stroke="#111" stroke-width="17" stroke-linecap="round"/>
+<rect x="375" y="405" width="210" height="150" rx="12" fill="#111"/>
+<path d="M410 475l48 48 97-111" fill="none" stroke="#A8C8E8" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- ballot box -->
+<path d="M205 635h590l-42 191H247z" fill="#111"/>
+<path d="M235 660h530l-30 137H265z" fill="#A8C8E8"/>
+<path d="M175 615l325-55 325 55-31 45H206z" fill="#111"/>
+<path d="M365 594l135-23 135 23-22 21H387z" fill="#A8C8E8"/>
+<path d="M270 825h460v34H270z" fill="#111"/>
+<path d="M300 704h400M285 760h430" stroke="#111" stroke-width="12" opacity=".9"/>
+<path d="M500 165v-48m-24 0h48" stroke="#111" stroke-width="15" stroke-linecap="round"/>
 </svg>
