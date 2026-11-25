@@ -1,19 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Civil Resistance</title>
-<circle cx="500" cy="500" r="472" fill="#FF684D" stroke="#080808" stroke-width="24"/>
-<!-- raised placard -->
-<path d="M300 150h400v235H300z" fill="#F9F1D7" stroke="#7B1F24" stroke-width="22"/>
-<path d="M350 215h300M390 280h220" stroke="#7B1F24" stroke-width="24" stroke-linecap="round"/>
-<path d="M450 385v92m100-92v92" stroke="#7B1F24" stroke-width="26" stroke-linecap="round"/>
-<!-- central marcher -->
-<circle cx="500" cy="485" r="67" fill="#7B1F24"/>
-<path d="M390 770l35-190q16-73 75-73t75 73l35 190z" fill="#7B1F24"/>
-<!-- raised arms and clenched hands -->
-<path d="M425 580L300 430l-50-90q-20-35 14-53 30-15 48 17l68 105 92 68zM575 580l125-150 50-90q20-35-14-53-30-15-48 17l-68 105-92 68z" fill="#7B1F24"/>
-<path d="M238 292l-30-48 20-48 45 5 30 48-20 40zM762 292l30-48-20-48-45 5-30 48 20 40z" fill="#7B1F24"/>
-<!-- two supporting figures -->
-<circle cx="270" cy="560" r="48" fill="#F9F1D7" stroke="#7B1F24" stroke-width="16"/>
-<circle cx="730" cy="560" r="48" fill="#F9F1D7" stroke="#7B1F24" stroke-width="16"/>
-<path d="M190 780l18-135q12-55 62-55t62 55l18 135zM650 780l18-135q12-55 62-55t62 55l18 135z" fill="#F9F1D7" stroke="#7B1F24" stroke-width="16"/>
-<path d="M470 590l30 42 30-42M500 632v100" fill="none" stroke="#FF684D" stroke-width="15" stroke-linecap="round"/>
+<circle cx="500" cy="500" r="472" fill="#F06A55" stroke="#762C32" stroke-width="24"/>
+<g fill="#762C32">
+<path d="M280 210h440v270H280z"/>
+<path d="M345 285h310v28H345zM390 355h220v28H390z"/>
+<path d="M430 480h140v70H430z"/>
+<path d="M400 800l40-210q15-80 60-80t60 80l40 210z"/>
+<path d="M420 600L290 470l-70-105 45-40 110 105 100 70zM580 600l130-130 70-105-45-40-110 105-100 70z"/>
+<circle cx="500" cy="510" r="65"/>
+</g>
 </svg>
