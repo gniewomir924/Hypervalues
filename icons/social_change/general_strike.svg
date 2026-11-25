@@ -1,11 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>General Strike</title>
-<circle cx="500" cy="500" r="472" fill="#B9E45A" stroke="#244B77" stroke-width="24"/>
-<g fill="#244B77">
-<path d="M190 770V465l185 110V425l185 120V450l250 135v185z"/>
-<path d="M250 650h75v90h-75zM420 650h75v90h-75zM590 650h75v90h-75zM730 650h45v90h-45z"/>
-<path d="M250 465V260h95v260zM445 515V205h95v310z"/>
-<path d="M210 285h175v45H210zM405 230h175v45H405z"/>
-<path d="M160 790h690v55H160z"/>
+<circle cx="500" cy="500" r="472" fill="#C5F05A" stroke="#153A72" stroke-width="24"/>
+<g fill="#153A72">
+<path d="M280 700V470l145 90V445l145 100V470l150 80v150z"/>
+<path d="M350 610h55v90h-55zM485 610h55v90h-55zM620 610h55v90h-55z"/>
+<path d="M310 470V300h85v220zM465 445V255h85v245z"/>
+<path d="M270 700h460v65H270z"/>
 </g>
 </svg>
