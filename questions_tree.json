@@ -1635,8 +1635,8 @@
           "next": "sch_gradual"
         },
         {
-          "text": "Through constitutional and democratic institutional development",
-          "next": "sch_institutions"
+          "text": "Through democratization and broader political participation",
+          "next": "democratization"
         },
         {
           "text": "Through popular participation and collective democratic action",
@@ -1649,20 +1649,6 @@
         {
           "text": "Through a fundamental rupture with the existing social and political order",
           "next": "sch_break"
-        }
-      ]
-    },
-    {
-      "id": "sch_institutions",
-      "text": "Which institutional development is the main priority?",
-      "options": [
-        {
-          "text": "Establishing or strengthening constitutional limits, legal procedures and checks on public power",
-          "next": "constitutionalism"
-        },
-        {
-          "text": "Opening an authoritarian or restricted political system toward broader participation, competition and accountability",
-          "next": "democratization"
         }
       ]
     },
@@ -1713,14 +1699,6 @@
         {
           "text": "A negotiated agreement between opposing political actors to transfer or reorganize political authority",
           "next": "negotiated_transition"
-        },
-        {
-          "text": "Meaningful self-government for a community or region within a wider state, without seeking full independence",
-          "next": "autonomism"
-        },
-        {
-          "text": "Transferring legislative, administrative or fiscal powers from the central government to regional or local institutions",
-          "next": "devolutionism"
         }
       ]
     },
@@ -1814,16 +1792,7 @@
       "id": "terrorism"
     },
     {
-      "id": "constitutionalism"
-    },
-    {
       "id": "democratization"
-    },
-    {
-      "id": "autonomism"
-    },
-    {
-      "id": "devolutionism"
     }
   ],
   "philosophy": [
