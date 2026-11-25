@@ -1628,88 +1628,108 @@
   "social_change": [
     {
       "id": "sch1",
-      "text": "Which broad approach best describes how social or political change should happen?",
+      "text": "How should fundamental social and political change primarily be achieved?",
       "options": [
         {
-          "text": "Gradual reform through existing laws and institutions",
-          "next": "reformism"
+          "text": "Through gradual change within the existing social and political system",
+          "next": "sch_gradual"
         },
         {
-          "text": "Long-term social development through gradual, cumulative changes across generations",
-          "next": "evolutionism"
+          "text": "Through popular participation and collective democratic action",
+          "next": "sch_popular"
         },
         {
-          "text": "Change through elections and the lawful, peaceful transfer of political leadership",
-          "next": "electoralism"
+          "text": "Through changes to political sovereignty or the restoration or reorganization of political authority",
+          "next": "sch_sovereignty"
         },
         {
-          "text": "Collective nonviolent pressure outside formal political institutions",
-          "next": "sch_collective"
-        },
-        {
-          "text": "A negotiated settlement between opposing political actors to transfer or reorganize political authority",
-          "next": "negotiated_transition"
-        },
-        {
-          "text": "Changing a territory's political status by separating it from an existing state",
-          "next": "secessionism"
-        },
-        {
-          "text": "Restoring a previously abolished political order, institution or constitutional arrangement",
-          "next": "restorationism"
-        },
-        {
-          "text": "Replacing the existing social and political order through a fundamental break",
+          "text": "Through a fundamental rupture with the existing social and political order",
           "next": "sch_break"
         }
       ]
     },
     {
-      "id": "sch_collective",
-      "text": "What form should collective pressure take?",
+      "id": "sch_gradual",
+      "text": "What should be the main character of gradual change?",
       "options": [
         {
-          "text": "Broad public action such as peaceful protest, civil disobedience, boycotts and noncooperation",
+          "text": "Deliberate reforms introduced through existing laws, policies and institutions",
+          "next": "reformism"
+        },
+        {
+          "text": "Long-term social development through cumulative adaptation and transformation across generations",
+          "next": "evolutionism"
+        }
+      ]
+    },
+    {
+      "id": "sch_popular",
+      "text": "What form should popular participation and collective action take?",
+      "options": [
+        {
+          "text": "Competitive elections and the lawful, peaceful transfer of political leadership",
+          "next": "electoralism"
+        },
+        {
+          "text": "Nonviolent public action, including protest, civil disobedience, boycotts and noncooperation",
           "next": "civil_resistance"
         },
         {
-          "text": "A coordinated withdrawal of labour across workplaces or sectors to press for political or systemic change",
+          "text": "A coordinated withdrawal of labour across workplaces or sectors to demand political or systemic change",
           "next": "general_strike"
         }
       ]
     },
     {
-      "id": "sch_break",
-      "text": "What kind of fundamental break with the existing order is envisaged?",
+      "id": "sch_sovereignty",
+      "text": "What political outcome or process is primarily sought?",
       "options": [
         {
-          "text": "A broad revolution that transforms or replaces the existing political and social system",
+          "text": "The separation of a territory from an existing state to establish independent political sovereignty",
+          "next": "secessionism"
+        },
+        {
+          "text": "The restoration of a previously abolished political order, institution or constitutional arrangement",
+          "next": "restorationism"
+        },
+        {
+          "text": "A negotiated agreement between opposing political actors to transfer or reorganize political authority",
+          "next": "negotiated_transition"
+        }
+      ]
+    },
+    {
+      "id": "sch_break",
+      "text": "What form should the fundamental break with the existing order take?",
+      "options": [
+        {
+          "text": "A broad revolution transforming or replacing the existing political and social system",
           "next": "revolutionism"
         },
         {
-          "text": "A prolonged irregular armed conflict intended to challenge or weaken state authority",
+          "text": "A prolonged irregular armed conflict challenging state authority",
           "next": "guerrilla_warfare"
         },
         {
-          "text": "A sudden, unconstitutional attempt by a faction within or close to the state to seize political power",
+          "text": "A sudden unconstitutional attempt by a faction within or close to the state to seize political power",
           "next": "sch_coup_type"
         },
         {
-          "text": "An uprising against established political authority outside ordinary constitutional channels",
+          "text": "A popular uprising against established political authority outside ordinary constitutional channels",
           "next": "insurrectionism"
         },
         {
-          "text": "The use or threat of politically motivated violence against civilians to intimidate a population or coerce authorities",
+          "text": "Politically motivated violence or threats directed at civilians to intimidate a population or coerce authorities",
           "next": "terrorism"
         }
       ]
     },
     {
       "id": "sch_coup_type",
-      "text": "Which description best identifies the form of attempted unconstitutional takeover?",
+      "text": "Which description best identifies the type of attempted unconstitutional takeover?",
       "options": [
         {
-          "text": "The armed forces or senior military command take control of the state outside constitutional procedures",
+          "text": "The armed forces or senior military command take state power outside constitutional procedures",
           "next": "military_coup"
         },
         {
@@ -1729,13 +1749,28 @@
       "id": "evolutionism"
     },
     {
+      "id": "electoralism"
+    },
+    {
+      "id": "civil_resistance"
+    },
+    {
+      "id": "general_strike"
+    },
+    {
+      "id": "secessionism"
+    },
+    {
+      "id": "restorationism"
+    },
+    {
+      "id": "negotiated_transition"
+    },
+    {
       "id": "revolutionism"
     },
     {
       "id": "guerrilla_warfare"
-    },
-    {
-      "id": "insurrectionism"
     },
     {
       "id": "military_coup"
@@ -1747,25 +1782,10 @@
       "id": "putsch"
     },
     {
+      "id": "insurrectionism"
+    },
+    {
       "id": "terrorism"
-    },
-    {
-      "id": "electoralism"
-    },
-    {
-      "id": "secessionism"
-    },
-    {
-      "id": "restorationism"
-    },
-    {
-      "id": "civil_resistance"
-    },
-    {
-      "id": "general_strike"
-    },
-    {
-      "id": "negotiated_transition"
     }
   ],
   "philosophy": [
