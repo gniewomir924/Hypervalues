@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Secessionism</title>
-<circle cx="500" cy="500" r="472" fill="#B7D7B0" stroke="#000" stroke-width="18"/>
-<!-- two distinct territories divided by a widening fissure -->
-<path d="M155 280l90-72 85 24 58-35 92 57 30 88-40 62 30 67-58 48-10 82-67 38-15 103-91 56-92-48-30-102 38-74-48-82 40-80-50-72z" fill="#111"/>
-<path d="M845 280l-90-72-85 24-58-35-92 57-30 88 40 62-30 67 58 48 10 82 67 38 15 103 91 56 92-48 30-102-38-74 48-82-40-80 50-72z" fill="#111"/>
-<!-- interior cartographic cuts -->
-<g fill="none" stroke="#B7D7B0" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
-<path d="M225 300l70 28 42 70-27 60 46 58-24 73M190 515l82 20 45 62-18 73M305 240l-15 64 52 45"/>
-<path d="M775 300l-70 28-42 70 27 60-46 58 24 73M810 515l-82 20-45 62 18 73M695 240l15 64-52 45"/>
+<circle cx="500" cy="500" r="472" fill="#9BE329" stroke="#080808" stroke-width="24"/>
+<!-- heraldic twin regions -->
+<path d="M190 258l105-55 78 38 84-33 57 77-26 87 36 65-43 72 25 83-53 67-5 105-102 56-94-38-33-98 38-75-47-83 27-87-49-77z" fill="#104B32" stroke="#082D20" stroke-width="16" stroke-linejoin="round"/>
+<path d="M810 258l-105-55-78 38-84-33-57 77 26 87-36 65 43 72-25 83 53 67 5 105 102 56 94-38 33-98-38-75 47-83-27-87 49-77z" fill="#104B32" stroke="#082D20" stroke-width="16" stroke-linejoin="round"/>
+<g fill="none" stroke="#9BE329" stroke-width="19" stroke-linecap="round" stroke-linejoin="round">
+<path d="M250 290l76 38 40 77-30 70 48 58-25 74M210 530l87 15 42 65-20 65M325 240l-10 70 56 43"/>
+<path d="M750 290l-76 38-40 77 30 70-48 58 25 74M790 530l-87 15-42 65 20 65M675 240l10 70-56 43"/>
 </g>
-<!-- separation channel -->
-<path d="M470 145l-35 115 65 76-54 91 65 84-62 94 57 91-43 148 72-2-32-145 52-92-60-91 56-91-57-88 48-89-34-101z" fill="#B7D7B0" stroke="#111" stroke-width="12" stroke-linejoin="round"/>
-<path d="M478 230l42 28m-60 165 43 18m-43 169 42 18m-35 164 39 20" stroke="#111" stroke-width="12" stroke-linecap="round"/>
+<!-- bright dividing river and outward arrows -->
+<path d="M480 150l-36 108 48 76-45 92 55 79-47 89 51 86-35 139h62l-25-145 43-91-51-84 48-91-50-80 43-89-38-89z" fill="#F6F4D2" stroke="#104B32" stroke-width="15" stroke-linejoin="round"/>
+<path d="M390 480l-92-65m92 65-102 18m322-18 92-65m-92 65 102 18" fill="none" stroke="#F6F4D2" stroke-width="24" stroke-linecap="round"/>
+<path d="M295 390l3 25 25-4m379-21-3 25-25-4" fill="none" stroke="#F6F4D2" stroke-width="20" stroke-linecap="round"/>
 </svg>
