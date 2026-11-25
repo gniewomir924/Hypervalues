@@ -1657,12 +1657,38 @@
           "next": "guerrilla_warfare"
         },
         {
-          "text": "Through a sudden seizure of power by a small group inside the state, usually the army, who then govern from above",
-          "next": "coupism"
+          "text": "Through an unconstitutional, sudden attempt by a small faction within or close to the state to take control of government",
+          "next": "sch_coup_type"
         },
         {
           "text": "Through direct uprising: riots, sabotage and attacks on institutions by autonomous groups or the crowd, without parties or leaders",
           "next": "insurrectionism"
+        },
+        {
+          "text": "Through politically motivated violence or threats directed at civilians or other non-combatants to intimidate a wider population or coerce authorities",
+          "next": "terrorism"
+        }
+      ]
+    },
+    {
+      "id": "sch_coup_type",
+      "text": "Which description best distinguishes the attempted seizure or concentration of state power?",
+      "options": [
+        {
+          "text": "The armed forces or senior military command take state power outside constitutional procedures",
+          "next": "military_coupism"
+        },
+        {
+          "text": "The sitting executive unlawfully suspends or bypasses constitutional checks to retain or expand their own power",
+          "next": "self_coupism"
+        },
+        {
+          "text": "A relatively small faction attempts a sudden unconstitutional takeover; the term does not specify whether it is military- or civilian-led",
+          "next": "putsch"
+        },
+        {
+          "text": "A sudden unconstitutional takeover by a state-linked faction, without a more specific subtype",
+          "next": "coupism"
         }
       ]
     },
@@ -1683,6 +1709,18 @@
     },
     {
       "id": "insurrectionism"
+    },
+    {
+      "id": "military_coupism"
+    },
+    {
+      "id": "self_coupism"
+    },
+    {
+      "id": "putsch"
+    },
+    {
+      "id": "terrorism"
     }
   ],
   "philosophy": [
