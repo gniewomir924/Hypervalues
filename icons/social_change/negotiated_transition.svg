@@ -1,21 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Negotiated Transition</title>
-<circle cx="500" cy="500" r="472" fill="#20C9B5" stroke="#080808" stroke-width="24"/>
-<!-- two opposing treaty scrolls -->
-<path d="M165 230q0-45 45-45h270v330H210q-45 0-45-45z" fill="#174C59" stroke="#082D35" stroke-width="18"/>
-<path d="M835 230q0-45-45-45H520v330h270q45 0 45-45z" fill="#8B315A" stroke="#47172D" stroke-width="18"/>
-<path d="M220 230h220v245H220zM560 230h220v245H560z" fill="#FFF0C2"/>
-<g stroke-width="17" stroke-linecap="round">
-<path d="M255 290h150m-150 55h150m-150 55h105" stroke="#174C59"/>
-<path d="M595 290h150m-150 55h150m-150 55h105" stroke="#8B315A"/>
+<circle cx="500" cy="500" r="472" fill="#54C6B3" stroke="#28545A" stroke-width="24"/>
+<g fill="#28545A">
+<path d="M190 300h250v270H190zM560 300h250v270H560z"/>
+<path d="M245 365h140v25H245zM245 425h140v25H245zM615 365h140v25H615zM615 425h140v25H615z"/>
+<path d="M145 650l195-130 115 55 45 65-60 55-100-45-120 90z"/>
+<path d="M855 650L660 520l-115 55-45 65 60 55 100-45 120 90z"/>
+<path d="M390 605l75-55q35-25 70 0l75 55-45 55-55-35-55 35z"/>
+<path d="M260 800h480v45H260z"/>
+<path d="M690 745l55 78 55-78z"/>
 </g>
-<!-- joined hands, two distinct sleeve colours -->
-<path d="M120 620l190-150 135 30 90 85-75 90-90-50-105 95z" fill="#174C59" stroke="#082D35" stroke-width="16" stroke-linejoin="round"/>
-<path d="M880 620L690 470l-135 30-90 85 75 90 90-50 105 95z" fill="#8B315A" stroke="#47172D" stroke-width="16" stroke-linejoin="round"/>
-<path d="M365 570l80-65q30-22 60 0l25 22 25-22q30-22 60 0l80 65q25 22 0 48l-42 42q-25 24-52 0l-24-20-25 23q-26 23-52 0l-22-20-22 20q-26 23-52 0l-39-40q-25-25 0-53z" fill="#F6C58B" stroke="#082D35" stroke-width="17" stroke-linejoin="round"/>
-<path d="M440 560l65 55m45-55 55 52m-145 2 48 42m54-42 43 38" fill="none" stroke="#8B315A" stroke-width="15" stroke-linecap="round"/>
-<!-- central seal and transition arrow -->
-<circle cx="500" cy="425" r="66" fill="#FFD84A" stroke="#082D35" stroke-width="18"/>
-<path d="M465 425l24 25 48-57" fill="none" stroke="#174C59" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M260 820h480m-65-55 65 55-65 55" fill="none" stroke="#082D35" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
