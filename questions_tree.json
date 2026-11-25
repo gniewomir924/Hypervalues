@@ -1635,6 +1635,10 @@
           "next": "reformism"
         },
         {
+          "text": "Through long-term social evolution: cumulative adaptation and changes in institutions and social structures over generations, rather than one planned reform or sudden rupture",
+          "next": "evolutionism"
+        },
+        {
           "text": "Through a fundamental transformation of the existing social and political order rather than gradual reform",
           "next": "sch_break"
         }
@@ -1664,6 +1668,9 @@
     },
     {
       "id": "reformism"
+    },
+    {
+      "id": "evolutionism"
     },
     {
       "id": "revolutionism"
