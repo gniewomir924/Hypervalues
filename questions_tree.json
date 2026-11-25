@@ -1566,6 +1566,14 @@
       "text": "Which smaller or looser arrangement fits best?",
       "options": [
         {
+          "text": "Self-government for a community or region within the wider state, without full independence",
+          "next": "autonomism"
+        },
+        {
+          "text": "Transfer of powers from the central government to elected regional or local institutions",
+          "next": "devolutionism"
+        },
+        {
           "text": "Self-governing towns and communes, linked horizontally by recallable delegates",
           "next": "municipalism"
         },
@@ -1623,6 +1631,12 @@
     },
     {
       "id": "panarchy"
+    },
+    {
+      "id": "autonomism"
+    },
+    {
+      "id": "devolutionism"
     }
   ],
   "social_change": [
@@ -1635,6 +1649,10 @@
           "next": "sch_gradual"
         },
         {
+          "text": "Through constitutional and democratic institutional development",
+          "next": "sch_institutions"
+        },
+        {
           "text": "Through popular participation and collective democratic action",
           "next": "sch_popular"
         },
@@ -1645,6 +1663,20 @@
         {
           "text": "Through a fundamental rupture with the existing social and political order",
           "next": "sch_break"
+        }
+      ]
+    },
+    {
+      "id": "sch_institutions",
+      "text": "Which institutional development is the main priority?",
+      "options": [
+        {
+          "text": "Establishing or strengthening constitutional limits, legal procedures and checks on public power",
+          "next": "constitutionalism"
+        },
+        {
+          "text": "Opening an authoritarian or restricted political system toward broader participation, competition and accountability",
+          "next": "democratization"
         }
       ]
     },
@@ -1786,6 +1818,12 @@
     },
     {
       "id": "terrorism"
+    },
+    {
+      "id": "constitutionalism"
+    },
+    {
+      "id": "democratization"
     }
   ],
   "philosophy": [
