@@ -1,19 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Electoralism</title>
-<circle cx="500" cy="500" r="472" fill="#A8C8E8" stroke="#000" stroke-width="18"/>
-<!-- ballot paper -->
-<path d="M350 165h300l55 58v425H295V220z" fill="#111"/>
-<path d="M350 195h275v420H325V220z" fill="#A8C8E8"/>
-<path d="M625 195v70h65" fill="none" stroke="#111" stroke-width="17" stroke-linejoin="round"/>
-<path d="M380 300h210M380 355h145" fill="none" stroke="#111" stroke-width="17" stroke-linecap="round"/>
-<rect x="375" y="405" width="210" height="150" rx="12" fill="#111"/>
-<path d="M410 475l48 48 97-111" fill="none" stroke="#A8C8E8" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
-<!-- ballot box -->
-<path d="M205 635h590l-42 191H247z" fill="#111"/>
-<path d="M235 660h530l-30 137H265z" fill="#A8C8E8"/>
-<path d="M175 615l325-55 325 55-31 45H206z" fill="#111"/>
-<path d="M365 594l135-23 135 23-22 21H387z" fill="#A8C8E8"/>
-<path d="M270 825h460v34H270z" fill="#111"/>
-<path d="M300 704h400M285 760h430" stroke="#111" stroke-width="12" opacity=".9"/>
-<path d="M500 165v-48m-24 0h48" stroke="#111" stroke-width="15" stroke-linecap="round"/>
+<circle cx="500" cy="500" r="472" fill="#168BDB" stroke="#080808" stroke-width="24"/>
+<g fill="#092D55">
+<path d="M258 328h484v430H258z"/>
+<path d="M222 308l278-112 278 112v48H222z"/>
+<path d="M278 376h444v32H278zM278 710h444v34H278z"/>
+</g>
+<path d="M286 360h428v350H286z" fill="#F8E65C" stroke="#092D55" stroke-width="20"/>
+<path d="M345 425h310M345 477h180" fill="none" stroke="#092D55" stroke-width="22" stroke-linecap="round"/>
+<rect x="350" y="520" width="300" height="140" rx="8" fill="#092D55"/>
+<path d="M405 585l62 56 127-147" fill="none" stroke="#F8E65C" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M180 700h640l-44 112H224z" fill="#F8E65C" stroke="#092D55" stroke-width="20" stroke-linejoin="round"/>
+<path d="M150 680l350-76 350 76-28 48H178z" fill="#092D55"/>
+<path d="M375 660l125-28 125 28-20 23H395z" fill="#F8E65C"/>
+<path d="M252 812h496v38H252z" fill="#092D55"/>
+<path d="M500 148l22 44 49 7-36 34 9 49-44-23-44 23 9-49-36-34 49-7z" fill="#F8E65C" stroke="#092D55" stroke-width="12" stroke-linejoin="round"/>
 </svg>
