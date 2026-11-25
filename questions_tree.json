@@ -1676,11 +1676,11 @@
       "options": [
         {
           "text": "The armed forces or senior military command take state power outside constitutional procedures",
-          "next": "military_coupism"
+          "next": "military_coup"
         },
         {
           "text": "The sitting executive unlawfully suspends or bypasses constitutional checks to retain or expand their own power",
-          "next": "self_coupism"
+          "next": "autocoup"
         },
         {
           "text": "A relatively small faction attempts a sudden unconstitutional takeover; the term does not specify whether it is military- or civilian-led",
@@ -1703,10 +1703,10 @@
       "id": "insurrectionism"
     },
     {
-      "id": "military_coupism"
+      "id": "military_coup"
     },
     {
-      "id": "self_coupism"
+      "id": "autocoup"
     },
     {
       "id": "putsch"
