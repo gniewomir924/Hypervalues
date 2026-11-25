@@ -1,13 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
-<title>Restorationism</title>
-<desc>A classical architectural column beneath a returning arrow, symbolizing restoration of a former political order.</desc>
-<circle cx="500" cy="500" r="472" fill="#E8D7B8" stroke="#29221B" stroke-width="30"/>
-<g stroke="#29221B" stroke-width="30" stroke-linejoin="round" stroke-linecap="round">
-  <path d="M500 225L575 300H425Z" fill="#A85D3B"/>
-  <path d="M365 330H635V390H365Z" fill="#A85D3B"/>
-  <path d="M405 410V690M500 410V690M595 410V690" fill="none" stroke-width="48"/>
-  <path d="M340 700H660V765H340Z" fill="#A85D3B"/>
-  <path d="M700 390C785 455 800 575 735 650" fill="none" stroke="#A85D3B" stroke-width="42"/>
-  <path d="M735 650L655 620L720 560Z" fill="#A85D3B"/>
-</g>
+<circle cx="500" cy="500" r="472" fill="#b92222"/>
+<!-- classical facade with returning arrow -->
+<path fill="#000" d="M500 170 190 330v55h620v-55L500 170zm-240 245h90v260h-90zm170 0h90v260h-90zm170 0h90v260h-90zm170 0h90v260h-90zM210 690h580v72H210zM170 780h660v65H170z"/>
+<path fill="#b92222" d="M500 245l-175 94h350z"/>
+<path fill="#000" d="M695 250c105 45 164 147 142 254-18 87-83 153-166 174l-13-69c57-17 99-62 111-121 15-72-24-142-91-174l-34 66-55-132 141-34z"/>
 </svg>
