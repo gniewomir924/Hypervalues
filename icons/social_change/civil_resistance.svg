@@ -1,10 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
-<title>Civil Resistance</title>
-<desc>An upright open hand, representing peaceful protest and nonviolent noncooperation.</desc>
-<circle cx="500" cy="500" r="472" fill="#DCE2F2" stroke="#1D2440" stroke-width="30"/>
-<g stroke="#1D2440" stroke-width="32" stroke-linejoin="round" stroke-linecap="round">
-  <path d="M375 755L360 590L325 445Q315 395 360 385Q405 375 420 425L450 520L425 275Q420 225 465 220Q510 215 515 265L535 500L540 245Q545 195 590 200Q635 205 630 255L615 520L650 330Q660 285 705 295Q750 305 740 355L700 610Q680 745 585 785Z" fill="#F4EBDD"/>
-  <path d="M420 555Q500 600 580 555Q635 530 675 560" fill="none" stroke="#5573B8" stroke-width="30"/>
-  <path d="M395 755H605" fill="none" stroke="#5573B8" stroke-width="28"/>
-</g>
+<circle cx="500" cy="500" r="472" fill="#b92222"/>
+<!-- peaceful protester holding a placard -->
+<path fill="#000" d="M500 190c-74 0-126 57-126 128 0 66 47 119 112 127l-18 90-128 75-92 205h504l-92-205-128-75-18-90c65-8 112-61 112-127 0-71-52-128-126-128z"/>
+<path fill="#000" d="M175 300h245v190H175zM580 300h245v190H580z"/>
+<path fill="#b92222" d="M222 355h150v28H222zm0 62h108v24H222zm405-62h150v28H627zm0 62h108v24H627z"/>
 </svg>
