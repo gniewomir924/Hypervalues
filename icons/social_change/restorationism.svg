@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+<title>Restorationism</title><desc>A classical column with a returning circular arrow, representing the restoration of a former political order or institution.</desc>
+<circle cx="500" cy="500" r="478" fill="#315344" stroke="#E7D6A5" stroke-width="28"/>
+<g fill="none" stroke="#E7D6A5" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+<path d="M365 365h270l-35-65H400zM390 400h220M410 430v250M500 430v250M590 430v250M380 710h240l35 65H345z"/>
+<path d="M690 390a225 225 0 0 1 35 265"/><path d="M725 655l-78-5 43 70"/>
+</g></svg>
