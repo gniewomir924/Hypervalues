@@ -56,7 +56,7 @@
     },
     {
       "id": "e_security",
-      "text": "How should broad social security work?",
+      "text": "How should a market economy organize social protections and corporate responsibilities?",
       "options": [
         {
           "text": "Competitive markets with strong anti-monopoly rules and universal social insurance",
@@ -77,6 +77,10 @@
         {
           "text": "Unemployment insurance and benefit funds run by trade unions, beside a market economy",
           "next": "ghent_system"
+        },
+        {
+          "text": "Businesses should create long-term value for workers, customers, suppliers and communities as well as shareholders",
+          "next": "stakeholder_capitalism"
         }
       ]
     },
@@ -178,7 +182,7 @@
     },
     {
       "id": "e_other",
-      "text": "Which arrangement fits best?",
+      "text": "Which other arrangement or guiding framework fits best?",
       "options": [
         {
           "text": "Property spread as widely as possible among families and communities",
@@ -195,6 +199,10 @@
         {
           "text": "Informal, untaxed markets outside the state's control",
           "next": "countereconomics"
+        },
+        {
+          "text": "An ethical-religious framework guiding trade, finance, property and redistribution according to Islamic principles",
+          "next": "islamic_economics"
         }
       ]
     },
@@ -381,6 +389,12 @@
     },
     {
       "id": "state_corporatism"
+    },
+    {
+      "id": "stakeholder_capitalism"
+    },
+    {
+      "id": "islamic_economics"
     }
   ],
   "resource_management": [
