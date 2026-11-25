@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+<title>Electoralism</title><desc>A ballot being placed into a ballot box, representing political change through elections.</desc>
+<circle cx="500" cy="500" r="478" fill="#243B63" stroke="#F0D58A" stroke-width="28"/>
+<g fill="none" stroke="#F0D58A" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+<path d="M365 310h250l-28 205H393z"/><path d="M405 420l65 63 135-145"/>
+<path d="M285 560h430v190H285z"/><path d="M390 560l28 65h164l28-65"/>
+<path d="M420 690h160"/>
+</g></svg>
