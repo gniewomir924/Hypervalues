@@ -1,10 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Restorationism</title>
-<circle cx="500" cy="500" r="472" fill="#F2C94C" stroke="#71352B" stroke-width="24"/>
-<g fill="#71352B">
-<path d="M230 360l-35-170 155 95 150-145 150 145 155-95-35 170z"/>
-<path d="M230 380h540v65H230z"/>
-<path d="M190 760h620v65H190zM235 700h530v55H235z"/>
-<path d="M275 475h75v225h-75zM425 475h75v225h-75zM575 475h75v225h-75z"/>
+<circle cx="500" cy="500" r="472" fill="#FFD34E" stroke="#63301F" stroke-width="24"/>
+<g fill="#63301F">
+<path d="M290 390l115 90 95-170 95 170 115-90-48 250H338z"/>
+<path d="M335 670h330v65H335z"/>
+<path d="M350 765h300v42H350z"/>
 </g>
 </svg>
