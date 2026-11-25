@@ -2360,8 +2360,8 @@ const iconSources = {
     "revolutionism": "https://creativemarket.com/milkdesignstudio/1427280-Revolution-hand-up-illustration",
     "guerrilla_warfare": "https://www.shutterstock.com/image-vector/guerrilla-icon-vector-on-white-background-1273249354",
     "military_coupism": "ai",
-    "self_coupism": "ai",
-    "putsch": "ai",
+    "self_coupism": "https://www.amazon.com/History-Symbol-Napoleon-Bonaparte-PopSockets/dp/B07JRD1XTL",
+    "putsch": "ahttps://commons.wikimedia.org/wiki/File:German_Cross.svg",
     "terrorism": "ai",
     "insurrectionism": "ai"
 };

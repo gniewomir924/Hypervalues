@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <title>Evolutionism</title>
+  <desc>Two-colour circular emblem: a branching growth symbol inside a clean outer border, representing gradual adaptation and social development.</desc>
+
+  <!-- Two-colour field and the outermost border -->
+  <circle cx="500" cy="500" r="450" fill="#263B58" stroke="#D9B96E" stroke-width="24"/>
+
+  <!-- Central branching symbol -->
+  <g fill="none" stroke="#D9B96E" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M500 755 V620"/>
+    <path d="M500 620 V455"/>
+    <path d="M500 620 C430 585 370 530 320 465"/>
+    <path d="M500 620 C570 585 630 530 680 465"/>
+    <path d="M500 500 C445 460 405 410 385 350"/>
+    <path d="M500 500 C555 460 595 410 615 350"/>
+    <path d="M500 455 V300"/>
+    <path d="M400 770 H600"/>
+  </g>
+
+  <g fill="#263B58" stroke="#D9B96E" stroke-width="27">
+    <circle cx="500" cy="285" r="43"/>
+    <circle cx="385" cy="340" r="38"/>
+    <circle cx="615" cy="340" r="38"/>
+    <circle cx="310" cy="450" r="36"/>
+    <circle cx="690" cy="450" r="36"/>
+    <circle cx="500" cy="500" r="36"/>
+  </g>
+</svg>
