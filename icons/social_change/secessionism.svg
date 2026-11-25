@@ -1,11 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
-<title>Secessionism</title>
-<desc>One territory divided into two distinct parts, representing separation and independent sovereignty.</desc>
-<circle cx="500" cy="500" r="472" fill="#D7E7DE" stroke="#142820" stroke-width="30"/>
-<g stroke="#142820" stroke-width="32" stroke-linejoin="round" stroke-linecap="round">
-  <path d="M220 345L345 285L435 330L470 420L425 485L450 570L365 700L250 660L215 545L270 455Z" fill="#28745B"/>
-  <path d="M780 345L655 285L565 330L530 420L575 485L550 570L635 700L750 660L785 545L730 455Z" fill="#28745B"/>
-  <path d="M500 245L465 355L520 435L470 520L525 605L490 755" fill="none" stroke="#F4EBDD" stroke-width="48"/>
-  <path d="M465 355L435 330M520 435L565 420M470 520L425 485M525 605L550 570" fill="none" stroke-width="25"/>
-</g>
+<circle cx="500" cy="500" r="472" fill="#b92222"/>
+<!-- two landmasses separated by a clear fissure -->
+<path fill="#000" d="M190 300l112-80 118 34 62 104-44 85 34 80-74 71 15 116-92 87-116-44-44-122 42-92-52-93zm620 0-112-80-118 34-62 104 44 85-34 80 74 71-15 116 92 87 116-44 44-122-42-92 52-93z"/>
+<path fill="#b92222" d="M482 170l-44 126 58 82-54 89 60 88-42 105 56 130 45-23-48-111 43-103-62-91 54-88-60-85 43-123z"/>
 </svg>
