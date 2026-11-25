@@ -1,18 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Electoralism</title>
-<circle cx="500" cy="500" r="472" fill="#168BDB" stroke="#080808" stroke-width="24"/>
+<circle cx="500" cy="500" r="472" fill="#168BDB" stroke="#092D55" stroke-width="24"/>
 <g fill="#092D55">
-<path d="M258 328h484v430H258z"/>
-<path d="M222 308l278-112 278 112v48H222z"/>
-<path d="M278 376h444v32H278zM278 710h444v34H278z"/>
+<path d="M275 300h450v430H275z"/>
+<path d="M225 300l275-125 275 125v55H225z"/>
+<path d="M325 405h350v255H325z" fill="#168BDB"/>
+<path d="M375 460h250v28H375zM375 520h150v28H375z"/>
+<path d="M425 585l55 55 115-130 30 28-145 165-85-85z"/>
+<path d="M225 730h550v55H225z"/>
 </g>
-<path d="M286 360h428v350H286z" fill="#F8E65C" stroke="#092D55" stroke-width="20"/>
-<path d="M345 425h310M345 477h180" fill="none" stroke="#092D55" stroke-width="22" stroke-linecap="round"/>
-<rect x="350" y="520" width="300" height="140" rx="8" fill="#092D55"/>
-<path d="M405 585l62 56 127-147" fill="none" stroke="#F8E65C" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M180 700h640l-44 112H224z" fill="#F8E65C" stroke="#092D55" stroke-width="20" stroke-linejoin="round"/>
-<path d="M150 680l350-76 350 76-28 48H178z" fill="#092D55"/>
-<path d="M375 660l125-28 125 28-20 23H395z" fill="#F8E65C"/>
-<path d="M252 812h496v38H252z" fill="#092D55"/>
-<path d="M500 148l22 44 49 7-36 34 9 49-44-23-44 23 9-49-36-34 49-7z" fill="#F8E65C" stroke="#092D55" stroke-width="12" stroke-linejoin="round"/>
 </svg>
