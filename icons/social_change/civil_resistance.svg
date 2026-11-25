@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 <title>Civil Resistance</title>
-<circle cx="500" cy="500" r="472" fill="#F06A55" stroke="#762C32" stroke-width="24"/>
-<g fill="#762C32">
-<path d="M280 210h440v270H280z"/>
-<path d="M345 285h310v28H345zM390 355h220v28H390z"/>
-<path d="M430 480h140v70H430z"/>
-<path d="M400 800l40-210q15-80 60-80t60 80l40 210z"/>
-<path d="M420 600L290 470l-70-105 45-40 110 105 100 70zM580 600l130-130 70-105-45-40-110 105-100 70z"/>
-<circle cx="500" cy="510" r="65"/>
+<circle cx="500" cy="500" r="472" fill="#FF705B" stroke="#681D2B" stroke-width="24"/>
+<g fill="#681D2B">
+<path d="M350 300h300v225H350z"/>
+<path d="M410 355h180v30H410zM410 420h125v30H410z"/>
+<path d="M465 525h70v210h-70z"/>
+<path d="M380 735h240v55H380z"/>
+<path d="M430 555l-120-85-55-80 48-35 95 105 102 55z"/>
+<path d="M570 555l120-85 55-80-48-35-95 105-102 55z"/>
 </g>
 </svg>
