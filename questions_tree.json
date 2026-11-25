@@ -1636,7 +1636,29 @@
         },
         {
           "text": "Through a fundamental transformation of the existing social and political order rather than gradual reform",
+          "next": "sch_break"
+        }
+      ]
+    },
+    {
+      "id": "sch_break",
+      "text": "By what means should the existing order be broken?",
+      "options": [
+        {
+          "text": "Through a broad revolution that replaces the whole political and social order, whatever form it takes",
           "next": "revolutionism"
+        },
+        {
+          "text": "Through a prolonged armed struggle by small, mobile irregular forces who live among the people and wear down the state",
+          "next": "guerrilla_warfare"
+        },
+        {
+          "text": "Through a sudden seizure of power by a small group inside the state, usually the army, who then govern from above",
+          "next": "coupism"
+        },
+        {
+          "text": "Through direct uprising: riots, sabotage and attacks on institutions by autonomous groups or the crowd, without parties or leaders",
+          "next": "insurrectionism"
         }
       ]
     },
@@ -1645,6 +1667,15 @@
     },
     {
       "id": "revolutionism"
+    },
+    {
+      "id": "guerrilla_warfare"
+    },
+    {
+      "id": "coupism"
+    },
+    {
+      "id": "insurrectionism"
     }
   ],
   "philosophy": [
