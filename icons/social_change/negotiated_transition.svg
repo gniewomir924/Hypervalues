@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+<title>Negotiated Transition</title><desc>Two hands meeting in a handshake above a bridge, representing an agreed transfer of political authority.</desc>
+<circle cx="500" cy="500" r="478" fill="#49365F" stroke="#E5D8F0" stroke-width="28"/>
+<g fill="none" stroke="#E5D8F0" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+<path d="M245 390l105-75 120 65 55 70-55 55-85-55-65 50-75-45z"/>
+<path d="M755 390l-105-75-120 65-55 70 55 55 85-55 65 50 75-45z"/>
+<path d="M425 445l75 55 75-55M340 650c80-100 240-100 320 0M300 700h400"/>
+<path d="M500 555v95"/>
+</g></svg>
