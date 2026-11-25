@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+<title>Secessionism</title><desc>A single territory divided into two distinct parts, representing separation and independent sovereignty.</desc>
+<circle cx="500" cy="500" r="478" fill="#762F38" stroke="#F2D8C9" stroke-width="28"/>
+<g fill="none" stroke="#F2D8C9" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+<path d="M270 330l115-70 105 50 20 110-75 75 35 105-85 100-110-45-35-120 55-95z"/>
+<path d="M730 330l-115-70-105 50-20 110 75 75-35 105 85 100 110-45 35-120-55-95z"/>
+<path d="M500 260l-35 105 55 90-50 95 45 95-15 95"/>
+</g></svg>
