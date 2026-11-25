@@ -1,0 +1,349 @@
+diff --git a/Instruction.html b/Instruction.html
+index e141b2a..ebf5560 100644
+--- a/Instruction.html
++++ b/Instruction.html
+@@ -20,12 +20,19 @@
+     </div>
+     </div>
+     <script>
++        // Custom Results shares this page: same list of categories, but values are picked from a visual list
++        const customMode = new URLSearchParams(location.search).get('mode') === 'custom';
++        if (customMode) {
++            document.getElementById('question').innerText = 'You will see a list of categories. In each one, click "Add new value" and pick a value from the visual list; no questions are asked. You can add several values per category and click any value to say how much it matches you, from -1 (opposite) to +1 (match). Your closest ideologies update as you go.';
++        }
++
+         // a new quiz starts with an empty list
+         function startQuiz() {
+             try {
+                 localStorage.removeItem('quizAnswers');
+                 localStorage.removeItem('quizResults');
+-                localStorage.removeItem('hvResultMode');
++                if (customMode) localStorage.setItem('hvResultMode', 'custom');
++                else localStorage.removeItem('hvResultMode');
+             } catch (e) { /* storage is not available */ }
+             location.href = 'results.html';
+         }
+diff --git a/custom.html b/custom.html
+deleted file mode 100644
+index 6426c45..0000000
+--- a/custom.html
++++ /dev/null
+@@ -1,182 +0,0 @@
+-<!DOCTYPE html>
+-<html lang="en">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>HyperValues - Custom Results</title>
+-    <link rel="stylesheet" href="style.css">
+-    <link rel="icon" type="image/svg+xml" href="icon.svg">
+-    <script src="theme.js"></script>
+-    <script src="linebreak.js"></script>
+-    <style>
+-        /* Uses the same value tiles and theme as the Values/results screens. */
+-        #custom-values { width: 100%; }
+-        #custom-values .result-item { cursor: pointer; text-decoration: none; color: inherit; }
+-        #custom-values .result-item.selected .result-icon {
+-            box-shadow: 0 0 0 3px var(--bg-color), 0 0 0 6px var(--accent-primary);
+-            transform: scale(1.04);
+-        }
+-        #custom-values .result-item.selected .result-text { color: var(--text-primary); }
+-        .custom-score {
+-            width: 100%;
+-            margin-top: 8px;
+-            display: none;
+-            flex-direction: column;
+-            align-items: center;
+-            gap: 3px;
+-        }
+-        .result-item.selected .custom-score { display: flex; }
+-        .custom-score input { width: 100%; max-width: 120px; accent-color: var(--accent-primary); cursor: pointer; }
+-        .custom-score output { color: var(--text-dim); font-size: 0.75rem; font-weight: 700; }
+-        .custom-topline { width: 100%; max-width: 900px; text-align: center; color: var(--text-dim); line-height: 1.6; margin: 4px 0 24px; }
+-        .custom-selection-count { color: var(--text-dim); font-size: 0.9rem; margin: 0 0 18px; text-align: center; }
+-        .custom-bottom { margin-top: 28px; }
+-    </style>
+-</head>
+-<body>
+-    <div class="main-container">
+-        <div class="title-container"><h1>Custom Results</h1></div>
+-        <p class="custom-topline">Select values directly from the visual list. Selected values start at +1; adjust their scores with the slider beneath each icon. No questions are asked.</p>
+-        <p id="selection-count" class="custom-selection-count">0 values selected</p>
+-        <div id="custom-values" class="category-list"></div>
+-        <div class="button-container custom-bottom">
+-            <button id="calculate-results" type="button">Calculate results</button>
+-            <button type="button" onclick="location.href='index.html'">Back to menu</button>
+-        </div>
+-    </div>
+-
+-    <script src="data.js"></script>
+-    <script src="scoring.js"></script>
+-    <script>
+-        const container = document.getElementById('custom-values');
+-        const countLabel = document.getElementById('selection-count');
+-        const selected = new Map();
+-        const saved = localStorage.getItem('hvResultMode') === 'custom' ? HV.loadAnswers() : {};
+-
+-        // Restore an existing custom result, if the user returns to this page.
+-        Object.entries(saved || {}).forEach(([category, items]) => {
+-            (items || []).forEach(item => selected.set(category + '/' + item.value, {
+-                category, value: item.value, agree: Number(item.agree)
+-            }));
+-        });
+-
+-        const formatScore = value => (value > 0 ? '+' : '') + Number(value).toFixed(2);
+-
+-        function updateCount() {
+-            const count = selected.size;
+-            countLabel.textContent = count + (count === 1 ? ' value selected' : ' values selected');
+-        }
+-
+-        function makeValueTile(category, id, title) {
+-            const key = category + '/' + id;
+-            const entry = selected.get(key);
+-            const tile = document.createElement('div');
+-            tile.className = 'result-item' + (entry ? ' selected' : '');
+-            tile.setAttribute('role', 'button');
+-            tile.setAttribute('tabindex', '0');
+-            tile.setAttribute('aria-pressed', entry ? 'true' : 'false');
+-            tile.title = title;
+-
+-            const img = document.createElement('img');
+-            img.src = 'icons/' + category + '/' + id + '.svg';
+-            img.className = 'result-icon';
+-            img.alt = title;
+-            img.onerror = () => { img.style.visibility = 'hidden'; };
+-
+-            const name = document.createElement('p');
+-            name.className = 'result-text';
+-            setName(name, title);
+-
+-            const score = document.createElement('div');
+-            score.className = 'custom-score';
+-
+-            const slider = document.createElement('input');
+-            slider.type = 'range';
+-            slider.min = '-1';
+-            slider.max = '1';
+-            slider.step = '0.05';
+-            slider.value = entry ? String(entry.agree) : '1';
+-            slider.setAttribute('aria-label', 'Score for ' + title);
+-
+-            const output = document.createElement('output');
+-            output.textContent = formatScore(slider.value);
+-            slider.addEventListener('input', event => {
+-                event.stopPropagation();
+-                const current = selected.get(key);
+-                if (!current) return;
+-                current.agree = Number(slider.value);
+-                output.textContent = formatScore(slider.value);
+-            });
+-            slider.addEventListener('click', event => event.stopPropagation());
+-            score.append(slider, output);
+-
+-            function toggle() {
+-                if (selected.has(key)) {
+-                    selected.delete(key);
+-                    tile.classList.remove('selected');
+-                    tile.setAttribute('aria-pressed', 'false');
+-                    score.style.display = 'none';
+-                } else {
+-                    selected.set(key, { category, value: id, agree: 1 });
+-                    slider.value = '1';
+-                    output.textContent = '+1.00';
+-                    tile.classList.add('selected');
+-                    tile.setAttribute('aria-pressed', 'true');
+-                    score.style.display = 'flex';
+-                }
+-                updateCount();
+-            }
+-
+-            tile.addEventListener('click', toggle);
+-            tile.addEventListener('keydown', event => {
+-                if (event.key === 'Enter' || event.key === ' ') {
+-                    event.preventDefault();
+-                    toggle();
+-                }
+-            });
+-
+-            tile.append(img, name, score);
+-            return tile;
+-        }
+-
+-        categories.forEach(category => {
+-            const section = document.createElement('section');
+-            section.className = 'category-section';
+-            section.id = 'cat-' + category;
+-
+-            const heading = document.createElement('h2');
+-            heading.className = 'category-title';
+-            heading.textContent = categoryTitles[category] || category;
+-
+-            const grid = document.createElement('div');
+-            grid.className = 'values-flex-container';
+-
+-            Object.entries(resultsMapping[category] || {}).forEach(([id, title]) => {
+-                grid.appendChild(makeValueTile(category, id, title));
+-            });
+-
+-            section.append(heading, grid);
+-            container.appendChild(section);
+-        });
+-
+-        updateCount();
+-
+-        document.getElementById('calculate-results').addEventListener('click', () => {
+-            if (!selected.size) {
+-                alert('Select at least one value before calculating your results.');
+-                return;
+-            }
+-
+-            const answers = {};
+-            selected.forEach(item => {
+-                if (!answers[item.category]) answers[item.category] = [];
+-                answers[item.category].push({ value: item.value, agree: item.agree });
+-            });
+-
+-            HV.saveAnswers(answers);
+-            localStorage.setItem('hvResultMode', 'custom');
+-            location.href = 'results.html';
+-        });
+-    </script>
+-</body>
+-</html>
+diff --git a/index.html b/index.html
+index a0e11fb..a823003 100644
+--- a/index.html
++++ b/index.html
+@@ -28,7 +28,7 @@
+             <button onclick="location.href='Instruction.html'; localStorage.removeItem('hvResultMode')">Start</button>
+             <button onclick="location.href='values.html'">Values</button>
+             <button onclick="location.href='ideologies.html'">Ideologies</button>
+-            <button onclick="location.href='custom.html'">Custom Results</button>
++            <button onclick="location.href='Instruction.html?mode=custom'">Custom Results</button>
+             <button onclick="location.href='changelog.html'">Changelog</button>
+             <button onclick="location.href='licpage.html'">License</button>
+         </div>
+diff --git a/pick.html b/pick.html
+new file mode 100644
+index 0000000..098d5a7
+--- /dev/null
++++ b/pick.html
+@@ -0,0 +1,104 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Pick a value</title>
++    <link rel="stylesheet" href="style.css">
++    <link rel="icon" type="image/svg+xml" href="icon.svg">
++    <script src="theme.js"></script>
++    <script src="linebreak.js"></script>
++</head>
++<body>
++    <div class="main-container">
++        <div class="question-container">
++            <h2 id="question"></h2>
++        </div>
++
++        <div id="pick-list" class="values-flex-container"></div>
++
++        <div id="buttons"></div>
++    </div>
++
++    <script src="data.js"></script>
++    <script src="scoring.js"></script>
++    <script>
++        // Custom Results: the same step as quiz.html (one category, one value added), but the value is picked
++        // from a visual list instead of being reached by answering questions.
++        const params = new URLSearchParams(window.location.search);
++        const category = params.get('cat');
++        const answers = HV.loadAnswers();
++
++        function backToList() {
++            window.location.href = `results.html#cat-${category}`;
++        }
++
++        // hasOwnProperty: keys such as "constructor" or "__proto__" must not count as categories
++        if (!category || !Object.prototype.hasOwnProperty.call(resultsMapping, category)) {
++            window.location.replace('results.html');
++        } else {
++            document.getElementById('question').innerText = `Pick a value: ${categoryTitles[category] || category}`;
++
++            const list = document.getElementById('pick-list');
++            Object.keys(resultsMapping[category]).forEach(id => {
++                const name = HV.nameOf(category, id);
++                const added = (answers[category] || []).find(item => item.value === id);
++
++                const tile = document.createElement('a');
++                tile.className = 'result-item';
++                tile.href = '#';
++                tile.title = name;
++                tile.style.textDecoration = 'none';
++                tile.style.color = 'inherit';
++                tile.onclick = event => {
++                    event.preventDefault();
++                    addValue(id);
++                };
++
++                const img = document.createElement('img');
++                img.src = `icons/${category}/${id}.svg`;
++                img.className = 'result-icon';
++                img.alt = '';
++                img.onerror = () => { img.style.display = 'none'; };
++                if (added) {
++                    // already in your list: same ring as on the results screen
++                    img.style.borderRadius = '50%';
++                    img.style.boxShadow = `0 0 0 3px var(--bg-color), 0 0 0 6px ${HV.ringColor(added.agree)}`;
++                }
++
++                const label = document.createElement('p');
++                label.className = 'result-text';
++                setName(label, name);
++
++                tile.append(img, label);
++                if (added) {
++                    const agree = document.createElement('p');
++                    agree.className = 'result-agree';
++                    agree.textContent = HV.signed(added.agree);
++                    tile.appendChild(agree);
++                }
++                list.appendChild(tile);
++            });
++            fitNames();
++
++            const back = document.createElement('button');
++            back.innerText = 'Back';
++            back.onclick = backToList;
++            document.getElementById('buttons').appendChild(back);
++        }
++
++        // same rule as quiz.js: a new value matches you (+1); one picked again after being neutral or opposite matches again
++        function addValue(valueId) {
++            const items = answers[category] || (answers[category] = []);
++            const existing = items.find(item => item.value === valueId);
++            if (!existing) {
++                items.push({ value: valueId, agree: 1 });
++            } else if (!(existing.agree > 0)) {
++                existing.agree = 1;
++            }
++            HV.saveAnswers(answers);
++            backToList();
++        }
++    </script>
++</body>
++</html>
+diff --git a/results.html b/results.html
+index f31bd8d..eb8d78a 100644
+--- a/results.html
++++ b/results.html
+@@ -104,7 +104,7 @@
+                     flex.appendChild(tile);
+                 });
+ 
+-                const add = makeTile(`quiz.html?cat=${category}`);
++                const add = makeTile(`${isCustomResult() ? 'pick' : 'quiz'}.html?cat=${category}`);
+                 const circle = document.createElement('div');
+                 circle.className = 'result-icon result-none add-icon';
+                 const label = document.createElement('p');

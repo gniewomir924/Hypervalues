@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <title>Reformism</title>
+  <circle cx="500" cy="500" r="478" fill="#2BB1BF" stroke="#ffffff" stroke-width="30"/>
+  <!-- Exact white emblem paths and figures from the supplied Reformism_flag.svg,
+       scaled and centered; the flag's teal rectangular background is omitted. -->
+  <g transform="translate(500 500) scale(8.4) translate(-59.9285 -39.687)">
+    <g transform="translate(6.615 -217.625)">
+      <path d="M21.167 230.854v9.26l7.143 17.198-7.143 26.459h5.291l5.292-21.696 5.292 21.696h5.291l-7.408-26.459 7.408-17.197 7.276 17.197-7.276 26.459h5.292l5.292-21.828 5.291 21.828H63.5l-7.276-26.459 7.276-17.197 7.144 17.197-7.144 26.459h5.292l5.291-21.696 5.292 21.696h5.292l-7.409-26.459 7.409-17.197v-9.26l-10.584 21.96-10.583-21.96-10.583 21.827-10.584-21.828-10.583 21.96Z" fill="#ffffff"/>
+      <circle cx="31.75" cy="238.792" r="5.292" fill="#ffffff"/>
+      <circle cx="52.917" cy="238.792" r="5.292" fill="#ffffff"/>
+      <circle cx="74.083" cy="238.792" r="5.292" fill="#ffffff"/>
+    </g>
+  </g>
+</svg>
