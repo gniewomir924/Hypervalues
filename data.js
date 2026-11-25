@@ -211,7 +211,9 @@ const resultsMapping = {
         "restorationism": "Restorationism",
         "civil_resistance": "Civil Resistance",
         "general_strike": "General Strike",
-        "negotiated_transition": "Negotiated Transition"
+        "negotiated_transition": "Negotiated Transition",
+        "autonomism": "Autonomism",
+        "devolutionism": "Devolutionism",
         "constitutionalism": "Constitutionalism",
         "democratization": "Democratization"
     },
@@ -227,8 +229,6 @@ const resultsMapping = {
         "anti_organizationalism": "Anti-Organizationalism",
         "patchwork": "Patchwork",
         "panarchy": "Panarchy"
-        "autonomism": "Autonomism",
-        "devolutionism": "Devolutionism"
     },
     "philosophy": {
         "rationalism": "Rationalism",
