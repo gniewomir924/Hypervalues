@@ -1,5 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
-<circle cx="500" cy="500" r="472" fill="#B7D7B0"/>
-<path fill="#000" d="M170 300l115-95 130 35 78 100-35 95 35 75-75 70 15 125-95 95-125-45-55-125 45-95-55-95z"/>
-<path fill="#000" d="M830 300l-115-95-130 35-78 100 35 95-35 75 75 70-15 125 95 95 125-45 55-125-45-95 55-95z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+<title>Secessionism</title>
+<circle cx="500" cy="500" r="472" fill="#B7D7B0" stroke="#000" stroke-width="18"/>
+<!-- two distinct territories divided by a widening fissure -->
+<path d="M155 280l90-72 85 24 58-35 92 57 30 88-40 62 30 67-58 48-10 82-67 38-15 103-91 56-92-48-30-102 38-74-48-82 40-80-50-72z" fill="#111"/>
+<path d="M845 280l-90-72-85 24-58-35-92 57-30 88 40 62-30 67 58 48 10 82 67 38 15 103 91 56 92-48 30-102-38-74 48-82-40-80 50-72z" fill="#111"/>
+<!-- interior cartographic cuts -->
+<g fill="none" stroke="#B7D7B0" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+<path d="M225 300l70 28 42 70-27 60 46 58-24 73M190 515l82 20 45 62-18 73M305 240l-15 64 52 45"/>
+<path d="M775 300l-70 28-42 70 27 60-46 58 24 73M810 515l-82 20-45 62 18 73M695 240l15 64-52 45"/>
+</g>
+<!-- separation channel -->
+<path d="M470 145l-35 115 65 76-54 91 65 84-62 94 57 91-43 148 72-2-32-145 52-92-60-91 56-91-57-88 48-89-34-101z" fill="#B7D7B0" stroke="#111" stroke-width="12" stroke-linejoin="round"/>
+<path d="M478 230l42 28m-60 165 43 18m-43 169 42 18m-35 164 39 20" stroke="#111" stroke-width="12" stroke-linecap="round"/>
 </svg>
