@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+<title>Civil Resistance</title><desc>An open raised hand, representing peaceful protest and nonviolent civic action.</desc>
+<circle cx="500" cy="500" r="478" fill="#292929" stroke="#E6B5A2" stroke-width="28"/>
+<g fill="none" stroke="#E6B5A2" stroke-width="36" stroke-linecap="round" stroke-linejoin="round">
+<path d="M375 690V430c0-28 42-28 42 0v125V315c0-31 46-31 46 0v230V285c0-31 46-31 46 0v260V325c0-30 46-30 46 0v242l34-78c13-28 55-8 42 22l-62 160c-22 57-62 85-125 85h-9c-64 0-110-42-110-106z"/>
+<path d="M290 770h420"/>
+</g></svg>
