@@ -203,6 +203,10 @@
         {
           "text": "An ethical-religious framework guiding trade, finance, property and redistribution according to Islamic principles",
           "next": "islamic_economics"
+        },
+        {
+          "text": "Prioritize workers, farmers and productive businesses over rent-seeking and speculative finance, regardless of ownership model",
+          "next": "producerism"
         }
       ]
     },
@@ -395,6 +399,9 @@
     },
     {
       "id": "islamic_economics"
+    },
+    {
+      "id": "producerism"
     }
   ],
   "resource_management": [
