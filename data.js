@@ -1897,7 +1897,7 @@ const descriptions = {
     "military_coup": "The view that a military-led seizure of state authority outside constitutional procedures is a legitimate or preferred means of changing the government. It places the armed forces or their senior command at the center of political succession. This is distinct from simply supporting a strong military, high defence spending or military influence within a constitutional system.",
     "autocoup": "An attempt by a sitting executive to retain or expand personal power by unconstitutionally suspending, bypassing or disabling checks on executive authority, such as the legislature, courts or constitutional limits. Unlike a conventional coup against an incumbent government, the officeholder already in power is the actor seeking to concentrate authority.",
     "putsch": "A sudden attempt by a relatively small faction to seize political power outside normal constitutional procedures. The term is often used for a coup attempt and may refer to military or civilian participants; it does not necessarily imply success, popular support or a lasting change of government.",
-    "terrorism": "A strategy involving politically or ideologically motivated violence, or threats of such violence, intended to intimidate a wider population or coerce governments and other authorities. Definitions vary across legal systems and scholarship; in this taxonomy, the term refers to violence directed at civilians or other non-combatants, and is distinct from conventional warfare, coups and nonviolent protest."
+    "terrorism": "A strategy involving politically or ideologically motivated violence, or threats of such violence, intended to intimidate a wider population or coerce governments and other authorities. Definitions vary across legal systems and scholarship; in this taxonomy, the term refers to violence directed at civilians or other non-combatants, and is distinct from conventional warfare, coups and nonviolent protest.",
     "democratization": "The process through which a political system becomes more open, representative and accountable, extending meaningful political participation and competition. It can include free and fair elections, civil liberties, pluralism, an independent judiciary, legislative oversight and peaceful transfers of power. Democratization describes a process and its direction, not a single constitutional model or a guarantee that democratic institutions will endure.",
 };
 
@@ -2196,8 +2196,8 @@ const iconSources = {
     "stakeholder_capitalism": "ai",
     "paternalistic_capitalism": "https://wiki.polcompball.co.uk/Paternalistic_Conservatism",
     "social_solidarity_economy": "https://www.itcilo.org/courses/mooc-social-and-solidarity-economy",
-    "islamic_economics": "ai",
-    "producerism": "ai",
+    "islamic_economics": "https://en.wikipedia.org/wiki/Symbols_of_Islam",
+    "producerism": "https://cybernations.fandom.com/wiki/Producerism",
     "ordnungspolitik": "https://wiki.polcompball.co.uk/Ordo-Liberalism",
     "residualism": "https://wiki.polcompball.co.uk/Welfarism",
     "basic_income_capitalism": "https://wiki.polcompball.co.uk/Social_Libertarianism",
@@ -2392,6 +2392,6 @@ const iconSources = {
     "autocoup": "https://www.amazon.com/History-Symbol-Napoleon-Bonaparte-PopSockets/dp/B07JRD1XTL",
     "putsch": "ahttps://commons.wikimedia.org/wiki/File:German_Cross.svg",
     "terrorism": "ai",
-    "insurrectionism": "ai"
+    "insurrectionism": "ai",
     "democratization": "ai",
 };
